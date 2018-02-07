@@ -3,7 +3,7 @@ export class Vehicle{
     name: string;
     description: string;
     editing: boolean = false;
-    imageUrl: string = "http://placehold.it/500x300/e4d2ba";
+    imageUrl: string;
     contractTypeId: number;
     isActive: boolean;
     contractSignedOn: Date;
@@ -18,5 +18,6 @@ export class Vehicle{
         this.isActive = obj && obj.isActive || false;
         this.contractSignedOn = obj && obj.contractSignedOn || new Date();
         this.budget = obj && obj.budget || 0;
+        this.imageUrl = "http://placehold.it/500x300/e4d2ba";
     }
 }

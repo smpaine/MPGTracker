@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, enableProdMode } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Vehicle } from '../shared/vehicle.model';
 
@@ -16,10 +15,6 @@ export class VehicleCardComponent {
     @Output() edit = new EventEmitter<Vehicle>();
     @Output() delete = new EventEmitter<Vehicle>();
     actionDropdownIsOpen = false;
-
-    constructor(private router: Router) {
-
-    }
 
     toggleActions() {
         this.actionDropdownIsOpen = !this.actionDropdownIsOpen;
@@ -45,6 +40,6 @@ export class VehicleCardComponent {
     onSelect(vehicle: Vehicle, event) {
         event.preventDefault();
         console.log("onSelect: vehicle: " + vehicle);
-        this.router.navigate(['/vehicles', vehicle.id]);
+        //this.router.navigate(['/vehicles', vehicle.id]);
     }
 }

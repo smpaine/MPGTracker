@@ -9,12 +9,13 @@ import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 import { VehicleService } from './shared/vehicle.service';
+import { VehiclesComponent } from './vehicles.component';
 
 @NgModule({
-    declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent],
+    declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent, VehiclesComponent],
     imports: [BrowserModule, HttpModule, CommonModule, FormsModule],
     providers: [VehicleService],
-    bootstrap: [VehicleListComponent]
+    bootstrap: [VehiclesComponent]
 })
 
 export class VehiclesModule {
