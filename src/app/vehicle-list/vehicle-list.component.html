@@ -1,0 +1,19 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{errorMessage}}
+</div>
+
+<div class="col-xs-18 col-sm-6 col-md-3"
+     *ngFor="let vehicle of vehicles; let currentIndex=index;">
+
+    <vehicle-card [vehicle]="vehicle"
+                  *ngIf="!vehicle.editing"
+                  (edit)="onEdit($event)"
+                  (delete)="onDelete($event)">
+    </vehicle-card>
+
+    <vehicle-form [vehicle]="vehicle"
+                  *ngIf="vehicle.editing"
+                  (cancel)="onCancel($event)"
+                  (save)="onSave($event)">
+    </vehicle-form>
+</div>
