@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule }           from '@angular/http';
+import { HttpModule, JsonpModule }           from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { VehiclesComponent } from './vehicles.component';
 
 @NgModule({
     declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent, VehiclesComponent],
-    imports: [BrowserModule, HttpModule, CommonModule, FormsModule],
+    imports: [BrowserModule, HttpModule, JsonpModule, CommonModule, FormsModule],
     providers: [VehicleService],
     bootstrap: [VehiclesComponent]
 })
