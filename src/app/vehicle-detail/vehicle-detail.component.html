@@ -1,31 +1,11 @@
 <div *ngIf="vehicle">
     <div class="row" >
         <div class="thumbnail col-md-6"  >
-            <img class="img-rounded img-responsive"
-                 [src]="vehicle.imageUrl"
-                 [alt]="vehicle.name + ' image'">
             <div class="caption">
                 <h4>{{vehicle.name}}</h4>
-
-
                 <p class="well">
                     {{vehicle.description}}
                 </p>
-
-                <br>
-                <strong>
-                    Active:  {{vehicle.isActive ? "Yes": "No"}}
-                </strong>
-                <br>
-
-                <strong>
-                    Contract Signed: {{vehicle.contractSignedOn}}
-                </strong>
-                <br>
-
-                <strong>
-                    Budget: {{vehicle.budget}}
-                </strong>
             </div>
         </div>
     </div>

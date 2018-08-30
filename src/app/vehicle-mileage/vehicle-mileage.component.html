@@ -1,0 +1,29 @@
+ <h3>Mileage History</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="mpgTable">
+                    <thead>
+                        <tr>
+                            <th>Vehicle</th>
+                            <th>Mileage</th>
+                            <th>Gallons</th>
+                            <th>Total Cost</th>
+                            <th>Price per Gallon</th>
+                            <th>Miles Driven</th>
+                            <th>MPG</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mileage of mileages" id="{{mileage.id}}">
+                            <td>{{mileage.name}}</td>
+                            <td>{{mileage.mileage}}</td>
+                            <td>{{mileage.gallons}}</td>
+                            <td>{{mileage.totalCost}}</td>
+                            <td>{{mileage.costPerGallon}}</td>
+                            <td>{{mileage.miles}}</td>
+                            <td>{{mileage.mpg}}</td>
+                            <td>{{mileage.timestamp}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>

@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-xs-18 col-sm-6 col-md-3"
-     *ngFor="let vehicle of vehicles; let currentIndex=index;">
+     *ngFor="let vehicle of vehicles">
 
     <vehicle-card [vehicle]="vehicle"
                   *ngIf="!vehicle.editing"
@@ -11,9 +11,6 @@
                   (delete)="onDelete($event)">
     </vehicle-card>
 
-    <vehicle-form [vehicle]="vehicle"
-                  *ngIf="vehicle.editing"
-                  (cancel)="onCancel($event)"
-                  (save)="onSave($event)">
-    </vehicle-form>
+    <vehicle-mileage [vid]="vehicle.id">
+    </vehicle-mileage>
 </div>

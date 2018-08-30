@@ -1,33 +1,17 @@
 <div class="vehicle-detail" *ngIf="!vehicle.editing">
     <div class="thumbnail">
 
-        <img class="img-rounded img-responsive" [src]="vehicle.imageUrl" [alt]="vehicle.name + ' image'" (click)="onSelect(vehicle, $event)">
+        <!--<img class="img-rounded img-responsive" [src]="vehicle.imageUrl" [alt]="vehicle.name + ' image'" (click)="onSelect(vehicle, $event)">-->
 
         <div class="caption">
             <h4 (click)="onSelect(vehicle, $event)">{{vehicle.name}}</h4>
             <p (click)="onSelect(vehicle, $event)"> {{vehicle.description}}</p>
             <div class="dropdown" [ngClass]="getDropdownCssClasses()">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="true" (click)="toggleActions()">
-                        Actions
-                        <i class="fa fa-caret-down"></i>
-                    </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li>
 
                         <a href="#" (click)="onEdit(vehicle, $event)">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;  Edit
-                            </a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <a href="#">
-                                <i class="fa fa-archive"></i>&nbsp; Archive
-                            </a>
-                    </li>
-                    <li>
-                        <a href="#" (click)="onDelete(vehicle, $event)">
-                                <i class="fa fa-trash-o"></i>&nbsp; Delete
                             </a>
                     </li>
                 </ul>

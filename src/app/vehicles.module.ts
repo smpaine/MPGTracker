@@ -10,11 +10,13 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 import { VehicleService } from './shared/vehicle.service';
 import { VehiclesComponent } from './vehicles.component';
+import { VehicleMileageComponent } from './vehicle-mileage/vehicle-mileage.component';
+import { MileageService } from './shared/mileage.service';
 
 @NgModule({
-    declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent, VehiclesComponent],
+    declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent, VehiclesComponent, VehicleMileageComponent],
     imports: [BrowserModule, HttpModule, JsonpModule, CommonModule, FormsModule],
-    providers: [VehicleService],
+    providers: [VehicleService, MileageService],
     bootstrap: [VehiclesComponent]
 })
 
