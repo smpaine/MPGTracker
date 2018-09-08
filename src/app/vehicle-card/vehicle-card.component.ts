@@ -12,34 +12,15 @@ import { Vehicle } from '../shared/vehicle.model';
 
 export class VehicleCardComponent {
     @Input() vehicle: Vehicle;
-    @Output() edit = new EventEmitter<Vehicle>();
-    @Output() delete = new EventEmitter<Vehicle>();
-    actionDropdownIsOpen = false;
+    displayingMileage = false;
 
-    toggleActions() {
-        this.actionDropdownIsOpen = !this.actionDropdownIsOpen;
-    }
-
-    getDropdownCssClasses() {
-        return {
-            dropdown: true,
-            open: this.actionDropdownIsOpen
-        }
-    }
-
-    onEdit(vehicle: Vehicle, event) {
+    showMileage(vehicle: Vehicle, event) {
         event.preventDefault();
-        this.edit.emit(vehicle);
+        this.displayingMileage = true;
     }
 
-    onDelete(vehicle: Vehicle, event) {
+    hideMileage(vehicle: Vehicle, event) {
         event.preventDefault();
-        this.delete.emit(vehicle);
-    }
-
-    onSelect(vehicle: Vehicle, event) {
-        event.preventDefault();
-        console.log("onSelect: vehicle: " + vehicle);
-        //this.router.navigate(['/vehicles', vehicle.id]);
+        this.displayingMileage = false;
     }
 }

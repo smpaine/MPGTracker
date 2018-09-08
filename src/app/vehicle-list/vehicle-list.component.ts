@@ -12,6 +12,7 @@ import { VehicleService } from '../shared/vehicle.service';
 export class VehicleListComponent implements OnInit {
     vehicles: Vehicle[];
     errorMessage: string;
+    selectedVehicle: Vehicle;
 
     constructor(private vehicleService: VehicleService) {}
 
@@ -21,32 +22,19 @@ export class VehicleListComponent implements OnInit {
 
     getVehicles() {
         this.vehicleService.list()
-            .subscribe(data => this.vehicles = data,
-                error => this.errorMessage = error);
+            .subscribe(data => {
+                this.vehicles = data;
+                if (this.vehicles && this.vehicles.length > 0) {
+                    console.log("Setting selectedVehicle to " + this.vehicles[0].name);
+                    this.selectedVehicle = this.vehicles[0];
+                } else {
+                    console.log("Failing to set selectedVehicle");
+                }
+            },error => this.errorMessage = error);
     }
 
-    onEdit(vehicle) {
-        vehicle.editing = true;
-    }
-
-    onCancel(vehicle) {
-        vehicle.editing = false;
-    }
-
-    onSave(vehicle) {
-        vehicle.editing = false;
-        this.vehicleService.put(vehicle)
-            .subscribe( p => {
-                    let index = this.vehicles.findIndex(p=> p.id == vehicle.id);
-                    this.vehicles[index] = vehicle;
-            },
-            error=> this.errorMessage = error);
-    }
-
-    onDelete(vehicle) {
-        this.vehicleService
-            .delete(vehicle)
-            .subscribe(()=>this.vehicles = this.vehicles.filter(p=> p.id != vehicle.id)
-                , (error)=>this.errorMessage = error)
+    onChange(newSelectedVehicle) {
+        console.log("Setting selectedVehicle to " + newSelectedVehicle.name);
+        this.selectedVehicle = newSelectedVehicle;
     }
 }

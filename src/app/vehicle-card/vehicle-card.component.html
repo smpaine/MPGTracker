@@ -1,21 +1,7 @@
-<div class="vehicle-detail" *ngIf="!vehicle.editing">
-    <div class="thumbnail">
-
-        <!--<img class="img-rounded img-responsive" [src]="vehicle.imageUrl" [alt]="vehicle.name + ' image'" (click)="onSelect(vehicle, $event)">-->
-
-        <div class="caption">
-            <h4 (click)="onSelect(vehicle, $event)">{{vehicle.name}}</h4>
-            <p (click)="onSelect(vehicle, $event)"> {{vehicle.description}}</p>
-            <div class="dropdown" [ngClass]="getDropdownCssClasses()">
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-
-                        <a href="#" (click)="onEdit(vehicle, $event)">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;  Edit
-                            </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<h4>{{vehicle.name}}</h4>
+<p>{{vehicle.description}}</p>
+<a href="#" *ngIf="!displayingMileage" (click)="showMileage(vehicle, $event)">Show Mileage</a>
+<div *ngIf="displayingMileage">
+    <a href="#" (click)="hideMileage(vehicle, $event)">Hide Mileage</a>
+    <vehicle-mileage vid="{{vehicle.id}}"></vehicle-mileage>
 </div>
