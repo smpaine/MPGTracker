@@ -10,7 +10,7 @@ import { Vehicle } from "./vehicle.model";
 
 @Injectable()
 export class MileageService {
-    private mileageUrl = "http://nameniap.com/spaine/MPGTracker/retrieveMileageData.php?callback=JSONP_CALLBACK";
+    private mileageUrl = "https://nameniap.com/spaine/MPGTracker/retrieveMileageData.php?callback=JSONP_CALLBACK";
 
     constructor(private http: Http, private jsonp: Jsonp) {
 
