@@ -9,7 +9,7 @@ import { Vehicle } from "./vehicle.model";
 
 @Injectable()
 export class VehicleService {
-    private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/retrieveVehicles.php?callback=JSONP_CALLBACK";
+    private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/services/vehicles/callback=JSONP_CALLBACK";
 
     constructor(private http: Http, private jsonp: Jsonp) {
 

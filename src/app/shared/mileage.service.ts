@@ -10,14 +10,14 @@ import { Vehicle } from "./vehicle.model";
 
 @Injectable()
 export class MileageService {
-    private mileageUrl = "https://nameniap.com/spaine/MPGTracker/retrieveMileageData.php?callback=JSONP_CALLBACK";
+    private mileageUrl = "https://nameniap.com/spaine/MPGTracker/services/mileagedata/";
 
     constructor(private http: Http, private jsonp: Jsonp) {
 
     }
 
     list(vid: number): Observable<Mileage[]> {
-        return this.jsonp.get(this.mileageUrl + "&vid=" + vid)
+        return this.jsonp.get(this.mileageUrl + vid + "/callback=JSONP_CALLBACK")
             .map(this.extractData)
             .catch(this.handleError);
     }
