@@ -55,11 +55,9 @@ export class VehicleListComponent implements OnInit {
 
     onChange(newSelectedVehicle: Vehicle) {
         console.log("Setting selectedVehicle to " + newSelectedVehicle.name);
-        wasEditing: Boolean;
-        var wasEditing = this.selectedVehicle.editing;
+        newSelectedVehicle.editing = this.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited
         this.selectedVehicle.editing = false;
         this.selectedVehicle = newSelectedVehicle;
-        this.selectedVehicle.editing = wasEditing;
     }
 }
