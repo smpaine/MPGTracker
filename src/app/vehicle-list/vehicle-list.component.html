@@ -2,6 +2,12 @@
     <select [ngModel]="selectedVehicle" (ngModelChange)="onChange($event)" name="vehicleSelector">
         <option [ngValue]="vehicle" *ngFor="let vehicle of vehicles">{{vehicle.name}}</option>
     </select>
+
+    <button (click)="toggleVehicleEdit(selectedVehicle)">Edit Vehicle</button>
+
+    <vehicle-form [vehicle]="selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
+
+    <div *ngIf="selectedVehicle.editing">Editing vehicle: {{selectedVehicle.name}}</div>
 </div>
 <div *ngIf="selectedVehicle">
     <vehicle-mileage [vid]="selectedVehicle.id"></vehicle-mileage>

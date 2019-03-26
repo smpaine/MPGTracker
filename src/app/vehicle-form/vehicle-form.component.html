@@ -22,20 +22,6 @@
                          Name needs to be at least 3 characters long.
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="vehicleDescription">Description</label>
-                    <textarea [ngModel]="vehicle.description" #descriptionDirective="ngModel"
-                            class="form-control"
-                            id="vehicleDescription" name="description"
-                            rows="3" placeholder="enter description">
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    <label for="isActive">Active?</label>
-                    <input [ngModel]="vehicle.isActive"
-                        type="checkbox" class="form-control" name="isActive"
-                        id="isActive" name="isActive" />
-                </div>
             </div>
 
             <div class="btn-group">
