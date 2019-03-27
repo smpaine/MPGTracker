@@ -49,7 +49,16 @@ export class VehicleListComponent implements OnInit {
                 this.vehicles[i].name = vehicle.name;
                 this.vehicles[i].editing = false;
                 console.log("Putting vehicle");
-                return this.vehicleService.put(vehicle);
+                this.vehicleService.put(vehicle).subscribe(
+                    data => {
+                        // Update success
+                        console.log("Update successful: " + data);
+                    },
+                    error => {
+                        // Error
+                        console.error("Update failed: " + error);
+                    }
+                );
             }
         }
     }

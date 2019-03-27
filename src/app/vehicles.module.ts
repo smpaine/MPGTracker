@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, JsonpModule }           from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { SessionService } from './shared/session.service';
 
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
@@ -15,8 +17,8 @@ import { MileageService } from './shared/mileage.service';
 
 @NgModule({
     declarations: [VehicleListComponent, VehicleCardComponent, VehicleFormComponent, VehicleDetailComponent, VehiclesComponent, VehicleMileageComponent],
-    imports: [BrowserModule, HttpModule, JsonpModule, CommonModule, FormsModule],
-    providers: [VehicleService, MileageService],
+    imports: [BrowserModule, HttpModule, CommonModule, FormsModule],
+    providers: [SessionService, VehicleService, MileageService],
     bootstrap: [VehiclesComponent]
 })
 
