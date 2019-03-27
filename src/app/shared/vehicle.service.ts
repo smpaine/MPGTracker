@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpModule, Http, JsonpModule, Jsonp, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -9,14 +9,14 @@ import { Vehicle } from "./vehicle.model";
 
 @Injectable()
 export class VehicleService {
-    private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/services/vehicles/callback=JSONP_CALLBACK";
+    private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
 
-    constructor(private http: Http, private jsonp: Jsonp) {
+    constructor(private http: Http) {
 
     }
 
     list(): Observable<Vehicle[]> {
-        return this.jsonp.get(this.vehiclesUrl)
+        return this.http.get(this.vehiclesUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -32,6 +32,7 @@ export class VehicleService {
     }
 
     put(vehicle: Vehicle) {
+        console.log("In vehicle service put");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -39,8 +40,12 @@ export class VehicleService {
 
         let url = this.vehiclesUrl + vehicle.id;
 
+        console.log("url: " + url);
+
         let body = JSON.stringify(vehicle);
 
+        console.log("body: " + body);
+        
         return this.http
             .put(url, body, options)
             .map(()=> vehicle)

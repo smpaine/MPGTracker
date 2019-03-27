@@ -48,7 +48,8 @@ export class VehicleListComponent implements OnInit {
             if (this.vehicles[i].id == vehicle.id) {
                 this.vehicles[i].name = vehicle.name;
                 this.vehicles[i].editing = false;
-                return true;
+                console.log("Putting vehicle");
+                return this.vehicleService.put(vehicle);
             }
         }
     }

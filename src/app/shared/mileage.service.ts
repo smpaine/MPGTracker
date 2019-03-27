@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpModule, Http, JsonpModule, Jsonp, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -12,12 +12,12 @@ import { Vehicle } from "./vehicle.model";
 export class MileageService {
     private mileageUrl = "https://nameniap.com/spaine/MPGTracker/services/mileagedata/";
 
-    constructor(private http: Http, private jsonp: Jsonp) {
+    constructor(private http: Http) {
 
     }
 
     list(vid: number): Observable<Mileage[]> {
-        return this.jsonp.get(this.mileageUrl + vid + "/callback=JSONP_CALLBACK")
+        return this.http.get(this.mileageUrl + vid)
             .map(this.extractData)
             .catch(this.handleError);
     }
