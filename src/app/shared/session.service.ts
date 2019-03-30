@@ -15,7 +15,7 @@ export class SessionService {
 
     }
 
-    private extractData(responseSerialized: Response): Observable<User[]> {
+    private extractData(responseSerialized: Response): Observable<User> {
         let response = responseSerialized.json();
         return response || {};
     }
@@ -26,7 +26,7 @@ export class SessionService {
     }
 
     login(user: User): Observable<User> {
-        console.log("In vehicle service put");
+        console.log("In session service login");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -42,13 +42,8 @@ export class SessionService {
         
         return this.http
             .post(url, body, options)
-            .map((response: Response): User => {
-                    var responseData = response.json();
-                    user.sessionId = responseData.sessionId;
-                    return user;
-                }
-            );
-            //.catch(this.handleError);
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     logout(user: User): Observable<User>  {

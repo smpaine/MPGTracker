@@ -15,7 +15,7 @@ export class Logout {
   constructor(public router: Router, public http: Http, private sessionService: SessionService) {
     let user = new User;
 
-    user.sessionId = localStorage.getItem("sessionId");
+    user.token = localStorage.getItem("token");
 
     this.sessionService.logout(user).subscribe(
       response => {

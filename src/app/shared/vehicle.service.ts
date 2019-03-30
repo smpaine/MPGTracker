@@ -7,6 +7,8 @@ import 'rxjs/add/operator/catch';
 
 import { Vehicle } from "./vehicle.model";
 
+import { contentHeaders } from "../common/headers";
+
 @Injectable()
 export class VehicleService implements OnInit {
     private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
@@ -35,12 +37,7 @@ export class VehicleService implements OnInit {
     }
 
     private list(): Observable<Vehicle[]> {
-        let headers = new Headers();
-        if (localStorage.getItem("sessionId") != undefined) {
-            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
-        }
-
-        let options = new RequestOptions({ headers: headers });
+        let options = new RequestOptions({ headers: contentHeaders });
 
         return this.http.get(this.vehiclesUrl, options)
             .map(this.extractData)
@@ -58,13 +55,7 @@ export class VehicleService implements OnInit {
     }
 
     put(vehicle: Vehicle) {
-       let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        if (localStorage.getItem("sessionId") != undefined) {
-            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
-        }
-
-        let options = new RequestOptions({ headers: headers });
+        let options = new RequestOptions({ headers: contentHeaders });
 
         let url = this.vehiclesUrl + vehicle.id;
 
@@ -81,13 +72,7 @@ export class VehicleService implements OnInit {
     }
 
     add(vehicle: Vehicle) {
-        let headers = new Headers();
-         headers.append('Content-Type', 'application/json');
-         if (localStorage.getItem("sessionId") != undefined) {
-             headers.append("SessionId", ""+localStorage.getItem("sessionId"));
-         }
- 
-         let options = new RequestOptions({ headers: headers });
+         let options = new RequestOptions({ headers: contentHeaders });
  
          let url = this.vehiclesUrl + vehicle.id;
  
@@ -102,18 +87,4 @@ export class VehicleService implements OnInit {
              .map(this.extractData)
              .catch(this.handleError);
      }
-
-    delete(vehicle: Vehicle): Observable<Vehicle> {
-        let url = this.vehiclesUrl + vehicle.id;
-
-        return this.http
-            .delete(url)
-            .catch(this.handleError);
-    }
-
-    find(id: number): Observable<Vehicle> {
-        return this.http.get(this.vehiclesUrl + id)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
 }

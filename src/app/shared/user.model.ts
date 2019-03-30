@@ -1,10 +1,10 @@
 export class User{
-    sessionId: string;
+    token: string;
     userName: string;
     password: string;
 
     constructor(obj?: any){
-        this.sessionId = obj && obj.sessionId || null;
+        this.token = obj && obj.token || null;
         this.userName = obj && obj.userName || null;
         this.password = obj && obj.password || null;
     }

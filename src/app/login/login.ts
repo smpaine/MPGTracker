@@ -24,9 +24,9 @@ export class Login {
     user.password = password;
 
     this.sessionService.login(user).subscribe(
-      response => {
-        console.log(response);
-        localStorage.setItem("sessionId", ""+response.sessionId);
+      (responseUser: User) => {
+        console.log(responseUser);
+        localStorage.setItem("token", responseUser.token);
         this.router.navigate(['mileages']);
       },
       error => {
