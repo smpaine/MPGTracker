@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AuthGuard } from './common/auth.guard';
 import { Login } from './login/login';
@@ -24,7 +23,7 @@ import { MileageService } from './shared/mileage.service';
 @NgModule({
     declarations: [Login, Logout, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, AppComponent],
     imports: [BrowserModule, HttpModule, CommonModule, FormsModule, RouterModule.forRoot(routes, {useHash: true})],
-    providers: [CookieService, AuthGuard, SessionService, VehicleService, MileageService],
+    providers: [AuthGuard, SessionService, VehicleService, MileageService],
     bootstrap: [AppComponent]
 })
 
