@@ -62,6 +62,10 @@ export class VehicleListComponent implements OnInit {
         for (var i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].id == vehicle.id) {
                 this.vehicles[i].name = vehicle.name;
+                this.vehicles[i].make = vehicle.make;
+                this.vehicles[i].model = vehicle.model;
+                this.vehicles[i].year = vehicle.year;
+                this.vehicles[i].purchased = vehicle.purchased;
                 this.vehicles[i].editing = false;
                 console.log("Putting vehicle");
                 this.vehicleService.put(vehicle).subscribe(

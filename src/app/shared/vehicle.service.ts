@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable, Observer } from 'rxjs';
+import { share } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -20,7 +21,7 @@ export class VehicleService implements OnInit {
 
     constructor(private http: Http) {
         this.sharedList = [];
-        this.SharedList$ = new Observable<Vehicle[]>(x => this.listObserver = x).share();
+        this.SharedList$ = new Observable<Vehicle[]>(x => this.listObserver = x).pipe(share());
     }
 
     ngOnInit() {
