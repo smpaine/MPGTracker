@@ -18,7 +18,7 @@ export class VehicleFormComponent {
     @Output() save = new EventEmitter<Vehicle>();
 
     ngOnInit() {
-        console.log("incoming vehicle: " + this.vehicle.id);
+        //console.debug("incoming vehicle: " + this.vehicle.id);
     }
 
     onCancel(vehicle, event) {

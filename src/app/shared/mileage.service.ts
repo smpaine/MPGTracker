@@ -32,7 +32,7 @@ export class MileageService {
     }
 
     private handleError(error: any): Observable<any> {
-        console.log(error);
+        console.error(error);
         return Observable.throw("An error occurred.");
     }
 

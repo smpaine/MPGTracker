@@ -43,7 +43,7 @@ export class VehicleListComponent implements OnInit {
                     this.selectedVehicle = this.vehicles[0];
                 }
             } else {
-                console.log("Failing to set selectedVehicle");
+                console.error("Failing to set selectedVehicle");
             }
         });
         this.vehicleService.getList();
@@ -58,7 +58,6 @@ export class VehicleListComponent implements OnInit {
     }
 
     saveVehicle(vehicle: Vehicle) {
-        console.log("Saving vehicle: " + vehicle.id);
         for (var i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].id == vehicle.id) {
                 this.vehicles[i].name = vehicle.name;
@@ -67,11 +66,10 @@ export class VehicleListComponent implements OnInit {
                 this.vehicles[i].year = vehicle.year;
                 this.vehicles[i].purchased = vehicle.purchased;
                 this.vehicles[i].editing = false;
-                console.log("Putting vehicle");
                 this.vehicleService.put(vehicle).subscribe(
                     data => {
                         // Update success
-                        console.log("Update successful: " + data);
+                        console.debug("Update successful: " + data);
                     },
                     error => {
                         // Error
@@ -83,7 +81,6 @@ export class VehicleListComponent implements OnInit {
     }
 
     onChange(newSelectedVehicle: Vehicle) {
-        console.log("Setting selectedVehicle to " + newSelectedVehicle.name);
         newSelectedVehicle.editing = this.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited
         this.selectedVehicle.editing = false;

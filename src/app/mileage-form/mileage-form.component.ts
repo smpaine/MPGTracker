@@ -45,11 +45,9 @@ export class MileageFormComponent {
 
     onSave(mileageForm: NgForm) {
         let tempMileage = Object.assign({}, this.newMileage, mileageForm.value.newMileage);
-        console.log("Saving mileage: " + tempMileage);
         this.mileageService.put(tempMileage).subscribe(
             data => {
                 // Update success
-                console.log("Update successful: " + data);
                 this.router.navigate(['/mileages', tempMileage.vid]);
             },
             error => {
@@ -78,7 +76,6 @@ export class MileageFormComponent {
     }
 
     onChange(newSelectedVehicle: Vehicle) {
-        console.log("Setting selectedVehicle to " + newSelectedVehicle.name);
         newSelectedVehicle.editing = this.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited
         this.selectedVehicle.editing = false;

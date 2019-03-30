@@ -22,7 +22,6 @@ export class VehicleMileageComponent implements OnInit {
 
     ngOnChanges(changeRecord: SimpleChanges) {
         if (changeRecord.vid) {
-            console.log('vid = ', changeRecord.vid.currentValue);
             this.vid = changeRecord.vid.currentValue;
             this.getMileages(this.vid);
         }

@@ -21,12 +21,11 @@ export class SessionService {
     }
 
     private handleError(error: any): Observable<any> {
-        console.log(error);
+        console.error(error);
         return Observable.throw("An error occurred.");
     }
 
     login(user: User): Observable<User> {
-        console.log("In session service login");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -34,11 +33,7 @@ export class SessionService {
 
         let url = this.sessionUrl + "login";
 
-        console.log("url: " + url);
-
         let body = JSON.stringify(user);
-
-        console.log("body: " + body);
         
         return this.http
             .post(url, body, options)
@@ -47,7 +42,6 @@ export class SessionService {
     }
 
     logout(user: User): Observable<User>  {
-        console.log("In vehicle service put");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -55,11 +49,7 @@ export class SessionService {
 
         let url = this.sessionUrl + "logout";
 
-        console.log("url: " + url);
-
         let body = JSON.stringify(user);
-
-        console.log("body: " + body);
         
         return this.http
             .post(url, body, options)

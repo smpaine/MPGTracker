@@ -19,7 +19,6 @@ export class Logout {
 
     this.sessionService.logout(user).subscribe(
       response => {
-        console.log(response);
         localStorage.clear();
         this.router.navigate(['login']);
       },

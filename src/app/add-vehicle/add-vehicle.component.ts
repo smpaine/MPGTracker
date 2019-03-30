@@ -29,13 +29,9 @@ export class AddVehicleComponent {
     }
 
     saveVehicle(vehicle: Vehicle) {
-        console.log("Saving vehicle: " + vehicle.id);
-        console.log("Adding vehicle");
         this.vehicleService.add(vehicle).subscribe(
             (responseVehicle: Vehicle) => {
                 // Update success
-                console.log("Update successful: ");
-                console.log(responseVehicle);
                 this.vehicleService.getList();
                 if (responseVehicle != undefined) {
                     this.router.navigate(['/mileages', responseVehicle.id]);

@@ -31,10 +31,9 @@ export class VehicleService implements OnInit {
     getList() {
         this.list()
         .subscribe(newVehicles => {
-            console.log("in vehicleService updateVehicles - got data");
             this.sharedList = newVehicles;
                 this.listObserver.next(this.sharedList);
-        },error => {console.log(error)});
+        },error => {console.error(error)});
     }
 
     private list(): Observable<Vehicle[]> {
@@ -51,7 +50,7 @@ export class VehicleService implements OnInit {
     }
 
     private handleError(error: any): Observable<any> {
-        console.log(error);
+        console.error(error);
         return Observable.throw("An error occurred.");
     }
 
@@ -60,11 +59,7 @@ export class VehicleService implements OnInit {
 
         let url = this.vehiclesUrl + vehicle.id;
 
-        console.log("url: " + url);
-
         let body = JSON.stringify(vehicle);
-
-        console.log("body: " + body);
         
         return this.http
             .put(url, body, options)
@@ -77,11 +72,7 @@ export class VehicleService implements OnInit {
  
          let url = this.vehiclesUrl + vehicle.id;
  
-         console.log("url: " + url);
- 
          let body = JSON.stringify(vehicle);
- 
-         console.log("body: " + body);
          
          return this.http
              .post(url, body, options)
