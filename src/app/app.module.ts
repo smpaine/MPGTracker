@@ -4,9 +4,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { APP_BASE_HREF, Location } from '@angular/common';
 
-import { getBaseLocation } from './common/common-functions.utils';
 import { AuthGuard } from './common/auth.guard';
 import { Login } from './login/login';
 import { Logout } from './logout/logout';
@@ -27,10 +25,7 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 @NgModule({
     declarations: [Login, Logout, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AddVehicleComponent, AppComponent],
     imports: [BrowserModule, HttpModule, CommonModule, FormsModule, RouterModule.forRoot(routes, {useHash: true})],
-    providers: [
-        {provide: APP_BASE_HREF, useFactory: getBaseLocation },
-        AuthGuard, SessionService, VehicleService, MileageService
-    ],
+    providers: [AuthGuard, SessionService, VehicleService, MileageService],
     bootstrap: [AppComponent]
 })
 
