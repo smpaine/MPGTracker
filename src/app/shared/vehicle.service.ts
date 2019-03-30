@@ -47,8 +47,6 @@ export class VehicleService implements OnInit {
             .catch(this.handleError);
     }
 
-
-
     private extractData(responseSerialized: Response): Observable<Vehicle[]> {
         let response = responseSerialized.json();
         return response || {};
@@ -81,6 +79,29 @@ export class VehicleService implements OnInit {
             .map(()=> vehicle)
             .catch(this.handleError);
     }
+
+    add(vehicle: Vehicle) {
+        let headers = new Headers();
+         headers.append('Content-Type', 'application/json');
+         if (localStorage.getItem("sessionId") != undefined) {
+             headers.append("SessionId", ""+localStorage.getItem("sessionId"));
+         }
+ 
+         let options = new RequestOptions({ headers: headers });
+ 
+         let url = this.vehiclesUrl + vehicle.id;
+ 
+         console.log("url: " + url);
+ 
+         let body = JSON.stringify(vehicle);
+ 
+         console.log("body: " + body);
+         
+         return this.http
+             .post(url, body, options)
+             .map(this.extractData)
+             .catch(this.handleError);
+     }
 
     delete(vehicle: Vehicle): Observable<Vehicle> {
         let url = this.vehiclesUrl + vehicle.id;

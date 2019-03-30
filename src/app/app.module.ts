@@ -20,9 +20,10 @@ import { VehicleService } from './shared/vehicle.service';
 import { VehicleMileageComponent } from './vehicle-mileage/vehicle-mileage.component';
 import { MileageService } from './shared/mileage.service';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 @NgModule({
-    declarations: [Login, Logout, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AppComponent],
+    declarations: [Login, Logout, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AddVehicleComponent, AppComponent],
     imports: [BrowserModule, HttpModule, CommonModule, FormsModule, RouterModule.forRoot(routes, {useHash: true})],
     providers: [AuthGuard, SessionService, VehicleService, MileageService],
     bootstrap: [AppComponent]

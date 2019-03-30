@@ -48,7 +48,7 @@ export class MileageService {
 
         let options = new RequestOptions({ headers: headers });
 
-        let url = this.mileageUrl + "&vid=" + mileage.vid;
+        let url = this.mileageUrl + mileage.vid;
 
         let body = JSON.stringify(mileage);
 

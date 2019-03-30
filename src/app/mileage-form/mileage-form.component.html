@@ -1,104 +1,77 @@
 <form #mileageForm="ngForm" class="mileage-form" (ngSubmit)="onSave(mileageForm)">
     <div class="thumbnail" >
         <div class="caption">
-            <div ngModelGroup="vehicle">
-                <div class="form-group" [ngClass]="setErrorClass(nameDirective)">
-                    <label class="control-label" for="vehicleName">Name</label>
-                    <input [ngModel]="vehicle.name" #nameDirective="ngModel"
-                        class="form-control" type="text"
-                        id="vehicleName" name="name"
-                        placeholder="enter name" autofocus
-                        required minlength="3"
-                        #nameControl>
+            <div *ngIf="vehicles">
+                <p>Choose Vehicle to Add MPG for:</p>
+                <select [ngModel]="selectedVehicle" (ngModelChange)="onChange($event)" name="vehicleSelector">
+                    <option [ngValue]="vehicle" *ngFor="let vehicle of vehicles">{{vehicle.name}}</option>
+                </select>
+            </div>
+            <br>
+            <div ngModelGroup="newMileage">
+                <div class="form-group" [ngClass]="setErrorClass(mileageDirective)">
+                    <label class="control-label" for="">Mileage</label>
+                    <input ngModel #mileageDirective="ngModel"
+                        class="form-control" type="number"
+                        id="mileage" name="mileage"
+                        placeholder="enter mileage" autofocus
+                        required minlength="1"
+                        step="1"
+                        #mileageControl>
                 </div>
                 <br>
-                <div [hidden]="hideErrors(nameDirective)">
-                    <div [hidden]="hideError(nameDirective, 'required')"
+                <div [hidden]="hideErrors(mileageDirective)">
+                    <div [hidden]="hideError(mileageDirective, 'required')"
                          class="alert alert-danger">
-                         Name is required.
+                         Mileage is required.
                     </div>
-                    <div [hidden]="hideError(nameDirective, 'minlength')"
+                    <div [hidden]="hideError(mileageDirective, 'minlength')"
                          class="alert alert-danger">
-                         Name needs to be at least 3 characters long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group" [ngClass]="setErrorClass(makeDirective)">
-                    <label class="control-label" for="vehicleMake">Make</label>
-                    <input [ngModel]="vehicle.make" #makeDirective="ngModel"
-                        class="form-control" type="text"
-                        id="vehicleMake" name="make"
-                        placeholder="enter make"
-                        required minlength="3"
-                        #makeControl>
-                </div>
-                <br>
-                <div [hidden]="hideErrors(makeDirective)">
-                    <div [hidden]="hideError(makeDirective, 'required')"
-                         class="alert alert-danger">
-                         Make is required.
-                    </div>
-                    <div [hidden]="hideError(makeDirective, 'minlength')"
-                         class="alert alert-danger">
-                         Make needs to be at least 3 characters long.
+                         Mileage needs to be at least 1 character long.
                     </div>
                 </div>
                 <br>
-                <div class="form-group" [ngClass]="setErrorClass(modelDirective)">
-                    <label class="control-label" for="vehicleModel">Model</label>
-                    <input [ngModel]="vehicle.model" #modelDirective="ngModel"
-                        class="form-control" type="text"
-                        id="vehicleModel" name="model"
-                        placeholder="enter model"
-                        required minlength="3"
+                <div class="form-group" [ngClass]="setErrorClass(gallonsDirective)">
+                    <label class="control-label" for="gallons">Gallons</label>
+                    <input [ngModel]="newMileage.gallons" #gallonsDirective="ngModel"
+                        class="form-control" type="number"
+                        id="gallons" name="gallons"
+                        placeholder="enter gallons"
+                        required minlength="1"
+                        step="any"
+                        #gallonsControl>
+                </div>
+                <br>
+                <div [hidden]="hideErrors(gallonsDirective)">
+                    <div [hidden]="hideError(gallonsDirective, 'required')"
+                         class="alert alert-danger">
+                         Gallons is required.
+                    </div>
+                    <div [hidden]="hideError(gallonsDirective, 'minlength')"
+                         class="alert alert-danger">
+                         Gallons needs to be at least 1 characters long.
+                    </div>
+                </div>
+                <br>
+                <div class="form-group" [ngClass]="setErrorClass(costDirective)">
+                    <label class="control-label" for="totalCost">Total Cost</label>
+                    <input [ngModel]="newMileage.totalCost" #costDirective="ngModel"
+                        class="form-control" type="number"
+                        id="totalCost" name="totalCost"
+                        placeholder="enter total cost"
+                        required minlength="1"
+                        step="any"
                         #modelControl>
                 </div>
                 <br>
-                <div [hidden]="hideErrors(modelDirective)">
-                    <div [hidden]="hideError(modelDirective, 'required')"
+                <div [hidden]="hideErrors(costDirective)">
+                    <div [hidden]="hideError(costDirective, 'required')"
                          class="alert alert-danger">
-                         Model is required.
+                         Total cost is required.
                     </div>
-                    <div [hidden]="hideError(modelDirective, 'minlength')"
+                    <div [hidden]="hideError(costDirective, 'minlength')"
                          class="alert alert-danger">
-                         Model needs to be at least 3 characters long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group" [ngClass]="setErrorClass(yearDirective)">
-                    <label class="control-label" for="vehicleYear">Year</label>
-                    <input [ngModel]="vehicle.year" #yearDirective="ngModel"
-                        class="form-control" type="text"
-                        id="vehicleYear" name="year"
-                        placeholder="enter year"
-                        required minlength="4"
-                        #yearControl>
-                </div>
-                <br>
-                <div [hidden]="hideErrors(yearDirective)">
-                    <div [hidden]="hideError(yearDirective, 'required')"
-                         class="alert alert-danger">
-                         Year is required.
-                    </div>
-                    <div [hidden]="hideError(yearDirective, 'minlength')"
-                         class="alert alert-danger">
-                         Year needs to be 4 characters long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group" [ngClass]="setErrorClass(purchasedDirective)">
-                    <label class="control-label" for="vehiclePurchased">Purchase Date</label>
-                    <input [ngModel]="vehicle.purchased" #purchasedDirective="ngModel"
-                        class="form-control" type="date"
-                        id="vehiclePurchased" name="purchased"
-                        placeholder="enter purchase date"
-                        #purchasedControl>
-                </div>
-                <br>
-                <div [hidden]="hideErrors(purchasedDirective)">
-                    <div [hidden]="hideError(purchasedDirective, 'required')"
-                         class="alert alert-danger">
-                         Purchase date is required.
+                         Total cost needs to be at least 1 character long.
                     </div>
                 </div>
             </div>

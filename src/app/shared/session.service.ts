@@ -42,8 +42,7 @@ export class SessionService {
         
         return this.http
             .post(url, body, options)
-            .map(
-                function(response: Response) {
+            .map((response: Response): User => {
                     var responseData = response.json();
                     user.sessionId = responseData.sessionId;
                     return user;
