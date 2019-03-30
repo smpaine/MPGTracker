@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { Mileage } from "./mileage.model";
 import { Vehicle } from "./vehicle.model";
 
-import { contentHeaders } from "../common/headers";
+import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class MileageService {
@@ -19,7 +19,7 @@ export class MileageService {
     }
 
     list(vid: number): Observable<Mileage[]> {
-        let options = new RequestOptions({ headers: contentHeaders });
+        let options = new RequestOptions({ headers: commonHeaders() });
 
         return this.http.get(this.mileageUrl + vid, options)
             .map(this.extractData)
@@ -37,7 +37,7 @@ export class MileageService {
     }
 
     put(mileage: Mileage) {
-        let options = new RequestOptions({ headers: contentHeaders });
+        let options = new RequestOptions({ headers: commonHeaders() });
 
         let url = this.mileageUrl + mileage.vid;
 

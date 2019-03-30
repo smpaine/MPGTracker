@@ -33,29 +33,4 @@ export class VehicleMileageComponent implements OnInit {
             .subscribe(data => this.mileages = data,
             error => this.errorMessage = error);
     }
-
-    onEdit(mileage) {
-        mileage.editing = true;
-    }
-
-    onCancel(mileage) {
-        mileage.editing = false;
-    }
-
-    onSave(mileage) {
-        mileage.editing = false;
-        this.mileageService.put(mileage)
-            .subscribe(p => {
-                let index = this.mileages.findIndex(p => p.id == mileage.id);
-                this.mileages[index] = mileage;
-            },
-            error => this.errorMessage = error);
-    }
-
-    onDelete(mileage) {
-        this.mileageService
-            .delete(mileage)
-            .subscribe(() => this.mileages = this.mileages.filter(p => p.id != mileage.id)
-            , (error) => this.errorMessage = error)
-    }
 }

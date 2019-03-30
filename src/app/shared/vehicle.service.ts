@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 
 import { Vehicle } from "./vehicle.model";
 
-import { contentHeaders } from "../common/headers";
+import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class VehicleService implements OnInit {
@@ -37,7 +37,7 @@ export class VehicleService implements OnInit {
     }
 
     private list(): Observable<Vehicle[]> {
-        let options = new RequestOptions({ headers: contentHeaders });
+        let options = new RequestOptions({ headers: commonHeaders() });
 
         return this.http.get(this.vehiclesUrl, options)
             .map(this.extractData)
@@ -55,7 +55,7 @@ export class VehicleService implements OnInit {
     }
 
     put(vehicle: Vehicle) {
-        let options = new RequestOptions({ headers: contentHeaders });
+        let options = new RequestOptions({ headers: commonHeaders() });
 
         let url = this.vehiclesUrl + vehicle.id;
 
@@ -72,7 +72,7 @@ export class VehicleService implements OnInit {
     }
 
     add(vehicle: Vehicle) {
-         let options = new RequestOptions({ headers: contentHeaders });
+         let options = new RequestOptions({ headers: commonHeaders() });
  
          let url = this.vehiclesUrl + vehicle.id;
  
