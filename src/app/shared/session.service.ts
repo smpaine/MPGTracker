@@ -25,7 +25,7 @@ export class SessionService {
         return Observable.throw("An error occurred.");
     }
 
-    login(user: User) {
+    login(user: User): Observable<User> {
         console.log("In vehicle service put");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -42,11 +42,17 @@ export class SessionService {
         
         return this.http
             .post(url, body, options)
-            .map(()=> user)
-            .catch(this.handleError);
+            .map(
+                function(response: Response) {
+                    var responseData = response.json();
+                    user.sessionId = responseData.sessionId;
+                    return user;
+                }
+            );
+            //.catch(this.handleError);
     }
 
-    logout(user: User) {
+    logout(user: User): Observable<User>  {
         console.log("In vehicle service put");
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

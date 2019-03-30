@@ -17,7 +17,14 @@ export class MileageService {
     }
 
     list(vid: number): Observable<Mileage[]> {
-        return this.http.get(this.mileageUrl + vid)
+        let headers = new Headers();
+        if (localStorage.getItem("sessionId") != undefined) {
+            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
+        }
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(this.mileageUrl + vid, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -35,6 +42,9 @@ export class MileageService {
     put(mileage: Mileage) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        if (localStorage.getItem("sessionId") != undefined) {
+            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
+        }
 
         let options = new RequestOptions({ headers: headers });
 

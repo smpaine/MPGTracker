@@ -1,7 +1,0 @@
-<h4>{{vehicle.name}}</h4>
-<p>{{vehicle.description}}</p>
-<a href="#" *ngIf="!displayingMileage" (click)="showMileage(vehicle, $event)">Show Mileage</a>
-<div *ngIf="displayingMileage">
-    <a href="#" (click)="hideMileage(vehicle, $event)">Hide Mileage</a>
-    <vehicle-mileage vid="{{vehicle.id}}"></vehicle-mileage>
-</div>

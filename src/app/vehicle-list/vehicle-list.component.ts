@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Vehicle } from '../shared/vehicle.model';
 import { VehicleService } from '../shared/vehicle.service';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
     moduleId: module.id,

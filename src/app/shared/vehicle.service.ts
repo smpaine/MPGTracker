@@ -16,7 +16,14 @@ export class VehicleService {
     }
 
     list(): Observable<Vehicle[]> {
-        return this.http.get(this.vehiclesUrl)
+        let headers = new Headers();
+        if (localStorage.getItem("sessionId") != undefined) {
+            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
+        }
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(this.vehiclesUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -32,9 +39,11 @@ export class VehicleService {
     }
 
     put(vehicle: Vehicle) {
-        console.log("In vehicle service put");
-        let headers = new Headers();
+       let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        if (localStorage.getItem("sessionId") != undefined) {
+            headers.append("SessionId", ""+localStorage.getItem("sessionId"));
+        }
 
         let options = new RequestOptions({ headers: headers });
 
