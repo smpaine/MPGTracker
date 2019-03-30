@@ -1,8 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Vehicle } from '../shared/vehicle.model';
 import { Mileage } from '../shared/mileage.model';
+
+import { VehicleService } from '../shared/vehicle.service';
 
 @Component({
     moduleId: module.id,
@@ -14,9 +17,26 @@ import { Mileage } from '../shared/mileage.model';
 })
 
 export class MileageFormComponent {
-    @Input() vehicle: Vehicle;
+    vid: Number;
+    vehicles: Vehicle[];
+    vehicle: Vehicle;
+
+    constructor(private Activatedroute:ActivatedRoute, private vehicleService: VehicleService) {
+        this.vehicles = [];
+        this.vehicle = new Vehicle();
+    }
 
     ngOnInit() {
+        this.vid=this.Activatedroute.snapshot.params['id'];
+        this.vehicleService.SharedList$.subscribe(lst => {
+            this.vehicles = lst;
+            this.vehicles.forEach(aVehicle => {
+                if (aVehicle.id ==this.vid) {
+                    this.vehicle = aVehicle;
+                }
+            });
+        });
+        this.vehicleService.getList();
         
     }
 

@@ -3,9 +3,9 @@
     <div class="page-header">
         <h1>MPGTracker</h1>
         <div class="lead">
-            <a [routerLink]="['/addNewMPG']"><button>Add New MPG</button></a>
+            <a [routerLink]="['/addMileage', selectedVehicle.id]"><button>Add New MPG</button></a>
             &nbsp;&nbsp;&nbsp;
-            <a [routerLink]="['/addNewVehicle']"><button>Add a new vehicle</button></a>
+            <a [routerLink]="['/addVehicle']"><button>Add a new vehicle</button></a>
             &nbsp;&nbsp;&nbsp;
             <a [routerLink]="['/logout']"><button>Logout</button></a>
             <br/>
