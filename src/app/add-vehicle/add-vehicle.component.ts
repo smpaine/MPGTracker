@@ -32,7 +32,6 @@ export class AddVehicleComponent {
         this.vehicleService.add(vehicle).subscribe(
             (responseVehicle: Vehicle) => {
                 // Update success
-                this.vehicleService.getList();
                 if (responseVehicle != undefined) {
                     this.router.navigate(['/mileages', responseVehicle.id]);
                 } else {

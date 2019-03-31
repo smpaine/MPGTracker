@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { Observable, Observer } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -12,28 +11,24 @@ import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class VehicleService implements OnInit {
-    private vehiclesUrl = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
+    private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
 
-    SharedList$: Observable<Vehicle[]>;
-    private listObserver: Observer<Vehicle[]>;
-
-    private sharedList: Vehicle[];
+    localStorageName: string = "vehicleList";
 
     constructor(private http: Http) {
-        this.sharedList = [];
-        this.SharedList$ = new Observable<Vehicle[]>(x => this.listObserver = x).pipe(share());
     }
 
     ngOnInit() {
-
+        this.getList();
     }
 
-    getList() {
+    getList(): Vehicle[] {
         this.list()
-        .subscribe(newVehicles => {
-            this.sharedList = newVehicles;
-                this.listObserver.next(this.sharedList);
-        },error => {console.error(error)});
+        .subscribe((newVehicles: Vehicle[]) => {
+            localStorage.setItem(this.localStorageName, JSON.stringify(newVehicles));
+            return newVehicles;
+        },error => {console.error(error); return null;});
+        return null;
     }
 
     private list(): Observable<Vehicle[]> {

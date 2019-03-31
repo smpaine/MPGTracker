@@ -31,16 +31,21 @@ export class MileageFormComponent implements OnInit {
 
     ngOnInit() {
         this.vid = this.Activatedroute.snapshot.params['id'];
-        this.vehicleService.SharedList$.subscribe(lst => {
-            this.vehicles = lst;
-            this.vehicles.forEach(aVehicle => {
-                if (aVehicle.id == this.vid) {
-                    this.selectedVehicle = aVehicle;
-                    this.newMileage.vid = this.selectedVehicle.id;
-                }
-            });
+
+        let temp: string = localStorage.getItem(this.vehicleService.localStorageName);
+
+        if (temp != undefined && temp.length > 0) {
+            this.vehicles = JSON.parse(temp);
+        } else {
+            this.vehicles = this.vehicleService.getList();
+        }
+
+        this.vehicles.forEach(aVehicle => {
+            if (aVehicle.id == this.vid) {
+                this.selectedVehicle = aVehicle;
+                this.newMileage.vid = this.selectedVehicle.id;
+            }
         });
-        this.vehicleService.getList();
     }
 
     onSave(mileageForm: NgForm) {

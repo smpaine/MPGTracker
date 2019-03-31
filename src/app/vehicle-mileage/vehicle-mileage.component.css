@@ -1,4 +1,5 @@
-@media only screen and (max-width: 800px) {
+/* Allowing regular tables to work on mobile in landscape mode */
+@media only screen and (max-width: 650px) {
 	
 	/* Force table to not be like tables anymore */
 	#no-more-tables table, 
