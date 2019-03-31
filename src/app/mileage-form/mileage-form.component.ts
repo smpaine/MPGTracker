@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ import { MileageService } from '../shared/mileage.service';
                 `]
 })
 
-export class MileageFormComponent {
+export class MileageFormComponent implements OnInit {
     vid: Number;
     vehicles: Vehicle[];
     selectedVehicle: Vehicle;
@@ -81,6 +81,7 @@ export class MileageFormComponent {
         this.selectedVehicle.editing = false;
         this.selectedVehicle = newSelectedVehicle;
         this.newMileage.vid = this.selectedVehicle.id;
-        this.Activatedroute.params['id'] = this.selectedVehicle.id;
+        this.vid = this.selectedVehicle.id;
+        this.router.navigate(['/addMileage', newSelectedVehicle.id]);
     }
 }

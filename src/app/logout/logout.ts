@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { User } from '../shared/user.model';
@@ -11,8 +11,12 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['logout.css']
 })
 
-export class Logout {
+export class Logout implements OnInit {
   constructor(public router: Router, public http: Http, private sessionService: SessionService) {
+    
+  }
+
+  ngOnInit() {
     let user = new User;
 
     user.token = localStorage.getItem("token");

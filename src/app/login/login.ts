@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { User } from '../shared/user.model';
@@ -11,8 +11,14 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['login.css']
 })
 
-export class Login {
+export class Login implements OnInit {
   constructor(public router: Router, public http: Http, private sessionService: SessionService) {
+  }
+
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['mileages']);
+    }
   }
 
   login(event, username, password) {

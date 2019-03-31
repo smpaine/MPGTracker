@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Vehicle } from '../shared/vehicle.model';
@@ -12,7 +12,7 @@ import { Vehicle } from '../shared/vehicle.model';
                 `]
 })
 
-export class VehicleFormComponent {
+export class VehicleFormComponent implements OnInit {
     @Input() vehicle: Vehicle;
     @Output() cancel = new EventEmitter<Vehicle>();
     @Output() save = new EventEmitter<Vehicle>();

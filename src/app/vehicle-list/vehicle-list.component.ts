@@ -84,7 +84,10 @@ export class VehicleListComponent implements OnInit {
         newSelectedVehicle.editing = this.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited
         this.selectedVehicle.editing = false;
+        // navigate to new vehicle so back will work
         this.selectedVehicle = newSelectedVehicle;
-        this.Activatedroute.params['id'] = this.selectedVehicle.id;
+        //this.Activatedroute.params['id'] = this.selectedVehicle.id;
+        this.vid = this.selectedVehicle.id;
+        this.router.navigate(['/mileages', newSelectedVehicle.id]);
     }
 }
