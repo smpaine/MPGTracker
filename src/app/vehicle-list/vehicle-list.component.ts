@@ -16,7 +16,7 @@ export class VehicleListComponent implements OnInit {
     errorMessage: string;
     selectedVehicle: Vehicle;
 
-    constructor(private vehicleService: VehicleService, private Activatedroute:ActivatedRoute, private router: Router) {
+    constructor(private vehicleService: VehicleService, private Activatedroute: ActivatedRoute, private router: Router) {
         this.vehicles = [];
         this.selectedVehicle = new Vehicle();
         this.selectedVehicle.id = 0;
@@ -32,15 +32,34 @@ export class VehicleListComponent implements OnInit {
 
         if (temp != undefined && temp.length > 0) {
             this.vehicles = JSON.parse(temp);
+            this.setSelectedVehicle()
         } else {
             this.vehicles = this.vehicleService.getList();
-        }
+            this.setSelectedVehicle();
+        }        
+    }
 
-        this.vehicles.forEach(aVehicle => {
-            if (aVehicle.id == this.vid) {
-                this.selectedVehicle = aVehicle;
+    private setSelectedVehicle() {
+        if (this.vehicles != undefined && this.vid != undefined) {
+            let foundVehicle: boolean = false;
+            this.vehicles.forEach(aVehicle => {
+                if (aVehicle.id == this.vid) {
+                    this.selectedVehicle = aVehicle;
+                    foundVehicle = true;
+                }
+            });
+
+            if (!foundVehicle) {
+                this.selectedVehicle = this.vehicles[0];
             }
-        });
+        } else if (this.vehicles != undefined) {
+            this.selectedVehicle = this.vehicles[0];
+            this.vid = this.selectedVehicle.id;
+        } else if (this.vid != undefined) {
+            console.error("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid);
+        } else {
+            console.error("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined");
+        }
     }
 
     toggleVehicleEdit(vehicle: Vehicle) {
