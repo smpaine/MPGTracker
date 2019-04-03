@@ -18,9 +18,6 @@ export class VehicleListComponent implements OnInit {
 
     constructor(private vehicleService: VehicleService, private Activatedroute: ActivatedRoute, private router: Router) {
         this.vehicles = [];
-        this.selectedVehicle = new Vehicle();
-        this.selectedVehicle.id = 0;
-        this.selectedVehicle.editing = false;
     }
 
     ngOnInit() {
