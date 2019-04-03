@@ -10,7 +10,7 @@ import { MileageService } from '../shared/mileage.service';
     styleUrls: ['vehicle-mileage.component.css']
 })
 
-export class VehicleMileageComponent implements OnInit {
+export class VehicleMileageComponent implements OnInit, OnChanges {
     @Input() vid: number;
     mileages: Mileage[];
     errorMessage: string;
@@ -18,13 +18,17 @@ export class VehicleMileageComponent implements OnInit {
     constructor(private mileageService: MileageService) { }
 
     ngOnInit() {
-        this.getMileages(this.vid);
+        // ngOnChanges is called as soon as we get vehicle list,
+        // so we don't need to get mileages here since ngOnChanges
+        // will be called immediately
+        //this.getMileages(this.vid);
     }
 
     ngOnChanges(changeRecord: SimpleChanges) {
-        if (changeRecord.vid) {
-            this.vid = changeRecord.vid.currentValue;
-            this.getMileages(this.vid);
+        if (changeRecord.vid &&
+            (changeRecord.vid.previousValue == undefined ||
+            changeRecord.vid.previousValue != changeRecord.vid.currentValue)) {
+            this.getMileages(changeRecord.vid.currentValue);
         }
     }
 

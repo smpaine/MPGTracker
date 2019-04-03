@@ -3,7 +3,7 @@
     <div class="page-header">
         <h1>MPGTracker</h1>
         <div class="lead">
-            <a [routerLink]="['/addMileage', selectedVehicle.id]"><button style="width:200px">Add New MPG</button></a>
+            <a [routerLink]="['/addMileage', (selectedVehicle != undefined ? selectedVehicle.id : '')]"><button style="width:200px">Add New MPG</button></a>
             &nbsp;&nbsp;&nbsp;
             <a [routerLink]="['/addVehicle']"><button style="width:200px">Add a new vehicle</button></a>
             &nbsp;&nbsp;&nbsp;
@@ -16,10 +16,9 @@
                 </select>
                 &nbsp;&nbsp;&nbsp;
                 <button (click)="toggleVehicleEdit(selectedVehicle)">Edit Vehicle</button>
-            
-                <vehicle-form [vehicle]="selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
-            
-                <div *ngIf="selectedVehicle.editing">Editing vehicle: {{selectedVehicle.name}}</div>
+                <div *ngIf="selectedVehicle != undefined && selectedVehicle.editing">
+                    <vehicle-form [vehicle]="selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
+                </div>
             </div>
         </div>
     </div>
