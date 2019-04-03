@@ -18,7 +18,7 @@ export class VehicleMileageComponent implements OnInit {
     constructor(private mileageService: MileageService) { }
 
     ngOnInit() {
-        this.getMileages(this.vid);
+        //this.getMileages(this.vid);
     }
 
     ngOnChanges(changeRecord: SimpleChanges) {
