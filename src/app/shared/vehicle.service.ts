@@ -10,7 +10,7 @@ import { Vehicle } from "./vehicle.model";
 import { commonHeaders } from "../common/headers";
 
 @Injectable()
-export class VehicleService implements OnInit {
+export class VehicleService {
     private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
 
     localStorageName: string = "vehicleList";
@@ -18,20 +18,7 @@ export class VehicleService implements OnInit {
     constructor(private http: Http) {
     }
 
-    ngOnInit() {
-        this.getList();
-    }
-
-    getList(): Vehicle[] {
-        this.list()
-        .subscribe((newVehicles: Vehicle[]) => {
-            localStorage.setItem(this.localStorageName, JSON.stringify(newVehicles));
-            return newVehicles;
-        },error => {console.error(error); return null;});
-        return null;
-    }
-
-    private list(): Observable<Vehicle[]> {
+    list(): Observable<Vehicle[]> {
         let options = new RequestOptions({ headers: commonHeaders() });
 
         return this.http.get(this.vehiclesUrl, options)

@@ -24,7 +24,6 @@ export class MileageFormComponent implements OnInit {
     newMileage: Mileage;
 
     constructor(private Activatedroute: ActivatedRoute, private router: Router, private vehicleService: VehicleService, private mileageService: MileageService) {
-        this.vehicles = [];
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
     }
@@ -32,19 +31,14 @@ export class MileageFormComponent implements OnInit {
     ngOnInit() {
         this.vid = this.Activatedroute.snapshot.params['id'];
 
-        let temp: string = localStorage.getItem(this.vehicleService.localStorageName);
-
-        if (temp != undefined && temp.length > 0) {
-            this.vehicles = JSON.parse(temp);
-        } else {
-            this.vehicles = this.vehicleService.getList();
-        }
-
-        this.vehicles.forEach(aVehicle => {
-            if (aVehicle.id == this.vid) {
-                this.selectedVehicle = aVehicle;
-                this.newMileage.vid = this.selectedVehicle.id;
-            }
+        this.vehicleService.list().subscribe( (vehicleList: Vehicle[]) => {
+            this.vehicles = vehicleList;
+            this.vehicles.forEach(aVehicle => {
+                if (aVehicle.id == this.vid) {
+                    this.selectedVehicle = aVehicle;
+                    this.newMileage.vid = this.selectedVehicle.id;
+                }
+            });
         });
     }
 

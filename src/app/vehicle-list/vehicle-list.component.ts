@@ -28,15 +28,10 @@ export class VehicleListComponent implements OnInit {
             this.vid = this.Activatedroute.snapshot.params['id'];
         }
 
-        let temp: string = localStorage.getItem(this.vehicleService.localStorageName);
-
-        if (temp != undefined && temp.length > 0) {
-            this.vehicles = JSON.parse(temp);
-            this.setSelectedVehicle()
-        } else {
-            this.vehicles = this.vehicleService.getList();
+        this.vehicleService.list().subscribe( (vehicleList: Vehicle[]) => {
+            this.vehicles = vehicleList;
             this.setSelectedVehicle();
-        }        
+        });
     }
 
     private setSelectedVehicle() {
