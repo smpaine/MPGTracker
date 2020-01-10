@@ -16,7 +16,7 @@ export class VehicleListComponent implements OnInit {
     vid: Number;
     vehicles: Vehicle[];
 
-    constructor(private mainApp: AppComponent,
+    constructor(public mainApp: AppComponent,
         private vehicleService: VehicleService,
         private Activatedroute: ActivatedRoute,
         private router: Router) {
