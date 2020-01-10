@@ -14,9 +14,7 @@ import { commonHeaders } from "../common/headers";
 export class MileageService {
     private mileageUrl = "https://nameniap.com/spaine/MPGTracker/services/mileagedata/";
 
-    constructor(private http: Http) {
-
-    }
+    constructor(private http: Http) { }
 
     list(vid: number): Observable<Mileage[]> {
         let options = new RequestOptions({ headers: commonHeaders() });

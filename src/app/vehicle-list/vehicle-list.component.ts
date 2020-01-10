@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AppComponent } from '../app.component';
 import { Vehicle } from '../shared/vehicle.model';
 import { VehicleService } from '../shared/vehicle.service';
 
@@ -8,15 +9,17 @@ import { VehicleService } from '../shared/vehicle.service';
     moduleId: module.id,
     selector: 'vehicle-list',
     templateUrl: 'vehicle-list.component.html',
+    styleUrls: ['vehicle-list.component.css'],
 })
 
 export class VehicleListComponent implements OnInit {
     vid: Number;
     vehicles: Vehicle[];
-    errorMessage: string;
-    selectedVehicle: Vehicle;
 
-    constructor(private vehicleService: VehicleService, private Activatedroute: ActivatedRoute, private router: Router) {
+    constructor(private mainApp: AppComponent,
+        private vehicleService: VehicleService,
+        private Activatedroute: ActivatedRoute,
+        private router: Router) {
         this.vehicles = [];
     }
 
@@ -36,21 +39,23 @@ export class VehicleListComponent implements OnInit {
             let foundVehicle: boolean = false;
             this.vehicles.forEach(aVehicle => {
                 if (aVehicle.id == this.vid) {
-                    this.selectedVehicle = aVehicle;
+                    this.mainApp.selectedVehicle = aVehicle;
                     foundVehicle = true;
                 }
             });
 
             if (!foundVehicle) {
-                this.selectedVehicle = this.vehicles[0];
+                this.mainApp.selectedVehicle = this.vehicles[0];
             }
         } else if (this.vehicles != undefined) {
-            this.selectedVehicle = this.vehicles[0];
-            this.vid = this.selectedVehicle.id;
+            this.mainApp.selectedVehicle = this.vehicles[0];
+            this.vid = this.mainApp.selectedVehicle.id;
         } else if (this.vid != undefined) {
             console.error("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid);
+            this.mainApp.displayError("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid);
         } else {
             console.error("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined");
+            this.mainApp.displayError("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined");
         }
     }
 
@@ -74,11 +79,15 @@ export class VehicleListComponent implements OnInit {
                 this.vehicleService.put(vehicle).subscribe(
                     data => {
                         // Update success
-                        console.debug("Update successful: " + data);
+                        console.debug("Update successful: ");
+                        console.debug(data);
+                        this.mainApp.displayInfo("Update successful");
                     },
                     error => {
                         // Error
-                        console.error("Update failed: " + error);
+                        console.error("Update failed: ");
+                        console.error(error);
+                        this.mainApp.displayError("Update failed");
                     }
                 );
             }
@@ -86,11 +95,11 @@ export class VehicleListComponent implements OnInit {
     }
 
     onChange(newSelectedVehicle: Vehicle) {
-        newSelectedVehicle.editing = this.selectedVehicle.editing;
+        newSelectedVehicle.editing = this.mainApp.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited
-        this.selectedVehicle.editing = false;
-        this.selectedVehicle = newSelectedVehicle;
-        this.vid = this.selectedVehicle.id;
+        this.mainApp.selectedVehicle.editing = false;
+        this.mainApp.selectedVehicle = newSelectedVehicle;
+        this.vid = this.mainApp.selectedVehicle.id;
         this.router.navigate(['/mileages', newSelectedVehicle.id]);
     }
 }

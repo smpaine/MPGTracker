@@ -13,8 +13,6 @@ import { commonHeaders } from "../common/headers";
 export class VehicleService {
     private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
 
-    localStorageName: string = "vehicleList";
-
     constructor(private http: Http) {
     }
 

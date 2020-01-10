@@ -1,28 +1,13 @@
-<div class="container">
-
-    <div class="page-header">
-        <h1>MPGTracker</h1>
-        <div class="lead">
-            <a [routerLink]="['/addMileage', (selectedVehicle != undefined ? selectedVehicle.id : '')]"><button style="width:200px">Add New MPG</button></a>
-            &nbsp;&nbsp;&nbsp;
-            <a [routerLink]="['/addVehicle']"><button style="width:200px">Add a new vehicle</button></a>
-            &nbsp;&nbsp;&nbsp;
-            <a [routerLink]="['/logout']"><button style="width:200px">Logout</button></a>
-            <br/>
-            <br/>
             <div *ngIf="vehicles">
-                <select [ngModel]="selectedVehicle" (ngModelChange)="onChange($event)" name="vehicleSelector">
+                <select [ngModel]="mainApp.selectedVehicle" (ngModelChange)="onChange($event)" name="vehicleSelector">
                     <option [ngValue]="vehicle" *ngFor="let vehicle of vehicles">{{vehicle.name}}</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                <button (click)="toggleVehicleEdit(selectedVehicle)">Edit Vehicle</button>
-                <div *ngIf="selectedVehicle != undefined && selectedVehicle.editing">
-                    <vehicle-form [vehicle]="selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
+                <button (click)="toggleVehicleEdit(mainApp.selectedVehicle)">Edit Vehicle</button>
+                <div *ngIf="mainApp.selectedVehicle != undefined && mainApp.selectedVehicle.editing">
+                    <vehicle-form [vehicle]="mainApp.selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
                 </div>
             </div>
-        </div>
+    <div *ngIf="mainApp.selectedVehicle">
+        <vehicle-mileage [vid]="mainApp.selectedVehicle.id"></vehicle-mileage>
     </div>
-    <div *ngIf="selectedVehicle">
-        <vehicle-mileage [vid]="selectedVehicle.id"></vehicle-mileage>
-    </div>
-</div>

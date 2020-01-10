@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { User } from '../shared/user.model';
+
+import { AppComponent } from '../app.component';
+
+import { AuthGuard } from '../common/auth.guard';
+
 import { SessionService } from '../shared/session.service';
 
 @Component({
@@ -12,8 +17,11 @@ import { SessionService } from '../shared/session.service';
 })
 
 export class Login implements OnInit {
-  constructor(public router: Router, public http: Http, private sessionService: SessionService) {
-  }
+  constructor(private mainApp: AppComponent,
+    private router: Router,
+    private http: Http,
+    private sessionService: SessionService,
+    private auth: AuthGuard) { }
 
   ngOnInit() {
     if (localStorage.getItem('token')) {
@@ -21,7 +29,7 @@ export class Login implements OnInit {
     }
   }
 
-  login(event, username, password) {
+  login(event: Event, username: string, password: string) {
     event.preventDefault();
 
     let user = new User;
@@ -32,10 +40,11 @@ export class Login implements OnInit {
     this.sessionService.login(user).subscribe(
       (responseUser: User) => {
         localStorage.setItem("token", responseUser.token);
+        this.auth.loggedIn = true;
         this.router.navigate(['mileages']);
       },
       error => {
-        alert("Invalid username/password");
+        this.mainApp.displayError("Invalid username/password");
         console.error("Invalid username/password");
       }
     );

@@ -11,9 +11,7 @@ import { User } from './user.model';
 export class SessionService {
     private sessionUrl = "https://nameniap.com/spaine/MPGTracker/services/session/";
 
-    constructor(private http: Http) {
-
-    }
+    constructor(private http: Http) { }
 
     private extractData(responseSerialized: Response): Observable<User> {
         let response = responseSerialized.json();

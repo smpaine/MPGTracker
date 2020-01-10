@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AppComponent } from '../app.component';
+
 import { Vehicle } from '../shared/vehicle.model';
 import { Mileage } from '../shared/mileage.model';
 
@@ -23,7 +25,11 @@ export class MileageFormComponent implements OnInit {
     selectedVehicle: Vehicle;
     newMileage: Mileage;
 
-    constructor(private Activatedroute: ActivatedRoute, private router: Router, private vehicleService: VehicleService, private mileageService: MileageService) {
+    constructor(private mainApp: AppComponent,
+        private Activatedroute: ActivatedRoute,
+        private router: Router,
+        private vehicleService: VehicleService,
+        private mileageService: MileageService) {
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
     }
@@ -47,11 +53,13 @@ export class MileageFormComponent implements OnInit {
         this.mileageService.put(tempMileage).subscribe(
             data => {
                 // Update success
+                this.mainApp.displayInfo("Mileage added successfully!");
                 this.router.navigate(['/mileages', tempMileage.vid]);
             },
             error => {
                 // Error
                 console.error("Update failed: " + error);
+                this.mainApp.displayError("Failed to add mileage");
             }
         );
     }

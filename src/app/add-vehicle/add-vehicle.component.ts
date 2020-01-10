@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AppComponent } from '../app.component';
+
 import { Vehicle } from '../shared/vehicle.model';
 import { Mileage } from '../shared/mileage.model';
 
@@ -20,7 +22,10 @@ import { MileageService } from '../shared/mileage.service';
 export class AddVehicleComponent {
     newVehicle: Vehicle;
 
-    constructor(private Activatedroute: ActivatedRoute, private router: Router, private vehicleService: VehicleService) {
+    constructor(private mainApp: AppComponent,
+        private Activatedroute: ActivatedRoute,
+        private router: Router,
+        private vehicleService: VehicleService) {
         this.newVehicle = new Vehicle();
         this.newVehicle.editing = true;
     }
@@ -31,6 +36,7 @@ export class AddVehicleComponent {
     saveVehicle(vehicle: Vehicle) {
         this.vehicleService.add(vehicle).subscribe(
             (responseVehicle: Vehicle) => {
+                this.mainApp.displayInfo("Vehicle added successfully!");
                 // Update success
                 if (responseVehicle != undefined) {
                     this.router.navigate(['/mileages', responseVehicle.id]);
@@ -41,6 +47,7 @@ export class AddVehicleComponent {
             error => {
                 // Error
                 console.error("Update failed: " + error);
+                this.mainApp.displayError("Failed to add vehicle");
             }
         );
     }

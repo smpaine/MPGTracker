@@ -1,3 +1,22 @@
 <div class="container">
+    <div class="page-header">
+        <h1>MPGTracker</h1>
+        <div class="lead" *ngIf="auth.loggedIn">
+            <a [routerLink]="['/addMileage', (selectedVehicle != undefined ? selectedVehicle.id : '')]"><button
+                    style="width:200px">Add New MPG</button></a>
+            &nbsp;&nbsp;&nbsp;
+            <a [routerLink]="['/addVehicle']"><button style="width:200px">Add a new vehicle</button></a>
+            &nbsp;&nbsp;&nbsp;
+            <a [routerLink]="['/logout']"><button style="width:200px">Logout</button></a>
+        </div>
+        <div class="alert" *ngIf="displayErrorMessage" (click)="displayErrorMessage = false; errorMessage = ''">
+            <span class="closebtn">&times;</span>
+            {{errorMessage}}
+        </div>
+        <div class="alert success" *ngIf="displayInfoMessage" (click)="displayInfoMessage = false; infoMessage = '';">
+            <span class="closebtn">&times;</span>
+            {{infoMessage}}
+        </div>
+    </div>
     <router-outlet></router-outlet>
 </div>
