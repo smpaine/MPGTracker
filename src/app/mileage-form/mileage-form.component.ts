@@ -74,18 +74,4 @@ export class MileageFormComponent implements OnInit {
         this.vid = this.selectedVehicle.id;
         this.router.navigate(['/addMileage', newSelectedVehicle.id]);
     }
-
-    validateAndUpdateCurrency() {
-        let inputtedString: string = String(this.newMileage.totalCost);
-
-        console.log(inputtedString);
-        // Decimal optional
-        let regEx = new RegExp("^[0-9]*(\.[0-9]{1,2})?$");
-        if (inputtedString !== undefined && inputtedString.length > 0 && regEx.test(inputtedString))  {
-            //console.log("passed test");
-        } else {
-            //console.log("failed test")
-            this.newMileage.totalCost = null;
-        }
-    }
 }

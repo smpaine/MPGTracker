@@ -59,8 +59,7 @@
                 <br>
                 <div class="form-group">
                     <label class="control-label" for="totalCost">Total Cost</label>
-                    <input [(ngModel)]="newMileage.totalCost"
-                        (blur)="validateAndUpdateCurrency()"
+                    <input [ngModel]="newMileage.totalCost"
                         class="form-control" type="number"
                         pattern="^[0-9]*(\.[0-9]{1,2})?$"
                         id="totalCost" name="totalCost"
@@ -73,10 +72,13 @@
                 <div *ngIf="totalCostControl.invalid && (totalCostControl.dirty || totalCostControl.touched)"
                     class="alert alert-danger">
                     <div *ngIf="totalCostControl.errors.required">
-                         Total Cost is required.
+                        Total Cost is required.
                     </div>
                     <div *ngIf="totalCostControl.errors.minlength">
-                         Total Cost needs to be at least 1 digit long.
+                        Total Cost needs to be at least 1 digit long.
+                    </div>
+                    <div *ngIf="totalCostControl.errors.pattern">
+                        Total Cost needs to be a valid dollar amount.
                     </div>
                 </div>
             </div>
