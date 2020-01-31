@@ -9,75 +9,75 @@
             </div>
             <br>
             <div ngModelGroup="newMileage">
-                <div class="form-group" [ngClass]="setErrorClass(mileageDirective)">
+                <div class="form-group">
                     <label class="control-label" for="">Mileage</label>
-                    <input ngModel #mileageDirective="ngModel"
+                    <input ngModel
                         class="form-control" type="number"
                         id="mileage" name="mileage"
                         placeholder="enter mileage" autofocus
                         required minlength="1"
                         step="1"
-                        #mileageControl>
+                        autocomplete="off" autocorrect="off"
+                        #mileageControl="ngModel">
                 </div>
                 <br>
-                <div [hidden]="hideErrors(mileageDirective)">
-                    <div [hidden]="hideError(mileageDirective, 'required')"
-                         class="alert alert-danger">
+                <div *ngIf="mileageControl.invalid && (mileageControl.dirty || mileageControl.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="mileageControl.errors.required">
                          Mileage is required.
                     </div>
-                    <div [hidden]="hideError(mileageDirective, 'minlength')"
-                         class="alert alert-danger">
-                         Mileage needs to be at least 1 character long.
+                    <div *ngIf="mileageControl.errors.minlength">
+                         Mileage needs to be at least 1 digit long.
                     </div>
                 </div>
                 <br>
-                <div class="form-group" [ngClass]="setErrorClass(gallonsDirective)">
+                <div class="form-group">
                     <label class="control-label" for="gallons">Gallons</label>
-                    <input [ngModel]="newMileage.gallons" #gallonsDirective="ngModel"
+                    <input [ngModel]="newMileage.gallons"
                         class="form-control" type="number"
                         id="gallons" name="gallons"
                         placeholder="enter gallons"
                         required minlength="1"
                         step="any"
-                        #gallonsControl>
+                        autocomplete="off" autocorrect="off"
+                        #gallonsControl="ngModel">
                 </div>
                 <br>
-                <div [hidden]="hideErrors(gallonsDirective)">
-                    <div [hidden]="hideError(gallonsDirective, 'required')"
-                         class="alert alert-danger">
+                <div *ngIf="gallonsControl.invalid && (gallonsControl.dirty || gallonsControl.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="gallonsControl.errors.required">
                          Gallons is required.
                     </div>
-                    <div [hidden]="hideError(gallonsDirective, 'minlength')"
-                         class="alert alert-danger">
-                         Gallons needs to be at least 1 characters long.
+                    <div *ngIf="gallonsControl.errors.minlength">
+                         Gallons needs to be at least 1 digit long.
                     </div>
                 </div>
                 <br>
-                <div class="form-group" [ngClass]="setErrorClass(costDirective)">
+                <div class="form-group">
                     <label class="control-label" for="totalCost">Total Cost</label>
-                    <input [ngModel]="newMileage.totalCost" #costDirective="ngModel"
+                    <input [ngModel]="newMileage.totalCost"
                         class="form-control" type="number"
                         id="totalCost" name="totalCost"
                         placeholder="enter total cost"
                         required minlength="1"
                         step="any"
-                        #modelControl>
+                        autocomplete="off" autocorrect="off"
+                        #totalCostControl="ngModel">
                 </div>
                 <br>
-                <div [hidden]="hideErrors(costDirective)">
-                    <div [hidden]="hideError(costDirective, 'required')"
-                         class="alert alert-danger">
-                         Total cost is required.
+                <div *ngIf="totalCostControl.invalid && (totalCostControl.dirty || totalCostControl.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="totalCostControl.errors.required">
+                         Total Cost is required.
                     </div>
-                    <div [hidden]="hideError(costDirective, 'minlength')"
-                         class="alert alert-danger">
-                         Total cost needs to be at least 1 character long.
+                    <div *ngIf="totalCostControl.errors.minlength">
+                         Total Cost needs to be at least 1 digit long.
                     </div>
                 </div>
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-info btn-sm">Save</button>
+                <button class="btn btn-info btn-sm" [disabled]="!mileageForm.form.valid">Save</button>
                 <a class="btn-cancel" href="" [routerLink]="['/mileages', vid]">cancel</a>
             </div>
         </div>

@@ -1,3 +1,5 @@
+import { formatDate } from '@angular/common';
+
 export class Vehicle{
     id: number;
     name: string;
@@ -13,7 +15,7 @@ export class Vehicle{
         this.name = obj && obj.name || null;
         this.make = obj && obj.make || null;
         this.model = obj && obj.model || null;
-        this.year = obj && obj.year || false;
+        this.year = obj && obj.year || formatDate(new Date(), 'yyyy', 'en-us', 'EST');
         this.purchased = obj && obj.purchased || new Date();
     }
 }

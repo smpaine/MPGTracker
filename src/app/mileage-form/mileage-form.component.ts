@@ -64,24 +64,6 @@ export class MileageFormComponent implements OnInit {
         );
     }
 
-    hideErrors(modelDirective: NgModel) {
-        return (modelDirective.valid || modelDirective.pristine || !modelDirective.touched);
-    }
-
-    hideError(modelDirective: NgModel, validationType: any) {
-        if (!modelDirective.errors) {
-            return true;
-        }
-        return !modelDirective.errors[validationType];
-    }
-
-    setErrorClass(modelDirective: NgModel) {
-        let hideError = this.hideErrors(modelDirective);
-        return {
-            "has-error": !hideError
-        }
-    }
-
     onChange(newSelectedVehicle: Vehicle) {
         newSelectedVehicle.editing = this.selectedVehicle.editing;
         // ensure that editing is set to false if vehicle was in process of being edited

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { Vehicle } from '../shared/vehicle.model';
 
@@ -21,32 +21,14 @@ export class VehicleFormComponent implements OnInit {
         //console.debug("incoming vehicle: " + this.vehicle.id);
     }
 
-    onCancel(vehicle, event) {
+    onCancel(vehicle: Vehicle, event: Event) {
         event.preventDefault();
         this.cancel.emit(this.vehicle);
     }
 
-    onSave(form) {
+    onSave(form: NgForm) {
         let updatedVehicle = Object.assign({}, this.vehicle, form.value.vehicle);
 
         this.save.emit(updatedVehicle);
-    }
-
-    hideErrors(modelDirective) {
-        return(modelDirective.valid || modelDirective.pristine || !modelDirective.touched);
-    }
-
-    hideError(modelDirective, validationType) {
-        if (!modelDirective.errors) {
-            return true;
-        }
-        return !modelDirective.errors[validationType];
-    }
-
-    setErrorClass(modelDirective) {
-        let hideError = this.hideErrors(modelDirective);
-        return {
-            "has-error": !hideError
-        }
     }
 }
