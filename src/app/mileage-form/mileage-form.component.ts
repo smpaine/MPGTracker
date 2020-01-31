@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { formatCurrency } from '@angular/common';
 
 import { AppComponent } from '../app.component';
 
@@ -72,5 +73,20 @@ export class MileageFormComponent implements OnInit {
         this.newMileage.vid = this.selectedVehicle.id;
         this.vid = this.selectedVehicle.id;
         this.router.navigate(['/addMileage', newSelectedVehicle.id]);
+    }
+
+    validateAndUpdateCurrency() {
+        let inputtedString: string = String(this.newMileage.totalCost);
+
+        console.log(inputtedString);
+        // Decimal optional
+        let regEx = new RegExp("^[0-9]{0,2}(\.[0-9]{1,2})?$");
+        if (inputtedString !== undefined && inputtedString.length > 0 && regEx.test(inputtedString))  {
+            //console.log("passed test");
+            this.newMileage.totalCost = Number(formatCurrency(parseFloat(inputtedString), 'en-us', '', 'USD', '1.2-2'));
+        } else {
+            //console.log("failed test")
+            this.newMileage.totalCost = null;
+        }
     }
 }

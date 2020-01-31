@@ -12,11 +12,12 @@
                 <div class="form-group">
                     <label class="control-label" for="">Mileage</label>
                     <input ngModel
-                        class="form-control" type="number"
+                        class="form-control" type="text"
                         id="mileage" name="mileage"
                         placeholder="enter mileage" autofocus
                         required minlength="1"
                         step="1"
+                        OnlyNumber="true"
                         autocomplete="off" autocorrect="off"
                         #mileageControl="ngModel">
                 </div>
@@ -34,11 +35,12 @@
                 <div class="form-group">
                     <label class="control-label" for="gallons">Gallons</label>
                     <input [ngModel]="newMileage.gallons"
-                        class="form-control" type="number"
+                        class="form-control" type="text"
                         id="gallons" name="gallons"
                         placeholder="enter gallons"
                         required minlength="1"
                         step="any"
+                        OnlyNumber="true"
                         autocomplete="off" autocorrect="off"
                         #gallonsControl="ngModel">
                 </div>
@@ -55,12 +57,12 @@
                 <br>
                 <div class="form-group">
                     <label class="control-label" for="totalCost">Total Cost</label>
-                    <input [ngModel]="newMileage.totalCost"
-                        class="form-control" type="number"
+                    <input [(ngModel)]="newMileage.totalCost"
+                        (blur)="validateAndUpdateCurrency()"
+                        class="form-control" type="text"
                         id="totalCost" name="totalCost"
                         placeholder="enter total cost"
-                        required minlength="1"
-                        step="any"
+                        required minlength="0"
                         autocomplete="off" autocorrect="off"
                         #totalCostControl="ngModel">
                 </div>

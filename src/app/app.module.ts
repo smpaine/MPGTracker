@@ -22,8 +22,10 @@ import { MileageService } from './shared/mileage.service';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
+import { OnlyNumber } from './shared/onlynumber.directive';
+
 @NgModule({
-    declarations: [Login, Logout, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AddVehicleComponent, AppComponent],
+    declarations: [Login, Logout, OnlyNumber, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AddVehicleComponent, AppComponent],
     imports: [BrowserModule, HttpModule, CommonModule, FormsModule, RouterModule.forRoot(routes, {useHash: true})],
     providers: [AuthGuard, SessionService, VehicleService, MileageService],
     bootstrap: [AppComponent]

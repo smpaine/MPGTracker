@@ -68,12 +68,12 @@
                 <div class="form-group">
                     <label class="control-label" for="vehicleYear">Year</label>
                     <input [ngModel]="vehicle.year"
-                        class="form-control" type="number"
+                        class="form-control" type="text"
                         id="vehicleYear" name="year"
                         placeholder="enter year"
+                        OnlyNumber="true"
                         required minlength="4"
-                        maxLength="4" step="any"
-                        autocomplete="off" autocorrect="off"
+                        maxlength="4" step="1"
                         #yearControl="ngModel">
                 </div>
                 <br>
@@ -82,7 +82,7 @@
                     <div *ngIf="yearControl.errors.required">
                         Year is required.
                    </div>
-                   <div *ngIf="yearControl.errors.minlength">
+                   <div *ngIf="yearControl.errors.minlength || yearControl.errors.maxlength">
                         Year needs to be 4 digits long.
                    </div>
                 </div>
