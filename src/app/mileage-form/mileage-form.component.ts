@@ -80,10 +80,9 @@ export class MileageFormComponent implements OnInit {
 
         console.log(inputtedString);
         // Decimal optional
-        let regEx = new RegExp("^[0-9]{0,2}(\.[0-9]{1,2})?$");
+        let regEx = new RegExp("^[0-9]*(\.[0-9]{1,2})?$");
         if (inputtedString !== undefined && inputtedString.length > 0 && regEx.test(inputtedString))  {
             //console.log("passed test");
-            this.newMileage.totalCost = Number(formatCurrency(parseFloat(inputtedString), 'en-us', '', 'USD', '1.2-2'));
         } else {
             //console.log("failed test")
             this.newMileage.totalCost = null;

@@ -68,12 +68,13 @@
                 <div class="form-group">
                     <label class="control-label" for="vehicleYear">Year</label>
                     <input [ngModel]="vehicle.year"
-                        class="form-control" type="text"
+                        class="form-control" type="number"
                         id="vehicleYear" name="year"
                         placeholder="enter year"
                         OnlyNumber="true"
                         required minlength="4"
                         maxlength="4" step="1"
+                        pattern="^[0-9]{4}"
                         #yearControl="ngModel">
                 </div>
                 <br>
@@ -84,6 +85,9 @@
                    </div>
                    <div *ngIf="yearControl.errors.minlength || yearControl.errors.maxlength">
                         Year needs to be 4 digits long.
+                   </div>
+                   <div *ngIf="yearControl.errors.pattern">
+                       Invalid year.
                    </div>
                 </div>
                 <br>
