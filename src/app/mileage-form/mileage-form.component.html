@@ -42,7 +42,7 @@
                         placeholder="enter gallons"
                         required minlength="0"
                         step="any"
-                        OnlyNumber="true"
+                        OnlyNumber="currency"
                         autocomplete="off" autocorrect="off"
                         #gallonsControl="ngModel">
                 </div>
@@ -56,7 +56,7 @@
                          Gallons needs to be at least 1 digit long.
                     </div>
                     <div *ngIf="gallonsControl.errors.pattern">
-                        Gallons needs can only be up to 3 digits past the decimal.
+                        Gallons needs to be a number and can have up to 3 digits past the decimal.
                     </div>
                 </div>
                 <br>
