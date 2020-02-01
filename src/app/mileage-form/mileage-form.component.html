@@ -37,7 +37,7 @@
                     <label class="control-label" for="gallons">Gallons</label>
                     <input [ngModel]="newMileage.gallons"
                         class="form-control" type="number"
-                        pattern="^[0-9]*$"
+                        pattern="^[0-9]*(\.[0-9]{1,3})?$"
                         id="gallons" name="gallons"
                         placeholder="enter gallons"
                         required minlength="0"
@@ -54,6 +54,9 @@
                     </div>
                     <div *ngIf="gallonsControl.errors.minlength">
                          Gallons needs to be at least 1 digit long.
+                    </div>
+                    <div *ngIf="gallonsControl.errors.pattern">
+                        Gallons needs can only be up to 3 digits past the decimal.
                     </div>
                 </div>
                 <br>
