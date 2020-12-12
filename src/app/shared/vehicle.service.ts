@@ -11,7 +11,8 @@ import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class VehicleService {
-    private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
+    // private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
+    private vehiclesUrl: string = "/mpgtracker/api/vehicles/";
 
     constructor(private http: Http) {
     }
@@ -34,15 +35,15 @@ export class VehicleService {
         return Observable.throw("An error occurred.");
     }
 
-    put(vehicle: Vehicle) {
+    update(vehicle: Vehicle) {
         let options = new RequestOptions({ headers: commonHeaders() });
 
-        let url = this.vehiclesUrl + vehicle.id;
+        let url = this.vehiclesUrl;
 
         let body = JSON.stringify(vehicle);
         
         return this.http
-            .put(url, body, options)
+            .post(url, body, options)
             .map(()=> vehicle)
             .catch(this.handleError);
     }
@@ -50,12 +51,12 @@ export class VehicleService {
     add(vehicle: Vehicle) {
          let options = new RequestOptions({ headers: commonHeaders() });
  
-         let url = this.vehiclesUrl + vehicle.id;
+         let url = this.vehiclesUrl;
  
          let body = JSON.stringify(vehicle);
          
          return this.http
-             .post(url, body, options)
+             .put(url, body, options)
              .map(this.extractData)
              .catch(this.handleError);
      }

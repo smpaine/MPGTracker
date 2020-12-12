@@ -1,0 +1,8 @@
+{
+
+    "/mpgtracker/api/*": {
+        "target": "https://nameniap.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

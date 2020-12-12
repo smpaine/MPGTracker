@@ -6,10 +6,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { User } from './user.model';
+import { JwtResponse } from './JwtResponse.model';
 
 @Injectable()
 export class SessionService {
-    private sessionUrl = "https://nameniap.com/spaine/MPGTracker/services/session/";
+    //private sessionUrl = "https://nameniap.com/spaine/MPGTracker/services/session/";
+    private sessionUrl = "/mpgtracker/api/authenticate";
 
     constructor(private http: Http) { }
 
@@ -23,35 +25,17 @@ export class SessionService {
         return Observable.throw("An error occurred.");
     }
 
-    login(user: User): Observable<User> {
+    login(user: User): Observable<JwtResponse> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         let options = new RequestOptions({ headers: headers });
 
-        let url = this.sessionUrl + "login";
-
         let body = JSON.stringify(user);
         
         return this.http
-            .post(url, body, options)
+            .post(this.sessionUrl, body, options)
             .map(this.extractData)
-            .catch(this.handleError);
-    }
-
-    logout(user: User): Observable<User>  {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        let options = new RequestOptions({ headers: headers });
-
-        let url = this.sessionUrl + "logout";
-
-        let body = JSON.stringify(user);
-        
-        return this.http
-            .post(url, body, options)
-            .map(()=> user)
             .catch(this.handleError);
     }
 }

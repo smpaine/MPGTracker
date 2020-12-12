@@ -8,6 +8,7 @@ import { AppComponent } from '../app.component';
 import { AuthGuard } from '../common/auth.guard';
 
 import { SessionService } from '../shared/session.service';
+import { JwtResponse } from 'app/shared/JwtResponse.model';
 
 @Component({
   moduleId: module.id,
@@ -38,8 +39,8 @@ export class Login implements OnInit {
     user.password = password;
 
     this.sessionService.login(user).subscribe(
-      (responseUser: User) => {
-        localStorage.setItem("token", responseUser.token);
+      (responseToken: JwtResponse) => {
+        localStorage.setItem("token", responseToken.token);
         this.auth.loggedIn = true;
         this.router.navigate(['mileages']);
       },

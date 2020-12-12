@@ -12,7 +12,8 @@ import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class MileageService {
-    private mileageUrl = "https://nameniap.com/spaine/MPGTracker/services/mileagedata/";
+    // private mileageUrl = "https://nameniap.com/spaine/MPGTracker/services/mileagedata/";
+    private mileageUrl = "/mpgtracker/api/mileages/vehicle/";
 
     constructor(private http: Http) { }
 

@@ -5,7 +5,7 @@ export function commonHeaders() {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
     if (localStorage.getItem("token") != undefined) {
-        headers.append("Token", localStorage.getItem("token"));
+        headers.append("Authorization", "Bearer " + localStorage.getItem("token"));
     }
 
     return headers; 

@@ -76,7 +76,7 @@ export class VehicleListComponent implements OnInit {
                 this.vehicles[i].year = vehicle.year;
                 this.vehicles[i].purchased = vehicle.purchased;
                 this.vehicles[i].editing = false;
-                this.vehicleService.put(vehicle).subscribe(
+                this.vehicleService.update(vehicle).subscribe(
                     data => {
                         // Update success
                         console.debug("Update successful: ");
