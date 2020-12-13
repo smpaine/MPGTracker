@@ -10,7 +10,7 @@ import { environment } from '@environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    
+
     private tokenName = 'token';
 
     private sessionUrl = environment.API_URL + "/authenticate";
@@ -20,7 +20,16 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient,
         private router: Router) {
-        this.currentTokenSubject = new BehaviorSubject<JwtResponse>(JSON.parse(localStorage.getItem(this.tokenName)));
+        let jwtResponse: JwtResponse = null;
+        let localStorageTokean: string = localStorage.getItem(this.tokenName);
+        try {
+            jwtResponse = JSON.parse(localStorageTokean);
+        } catch (error) {
+            console.log(`[${error instanceof SyntaxError ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
+            localStorage.removeItem(this.tokenName);
+        }
+
+        this.currentTokenSubject = new BehaviorSubject<JwtResponse>(jwtResponse);
         this.currentToken = this.currentTokenSubject.asObservable();
     }
 
