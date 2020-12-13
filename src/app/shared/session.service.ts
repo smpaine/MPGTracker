@@ -10,8 +10,9 @@ import { JwtResponse } from './JwtResponse.model';
 
 @Injectable()
 export class SessionService {
-    //private sessionUrl = "https://nameniap.com/spaine/MPGTracker/services/session/";
     private sessionUrl = "/mpgtracker/api/authenticate";
+    // Local services testing
+    //private sessionUrl = "/api/authenticate";
 
     constructor(private http: Http) { }
 

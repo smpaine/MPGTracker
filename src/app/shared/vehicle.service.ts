@@ -11,8 +11,9 @@ import { commonHeaders } from "../common/headers";
 
 @Injectable()
 export class VehicleService {
-    // private vehiclesUrl: string = "https://nameniap.com/spaine/MPGTracker/services/vehicles/";
     private vehiclesUrl: string = "/mpgtracker/api/vehicles/";
+    // Local services testing
+    //private vehiclesUrl: string = "/api/vehicles/";
 
     constructor(private http: Http) {
     }
