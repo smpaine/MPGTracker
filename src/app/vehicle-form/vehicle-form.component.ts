@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
-import { Vehicle } from '../shared/vehicle.model';
+import { Vehicle } from '@/models';
 
 @Component({
     moduleId: module.id,

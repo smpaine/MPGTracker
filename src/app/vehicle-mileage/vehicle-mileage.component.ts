@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
-import { Mileage } from '../shared/mileage.model';
-import { MileageService } from '../shared/mileage.service';
+import { Mileage } from '@/models';
+import { MileageService } from '@/services';
 
 @Component({
     moduleId: module.id,

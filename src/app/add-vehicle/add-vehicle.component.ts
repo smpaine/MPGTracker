@@ -2,13 +2,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AppComponent } from '../app.component';
+import { AppComponent } from '@/app.component';
 
-import { Vehicle } from '../shared/vehicle.model';
-import { Mileage } from '../shared/mileage.model';
+import { Mileage, Vehicle } from '@/models';
 
-import { VehicleService } from '../shared/vehicle.service';
-import { MileageService } from '../shared/mileage.service';
+import { MileageService, VehicleService } from '@/services';
 
 @Component({
     moduleId: module.id,

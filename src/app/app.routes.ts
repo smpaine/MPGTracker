@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { Login } from './login/login';
 import { Logout } from './logout/logout';
 
-import { AuthGuard } from './common/auth.guard';
+import { AuthGuard } from './_guards/auth.guard';
 
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
-export const routes: Routes = [
+const appRoutes: Routes = [
   { path: '',       component: Login },
   { path: 'login',  component: Login },
   { path: 'mileages', component: VehicleListComponent, canActivate: [AuthGuard] },
@@ -18,3 +18,5 @@ export const routes: Routes = [
   { path: 'logout', component: Logout },
   { path: '**',     component: Login },
 ];
+
+export const routing = RouterModule.forRoot(appRoutes);

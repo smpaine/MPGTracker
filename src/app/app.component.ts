@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthGuard } from './common/auth.guard'
-
-import { Vehicle } from './shared/vehicle.model';
+import { AuthenticationService } from '@/_services';
+import { Vehicle } from '@/models';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,8 @@ export class AppComponent {
   infoMessage: string;
   displayInfoMessage: boolean = false;
 
-  constructor(private router: Router, public auth: AuthGuard) {
+  constructor(private router: Router,
+    private authenticationService: AuthenticationService) {
    }
 
    public displayError(errorMessage: string) {

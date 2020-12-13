@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AppComponent } from '../app.component';
-import { Vehicle } from '../shared/vehicle.model';
-import { VehicleService } from '../shared/vehicle.service';
+import { AppComponent } from '@/app.component';
+import { Vehicle } from '@/models';
+import { VehicleService } from '@/services';
 
 @Component({
     moduleId: module.id,

@@ -1,33 +1,58 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { AuthGuard } from './common/auth.guard';
+import { AuthGuard } from '@/_guards/auth.guard';
+import { JwtInterceptor, ErrorInterceptor } from '@/_helpers';
+import { AuthenticationService } from '@/_services';
+
 import { Login } from './login/login';
 import { Logout } from './logout/logout';
+
 import { AppComponent } from './app.component';
 
-import { routes } from './app.routes';
-
-import { SessionService } from './shared/session.service';
+import { routing } from './app.routes';
 
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
-import { VehicleService } from './shared/vehicle.service';
+import { VehicleService } from './services/vehicle.service';
 import { VehicleMileageComponent } from './vehicle-mileage/vehicle-mileage.component';
-import { MileageService } from './shared/mileage.service';
+import { MileageService } from './services/mileage.service';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
-import { OnlyNumber } from './shared/onlynumber.directive';
+import { OnlyNumber } from './directives/onlynumber.directive';
 
 @NgModule({
-    declarations: [Login, Logout, OnlyNumber, VehicleListComponent, VehicleFormComponent, VehicleMileageComponent, MileageFormComponent, AddVehicleComponent, AppComponent],
-    imports: [BrowserModule, HttpModule, CommonModule, FormsModule, RouterModule.forRoot(routes, {useHash: true})],
-    providers: [AuthGuard, SessionService, VehicleService, MileageService],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        CommonModule,
+        FormsModule,
+        routing
+    ],
+    declarations: [
+        Login,
+        Logout,
+        OnlyNumber,
+        VehicleListComponent,
+        VehicleFormComponent,
+        VehicleMileageComponent,
+        MileageFormComponent,
+        AddVehicleComponent,
+        AppComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        AuthGuard,
+        VehicleService,
+        MileageService
+    ],
     bootstrap: [AppComponent]
 })
 

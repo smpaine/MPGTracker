@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http } from '@angular/http';
-import { User } from '../shared/user.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-import { AppComponent } from '../app.component';
-
-import { AuthGuard } from '../common/auth.guard';
-
-import { SessionService } from '../shared/session.service';
-import { JwtResponse } from 'app/shared/JwtResponse.model';
+import { AppComponent } from '@/app.component';
+import { AuthenticationService } from '@/_services';
 
 @Component({
   moduleId: module.id,
@@ -18,36 +14,50 @@ import { JwtResponse } from 'app/shared/JwtResponse.model';
 })
 
 export class Login implements OnInit {
+  private loginForm: FormGroup;
+  private submitted = false;
+  private loading = false;
+  private error = '';
+
   constructor(private mainApp: AppComponent,
     private router: Router,
-    private http: Http,
-    private sessionService: SessionService,
-    private auth: AuthGuard) { }
-
-  ngOnInit() {
-    if (localStorage.getItem('token')) {
+    private authenticationService: AuthenticationService,
+    private formBuilder: FormBuilder
+  ) {
+    if (this.authenticationService.currentTokenValue) {
       this.router.navigate(['mileages']);
     }
   }
 
-  login(event: Event, username: string, password: string) {
-    event.preventDefault();
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
-    let user = new User;
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
 
-    user.userName = username;
-    user.password = password;
+  onSubmit() {
+    this.submitted = true;
 
-    this.sessionService.login(user).subscribe(
-      (responseToken: JwtResponse) => {
-        localStorage.setItem("token", responseToken.token);
-        this.auth.loggedIn = true;
-        this.router.navigate(['mileages']);
-      },
-      error => {
-        this.mainApp.displayError("Invalid username/password");
-        console.error("Invalid username/password");
-      }
-    );
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.login(this.f.userName.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.error = '';
+          this.router.navigate(['mileages']);
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+        });
   }
 }

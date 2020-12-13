@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { AuthGuard } from '../common/auth.guard';
+import { AuthenticationService } from '@/_services';
 
 @Component({
   moduleId: module.id,
@@ -11,12 +10,9 @@ import { AuthGuard } from '../common/auth.guard';
 })
 
 export class Logout implements OnInit {
-  constructor(private router: Router,
-    private auth: AuthGuard) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    localStorage.clear();
-    this.router.navigate(['login']);
-    this.auth.loggedIn = false;
+    this.authenticationService.logout();
   }
 }
