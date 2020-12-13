@@ -14,10 +14,10 @@ import { AuthenticationService } from '@/_services';
 })
 
 export class Login implements OnInit {
-  private loginForm: FormGroup;
-  private submitted = false;
-  private loading = false;
-  private error = '';
+  protected loginForm: FormGroup;
+  protected submitted = false;
+  protected loading = false;
+  protected error = '';
 
   constructor(private mainApp: AppComponent,
     private router: Router,

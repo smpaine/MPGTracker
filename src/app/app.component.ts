@@ -20,7 +20,7 @@ export class AppComponent {
   displayInfoMessage: boolean = false;
 
   constructor(private router: Router,
-    private authenticationService: AuthenticationService) {
+    protected authenticationService: AuthenticationService) {
    }
 
    public displayError(errorMessage: string) {
