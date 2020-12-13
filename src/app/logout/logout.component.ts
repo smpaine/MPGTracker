@@ -5,11 +5,11 @@ import { AuthenticationService } from '@/_services';
 @Component({
   moduleId: module.id,
   selector: 'logout',
-  templateUrl: 'logout.html',
-  styleUrls: ['logout.css']
+  templateUrl: 'logout.component.html',
+  styleUrls: ['logout.component.css']
 })
 
-export class Logout implements OnInit {
+export class LogoutComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {

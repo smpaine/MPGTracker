@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
-import { Login } from './login/login';
-import { Logout } from './logout/logout';
+import { LoginComponent } from '@/login';
+import { LogoutComponent } from '@/logout';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -9,14 +9,14 @@ import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 const appRoutes: Routes = [
-  { path: '',       component: Login },
-  { path: 'login',  component: Login },
+  { path: '',       component: LoginComponent },
+  { path: 'login',  component: LoginComponent },
   { path: 'mileages', component: VehicleListComponent, canActivate: [AuthGuard] },
   { path: 'mileages/:id', component: VehicleListComponent, canActivate: [AuthGuard] },
   { path: 'addMileage/:id', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthGuard] },
-  { path: 'logout', component: Logout },
-  { path: '**',     component: Login },
+  { path: 'logout', component: LogoutComponent },
+  { path: '**',     component: LoginComponent },
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

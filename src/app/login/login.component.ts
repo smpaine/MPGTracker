@@ -9,15 +9,15 @@ import { AuthenticationService } from '@/_services';
 @Component({
   moduleId: module.id,
   selector: 'login',
-  templateUrl: 'login.html',
-  styleUrls: ['login.css']
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
 })
 
-export class Login implements OnInit {
-  protected loginForm: FormGroup;
-  protected submitted = false;
-  protected loading = false;
-  protected error = '';
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  submitted = false;
+  loading = false;
+  error = '';
 
   constructor(private mainApp: AppComponent,
     private router: Router,

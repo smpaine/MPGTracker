@@ -9,8 +9,8 @@ import { AuthGuard } from '@/_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from '@/_helpers';
 import { AuthenticationService } from '@/_services';
 
-import { Login } from './login/login';
-import { Logout } from './logout/logout';
+import { LoginComponent } from '@/login';
+import { LogoutComponent } from '@/logout';
 
 import { AppComponent } from './app.component';
 
@@ -36,8 +36,8 @@ import { OnlyNumber } from './directives/onlynumber.directive';
         routing
     ],
     declarations: [
-        Login,
-        Logout,
+        LoginComponent,
+        LogoutComponent,
         OnlyNumber,
         VehicleListComponent,
         VehicleFormComponent,
