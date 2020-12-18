@@ -6,7 +6,7 @@
         "logLevel": "debug"
     },
      "/api/*": {
-        "target": "http://localhost:8080",
+        "target": "http://localhost:8080/mpgtracker/",
         "secure": false,
         "logLevel": "debug"
     }
