@@ -25,6 +25,11 @@ import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 import { OnlyNumber } from './directives/onlynumber.directive';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { UserService } from './services/user.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule, MatToolbarModule, MatMenuModule, MatIconModule, MatTableModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -33,7 +38,13 @@ import { OnlyNumber } from './directives/onlynumber.directive';
         HttpClientModule,
         CommonModule,
         FormsModule,
-        routing
+        routing,
+        NoopAnimationsModule,
+        MatSliderModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatIconModule,
+        MatTableModule
     ],
     declarations: [
         LoginComponent,
@@ -44,6 +55,8 @@ import { OnlyNumber } from './directives/onlynumber.directive';
         VehicleMileageComponent,
         MileageFormComponent,
         AddVehicleComponent,
+        ChangePasswordComponent,
+        ManageUsersComponent,
         AppComponent
     ],
     providers: [
@@ -51,7 +64,8 @@ import { OnlyNumber } from './directives/onlynumber.directive';
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         AuthGuard,
         VehicleService,
-        MileageService
+        MileageService,
+        UserService
     ],
     bootstrap: [AppComponent]
 })

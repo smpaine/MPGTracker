@@ -1,0 +1,15 @@
+Manage Users Form
+<table mat-table [dataSource]="usersDataSource" class="mat-elevation-z3">
+    <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>User Name</th>
+        <td mat-cell *matCellDef="let user"> {{user.userName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastLoginDt">
+        <th mat-header-cell *matHeaderCellDef>Last Login Date</th>
+        <td mat-cell *matCellDef="let user"> {{user.lastLoginDt | date :'medium':'EST'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
