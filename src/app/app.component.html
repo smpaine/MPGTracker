@@ -13,12 +13,12 @@
 
                 <button mat-menu-item [routerLink]="['/changePassword']">Change Password</button>
 
-                <button mat-menu-item *ngIf="authenticationService.currentTokenValue.userType==='administrator'" 
+                <button mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.userType==='administrator'" 
                 [routerLink]="['/manageUsers']">Manage Users</button>
 
                 <button mat-menu-item [routerLink]="['/logout']">Logout</button>
 
-                <span mat-menu-item class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDate | date :'medium':'EST'}}</span>
+                <span mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDate" class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDate | date :'medium':'EST'}}</span>
 
         </mat-menu>
         <div class="alert" *ngIf="displayErrorMessage" (click)="displayErrorMessage = false; errorMessage = ''">
