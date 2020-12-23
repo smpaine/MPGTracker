@@ -5,31 +5,33 @@ import { Router } from '@angular/router';
 import { User } from '@/_models';
 import { UserService } from '@/services';
 import { MatTableDataSource } from '@angular/material';
+import { AuthenticationService } from '@/_services';
 
 @Component({
     moduleId: module.id,
     selector: 'manage-users',
     templateUrl: 'manage-users.component.html',
-    styles: [`.btn-cancel{
-                margin-left:15px;
-                `]
+    styleUrls: ['manage-users.component.css'],
 })
 
 export class ManageUsersComponent {
+    currentUserId: number;
     users: User[];
     errorMessage: string;
 
     usersDataSource: MatTableDataSource<User>;
 
-    displayedColumns: string[] = ['userName', 'lastLoginDt'];
+    displayedColumns: string[] = ['userName', 'lastLoginDt', 'editUser', 'deleteUser'];
 
     constructor(
         private router: Router,
-        private userService: UserService
+        private userService: UserService,
+        private authenticationService: AuthenticationService
     ) {
     }
 
     ngOnInit() {
+        this.currentUserId = this.authenticationService.currentTokenValue.id;
         this.userService.list().subscribe(
             data => {
                 this.users = data
@@ -37,5 +39,9 @@ export class ManageUsersComponent {
             },
             error => this.errorMessage = error
             );
+    }
+
+    deleteUser(user: User) {
+        console.debug('Delete user called for user: ' + user.id);
     }
 }

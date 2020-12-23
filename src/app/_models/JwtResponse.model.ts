@@ -1,6 +1,7 @@
 export class JwtResponse {
     token: string;
+    id: number;
     userName: string;
-    lastLoginDate: Date;
     userType: string;
+    lastLoginDt: Date;
 }
