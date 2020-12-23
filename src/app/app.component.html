@@ -18,7 +18,7 @@
 
                 <button mat-menu-item [routerLink]="['/logout']">Logout</button>
 
-                <span mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDate" class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDate | date :'medium':'EST'}}</span>
+                <span mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDt" class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDt | date :'medium':'EST'}}</span>
 
         </mat-menu>
         <div class="alert" *ngIf="displayErrorMessage" (click)="displayErrorMessage = false; errorMessage = ''">
