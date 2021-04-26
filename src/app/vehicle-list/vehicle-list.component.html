@@ -4,6 +4,7 @@
                 </select>
                 &nbsp;&nbsp;&nbsp;
                 <button (click)="toggleVehicleEdit(mainApp.selectedVehicle)">Edit Vehicle</button>
+                <button [routerLink]="['/addMileage', (mainApp.selectedVehicle != undefined ? mainApp.selectedVehicle.id : '')]">Add New MPG</button>
                 <div *ngIf="mainApp.selectedVehicle != undefined && mainApp.selectedVehicle.editing">
                     <vehicle-form [vehicle]="mainApp.selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
                 </div>

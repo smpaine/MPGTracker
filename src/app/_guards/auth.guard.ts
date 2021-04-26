@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
           return false;
         }
       } else {
-        console.debug('url: ' + route.url.toString());
+        //console.debug('url: ' + route.url.toString());
         return true;
       }
     }
