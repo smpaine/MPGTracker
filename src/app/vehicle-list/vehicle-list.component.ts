@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AppComponent } from '@/app.component';
+
+import { AlertService } from '@/_alert';
+
 import { Vehicle } from '@/models';
 import { VehicleService } from '@/services';
 
@@ -18,14 +21,15 @@ export class VehicleListComponent implements OnInit {
 
     constructor(public mainApp: AppComponent,
         private vehicleService: VehicleService,
-        private Activatedroute: ActivatedRoute,
-        private router: Router) {
+        private activatedroute: ActivatedRoute,
+        private router: Router,
+        private alertService: AlertService) {
         this.vehicles = [];
     }
 
     ngOnInit() {
-        if (this.Activatedroute.snapshot.params['id'] != undefined) {
-            this.vid = this.Activatedroute.snapshot.params['id'];
+        if (this.activatedroute.snapshot.params['id'] != undefined) {
+            this.vid = this.activatedroute.snapshot.params['id'];
         }
 
         this.vehicleService.list().subscribe( (vehicleList: Vehicle[]) => {
@@ -52,10 +56,10 @@ export class VehicleListComponent implements OnInit {
             this.vid = this.mainApp.selectedVehicle.id;
         } else if (this.vid != undefined) {
             console.error("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid);
-            this.mainApp.displayError("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid);
+            this.alertService.error("setSelectedVehicle: this.vehicles is undefined, this.vid = " + this.vid, {autoClose: true, keepAfterRouteChange: true});
         } else {
             console.error("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined");
-            this.mainApp.displayError("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined");
+            this.alertService.error("setSelectedVehicle: this.vehicles is undefined, this.vid is undefined", {autoClose: true, keepAfterRouteChange: true});
         }
     }
 
@@ -81,13 +85,13 @@ export class VehicleListComponent implements OnInit {
                         // Update success
                         console.debug("Update successful: ");
                         console.debug(data);
-                        this.mainApp.displayInfo("Update successful");
+                        this.alertService.success("Update successful", {autoClose: true, keepAfterRouteChange: true});
                     },
                     error => {
                         // Error
                         console.error("Update failed: ");
                         console.error(error);
-                        this.mainApp.displayError("Update failed");
+                        this.alertService.error("Update failed", {autoClose: true, keepAfterRouteChange: true});
                     }
                 );
             }

@@ -1,12 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AppComponent } from '@/app.component';
+import { AlertService } from '@/_alert';
 
-import { Mileage, Vehicle } from '@/models';
+import { Vehicle } from '@/models';
 
-import { MileageService, VehicleService } from '@/services';
+import { VehicleService } from '@/services';
 
 @Component({
     moduleId: module.id,
@@ -20,10 +19,10 @@ import { MileageService, VehicleService } from '@/services';
 export class AddVehicleComponent {
     newVehicle: Vehicle;
 
-    constructor(private mainApp: AppComponent,
-        private Activatedroute: ActivatedRoute,
+    constructor(
         private router: Router,
-        private vehicleService: VehicleService) {
+        private vehicleService: VehicleService,
+        private alertService: AlertService) {
         this.newVehicle = new Vehicle();
         this.newVehicle.editing = true;
     }
@@ -34,7 +33,7 @@ export class AddVehicleComponent {
     saveVehicle(vehicle: Vehicle) {
         this.vehicleService.add(vehicle).subscribe(
             (responseVehicle: Vehicle) => {
-                this.mainApp.displayInfo("Vehicle added successfully!");
+                this.alertService.success("Vehicle added successfully!", {autoClose: true, keepAfterRouteChange: true});
                 // Update success
                 if (responseVehicle != undefined) {
                     this.router.navigate(['/mileages', responseVehicle.id]);
@@ -45,7 +44,7 @@ export class AddVehicleComponent {
             error => {
                 // Error
                 console.error("Update failed: " + error);
-                this.mainApp.displayError("Failed to add vehicle");
+                this.alertService.error("Failed to add vehicle", {autoClose: true, keepAfterRouteChange: true});
             }
         );
     }

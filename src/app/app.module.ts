@@ -3,6 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthGuard } from '@/_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from '@/_helpers';
@@ -13,6 +14,8 @@ import { LogoutComponent } from '@/logout';
 import { AppComponent } from './app.component';
 
 import { routing } from './app.routes';
+
+import { AlertModule } from './_alert';
 
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
@@ -33,12 +36,20 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         routing,
@@ -48,7 +59,17 @@ import { MatInputModule } from '@angular/material/input';
         MatMenuModule,
         MatIconModule,
         MatTableModule,
-        MatInputModule
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatSelectModule,
+        NgxMatTimepickerModule,
+        NgxMatDatetimePickerModule,
+        NgxMatNativeDateModule,
+        AlertModule
     ],
     declarations: [
         LoginComponent,

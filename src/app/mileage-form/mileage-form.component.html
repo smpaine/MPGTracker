@@ -1,112 +1,77 @@
-<form #mileageForm="ngForm" class="mileage-form" (ngSubmit)="onSave(mileageForm)">
-    <div class="thumbnail" >
-        <div class="caption">
-            <div *ngIf="vehicles">
-                <p>Choose Vehicle to Add MPG for:</p>
-                <select [ngModel]="selectedVehicle" (ngModelChange)="onChange($event)" name="vehicleSelector">
-                    <option [ngValue]="vehicle" *ngFor="let vehicle of vehicles">{{vehicle.name}}</option>
-                </select>
-            </div>
-            <br>
-            <div ngModelGroup="newMileage">
-                <div class="form-group">
-                    <label class="control-label" for="">Mileage</label>
-                    <input ngModel
-                        class="form-control" type="number"
-                        pattern="^[0-9]*$"
-                        id="mileage" name="mileage"
-                        placeholder="enter mileage" autofocus
-                        required minlength="0"
-                        step="1"
-                        OnlyNumber="true"
-                        autocomplete="off" autocorrect="off"
-                        #mileageControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="mileageControl.invalid && (mileageControl.dirty || mileageControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="mileageControl.errors.required">
-                         Mileage is required.
-                    </div>
-                    <div *ngIf="mileageControl.errors.minlength">
-                         Mileage needs to be at least 1 digit long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="gallons">Gallons</label>
-                    <input [ngModel]="newMileage.gallons"
-                        class="form-control" type="number"
-                        pattern="^[0-9]*(\.[0-9]{1,3})?$"
-                        id="gallons" name="gallons"
-                        placeholder="enter gallons"
-                        required minlength="0"
-                        step="any"
-                        OnlyNumber="currency"
-                        autocomplete="off" autocorrect="off"
-                        #gallonsControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="gallonsControl.invalid && (gallonsControl.dirty || gallonsControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="gallonsControl.errors.required">
-                         Gallons is required.
-                    </div>
-                    <div *ngIf="gallonsControl.errors.minlength">
-                         Gallons needs to be at least 1 digit long.
-                    </div>
-                    <div *ngIf="gallonsControl.errors.pattern">
-                        Gallons needs to be a number and can have up to 3 digits past the decimal.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="totalCost">Total Cost</label>
-                    <input [ngModel]="newMileage.totalCost"
-                        class="form-control" type="number"
-                        pattern="^[0-9]*(\.[0-9]{1,2})?$"
-                        id="totalCost" name="totalCost"
-                        placeholder="enter total cost"
-                        required minlength="0"
-                        autocomplete="off" autocorrect="off"
-                        #totalCostControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="totalCostControl.invalid && (totalCostControl.dirty || totalCostControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="totalCostControl.errors.required">
-                        Total Cost is required.
-                    </div>
-                    <div *ngIf="totalCostControl.errors.minlength">
-                        Total Cost needs to be at least 1 digit long.
-                    </div>
-                    <div *ngIf="totalCostControl.errors.pattern">
-                        Total Cost needs to be a valid dollar amount.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="mileageDate">Date</label>
-                    <input [ngModel]="mileageDate"
-                    class="form-control" type="datetime"
-                    id="mileageDate" name="mileageDate"
-                    required
-                    #mileageDateControl="ngModel"
-                    >
-                </div>
-                <br>
-                <div *ngIf="mileageDateControl.invalid && (mileageDateControl.dirty || mileageDateControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="mileageDateControl.errors.required">
-                        Mileage Date is required.
-                    </div>
-                </div>
-            </div>
+<form fxLayout="row" fxLayoutAlign="center">
+    <mat-card>
+        <mat-card-content>
+            <mat-dialog-content [formGroup]="mileageForm">
+                <mat-form-field>
+                    <mat-label>Vehicle</mat-label>
+                    <mat-select formControlName="vehicleControl" (ngModelChange)="onChange($event)">
+                        <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+                            {{vehicle.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <div class="btn-group">
-                <button class="btn btn-info btn-sm" [disabled]="!mileageForm.form.valid">Save</button>
-                <a class="btn-cancel" href="" [routerLink]="['/mileages', vid]">cancel</a>
-            </div>
-        </div>
-    </div>
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Mileage</mat-label>
+                    <input matInput formControlName="mileageControl" type="number" pattern="^[0-9]*$" minlength="0"
+                        step="1" OnlyNumber="true" autocomplete="off" autocorrect="off">
+                    <mat-error>Mileage is required</mat-error>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Gallons</mat-label>
+                    <input matInput formControlName="gallonsControl" type="number" pattern="^[0-9]*(\.[0-9]{1,3})?$"
+                        minlength="0" step="any" OnlyNumber="currency" autocomplete="off" autocorrect="off">
+                    <mat-error *ngIf="mileageForm.get('gallonsControl').hasError('required')">Gallons is required
+                    </mat-error>
+                    <mat-error *ngIf="mileageForm.get('gallonsControl').hasError('pattern')">
+                        Gallons needs to be a number and can have up to 3 digits past the decimal.
+                    </mat-error>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Total Cost</mat-label>
+                    <input matInput formControlName="totalCostControl" type="number" pattern="^[0-9]*(\.[0-9]{1,2})?$"
+                        minlength="0" step="any" OnlyNumber="currency" autocomplete="off" autocorrect="off">
+                    <mat-error *ngIf="mileageForm.get('totalCostControl').hasError('required')">
+                        Total Cost is required</mat-error>
+                    <mat-error *ngIf="mileageForm.get('totalCostControl').hasError('pattern')">
+                        Total Cost needs to be a valid dollar amount
+                    </mat-error>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Mileage Date</mat-label>
+                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+                        formControlName="mileageDateTime">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [touchUi]="true">
+                    </ngx-mat-datetime-picker>
+                </mat-form-field>
+            </mat-dialog-content>
+            <mat-dialog-content>
+                <mat-card-actions fxLayoutGap="20px" fxLayoutAlig="space-around center" fxLayout="row">
+                    <span fxFlex="25"></span>
+                    <button fxFlex="25" mat-raised-button class="mat-primary" [disabled]="mileageForm.invalid"
+                        (click)="onSave()">
+                        <mat-icon>save</mat-icon>
+                        Save
+                    </button>
+                    <button fxFlex="25" mat-raised-button class="mat-primary" [routerLink]="['/mileages', vid]">
+                        <mat-icon>cancel</mat-icon>
+                        Cancel
+                    </button>
+                    <span fxFlex="25"></span>
+                </mat-card-actions>
+            </mat-dialog-content>
+        </mat-card-content>
+    </mat-card>
 </form>

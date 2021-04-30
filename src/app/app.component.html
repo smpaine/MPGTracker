@@ -28,14 +28,7 @@
                 :'medium':'EST'}}</span>
 
         </mat-menu>
-        <div class="alert" *ngIf="displayErrorMessage" (click)="displayErrorMessage = false; errorMessage = ''">
-            <span class="closebtn">&times;</span>
-            {{errorMessage}}
-        </div>
-        <div class="alert success" *ngIf="displayInfoMessage" (click)="displayInfoMessage = false; infoMessage = '';">
-            <span class="closebtn">&times;</span>
-            {{infoMessage}}
-        </div>
     </div>
+    <alert></alert>
     <router-outlet></router-outlet>
 </div>

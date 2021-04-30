@@ -13,23 +13,7 @@ import { Vehicle } from '@/models';
 export class AppComponent {
   selectedVehicle: Vehicle;
 
-  errorMessage: string;
-  displayErrorMessage: boolean = false;
-
-  infoMessage: string;
-  displayInfoMessage: boolean = false;
-
   constructor(private router: Router,
     public authenticationService: AuthenticationService) {
-   }
-
-   public displayError(errorMessage: string) {
-     this.errorMessage = errorMessage;
-     this.displayErrorMessage = true;
-   }
-
-   public displayInfo(infoMessage: string) {
-     this.infoMessage = infoMessage;
-     this.displayInfoMessage = true;
    }
 }
