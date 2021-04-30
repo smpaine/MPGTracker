@@ -27,7 +27,12 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UserService } from './services/user.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule, MatToolbarModule, MatMenuModule, MatIconModule, MatTableModule, MatInputModule } from '@angular/material';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [
