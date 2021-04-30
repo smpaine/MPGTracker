@@ -1,24 +1,31 @@
 <div class="container">
     <div class="page-header">
         <mat-toolbar *ngIf="authenticationService.currentTokenValue">
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+            </button>
             MPGTracker
         </mat-toolbar>
-        
+
         <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/mileages', (selectedVehicle != undefined ? selectedVehicle.id : '')]">Mileages</button>
-            <button mat-menu-item [routerLink]="['/addMileage', (selectedVehicle != undefined ? selectedVehicle.id : '')]">Add New MPG</button>
+            <button mat-menu-item
+                [routerLink]="['/mileages', (selectedVehicle != undefined ? selectedVehicle.id : '')]">Mileages</button>
 
-                <button mat-menu-item [routerLink]="['/addVehicle']">Add a New Vehicle</button>
 
-                <button mat-menu-item [routerLink]="['/changePassword']">Change Password</button>
+            <button mat-menu-item [routerLink]="['/addVehicle']">Add a New Vehicle</button>
 
-                <button mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.userType==='administrator'" 
+            <button mat-menu-item [routerLink]="['/changePassword']">Change Password</button>
+
+            <button mat-menu-item
+                *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.userType==='administrator'"
                 [routerLink]="['/manageUsers']">Manage Users</button>
 
-                <button mat-menu-item [routerLink]="['/logout']">Logout</button>
+            <button mat-menu-item [routerLink]="['/logout']">Logout</button>
 
-                <span mat-menu-item *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDt" class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDt | date :'medium':'EST'}}</span>
+            <span mat-menu-item
+                *ngIf="authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDt"
+                class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDt | date
+                :'medium':'EST'}}</span>
 
         </mat-menu>
         <div class="alert" *ngIf="displayErrorMessage" (click)="displayErrorMessage = false; errorMessage = ''">

@@ -84,6 +84,23 @@
                         Total Cost needs to be a valid dollar amount.
                     </div>
                 </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label" for="mileageDate">Date</label>
+                    <input [ngModel]="mileageDate"
+                    class="form-control" type="datetime"
+                    id="mileageDate" name="mileageDate"
+                    required
+                    #mileageDateControl="ngModel"
+                    >
+                </div>
+                <br>
+                <div *ngIf="mileageDateControl.invalid && (mileageDateControl.dirty || mileageDateControl.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="mileageDateControl.errors.required">
+                        Mileage Date is required.
+                    </div>
+                </div>
             </div>
 
             <div class="btn-group">

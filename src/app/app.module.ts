@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +6,6 @@ import { NgModule } from '@angular/core';
 
 import { AuthGuard } from '@/_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from '@/_helpers';
-import { AuthenticationService } from '@/_services';
 
 import { LoginComponent } from '@/login';
 import { LogoutComponent } from '@/logout';
@@ -29,7 +27,12 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UserService } from './services/user.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule, MatToolbarModule, MatMenuModule, MatIconModule, MatTableModule } from '@angular/material';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [
@@ -44,7 +47,8 @@ import { MatSliderModule, MatToolbarModule, MatMenuModule, MatIconModule, MatTab
         MatToolbarModule,
         MatMenuModule,
         MatIconModule,
-        MatTableModule
+        MatTableModule,
+        MatInputModule
     ],
     declarations: [
         LoginComponent,

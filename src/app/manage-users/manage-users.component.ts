@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { User } from '@/_models';
 import { UserService } from '@/services';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { AuthenticationService } from '@/_services';
 
 @Component({

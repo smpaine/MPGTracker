@@ -4,7 +4,7 @@ export class Mileage{
     mileage: number;
     gallons: number;
     totalCost: number;
-    timestamp: string;
+    timestamp: number;
     costPerGallon: number;
     mpg: number;
     miles: number;

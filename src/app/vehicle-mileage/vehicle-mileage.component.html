@@ -23,7 +23,7 @@
                 <td data-title="Price per Gallon" class="numeric">{{mileage.costPerGallon | currency: '$ '}}</td>
                 <td data-title="Miles Driven" class="numeric">{{mileage.miles | number}}</td>
                 <td data-title="MPG" class="numeric">{{mileage.mpg | number}}</td>
-                <td data-title="Timestamp">{{mileage.timestamp}}</td>
+                <td data-title="Timestamp">{{mileage.timestamp | date:'short'}}</td>
                 <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
             </tr>
         </tbody>

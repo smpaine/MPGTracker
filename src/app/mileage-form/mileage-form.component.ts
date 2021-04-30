@@ -23,6 +23,7 @@ export class MileageFormComponent implements OnInit {
     vehicles: Vehicle[];
     selectedVehicle: Vehicle;
     newMileage: Mileage;
+    mileageDate: Date;
 
     constructor(private mainApp: AppComponent,
         private Activatedroute: ActivatedRoute,
@@ -31,6 +32,7 @@ export class MileageFormComponent implements OnInit {
         private mileageService: MileageService) {
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
+        this.mileageDate = new Date();
     }
 
     ngOnInit() {
@@ -49,6 +51,11 @@ export class MileageFormComponent implements OnInit {
 
     onSave(mileageForm: NgForm) {
         let tempMileage = Object.assign({}, this.newMileage, mileageForm.value.newMileage);
+        var mileageDate = new Date(tempMileage.mileageDate);
+        console.debug(mileageDate);
+        console.debug(mileageDate.getTime());
+        tempMileage.timestamp = mileageDate.getTime();
+        delete tempMileage.mileageDate;
         this.mileageService.put(tempMileage).subscribe(
             data => {
                 // Update success
