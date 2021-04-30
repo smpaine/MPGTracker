@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-header">
-        <mat-toolbar>
+        <mat-toolbar *ngIf="authenticationService.currentTokenValue">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
             MPGTracker
         </mat-toolbar>
