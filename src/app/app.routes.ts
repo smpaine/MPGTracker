@@ -23,4 +23,4 @@ const appRoutes: Routes = [
   { path: '**',     component: LoginComponent },
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' });
