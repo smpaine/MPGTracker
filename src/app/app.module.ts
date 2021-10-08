@@ -43,6 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
     imports: [
@@ -82,6 +83,7 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
         AddVehicleComponent,
         ChangePasswordComponent,
         ManageUsersComponent,
+        EditUserComponent,
         AppComponent
     ],
     providers: [

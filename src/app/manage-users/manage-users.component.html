@@ -13,7 +13,7 @@ Manage Users Form
     <ng-container matColumnDef="editUser">
         <th mat-header-cell *matHeaderCellDef>Edit User</th>
         <td mat-cell *matCellDef="let user">
-            <button [routerLink]="['/editUser']">
+            <button [routerLink]="['/editUser', user.id]">
                 <mat-icon>edit</mat-icon>
             </button>
         </td>

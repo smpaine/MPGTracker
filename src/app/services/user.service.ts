@@ -18,6 +18,12 @@ export class UserService {
         return this.http.get<User[]>(this.usersUrl);
     }
 
+    getById(id: number) {
+        let url = this.usersUrl + id;
+
+        return this.http.get<User>(url);
+    }
+
     update(user: User) {
         let url = this.usersUrl;
 

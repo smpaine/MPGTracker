@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '@/_models';
 import { UserService } from '@/services';
@@ -10,16 +10,15 @@ import { AlertService } from '@/_alert';
 
 @Component({
     moduleId: module.id,
-    selector: 'manage-users',
-    templateUrl: 'manage-users.component.html',
-    styleUrls: ['manage-users.component.css'],
+    selector: 'edit-user',
+    templateUrl: 'edit-user.component.html',
+    styleUrls: ['edit-user.component.css'],
 })
 
-export class ManageUsersComponent {
+export class EditUserComponent {
     currentUserId: number;
-    users: User[];
-
-    usersDataSource: MatTableDataSource<User>;
+    user: User;
+    errorMessage: string;
 
     displayedColumns: string[] = ['userName', 'lastLoginDt', 'editUser', 'deleteUser'];
 
@@ -27,24 +26,28 @@ export class ManageUsersComponent {
         private router: Router,
         private userService: UserService,
         private authenticationService: AuthenticationService,
+        private activatedroute: ActivatedRoute,
         private alertService: AlertService
     ) {
+        this.user = new User();
     }
 
     ngOnInit() {
-        this.currentUserId = this.authenticationService.currentTokenValue.id;
-        this.userService.list().subscribe(
+        if (this.activatedroute.snapshot.params['id'] != undefined) {
+            this.currentUserId = this.activatedroute.snapshot.params['id'];
+            console.debug('editUser id: ' + this.currentUserId);
+        } else {
+            console.debug('editUser id: <null>');
+        }
+
+        this.userService.getById(this.currentUserId).subscribe(
             data => {
-                this.users = data
-                this.usersDataSource = new MatTableDataSource(this.users);
+                this.user = data;
             },
             error => {
                 this.alertService.error('Manage Users error: ' + error);
             }
-            );
+        );
     }
 
-    deleteUser(user: User) {
-        console.debug('Delete user called for user: ' + user.id);
-    }
 }
