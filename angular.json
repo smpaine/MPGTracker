@@ -21,7 +21,8 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              "src/apple-touch-icon.png"
+              "src/apple-touch-icon.png",
+			  "src/.htaccess"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -88,7 +89,8 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              "src/apple-touch-icon.png"
+              "src/apple-touch-icon.png",
+			  "src/.htaccess"
             ]
           }
         },
