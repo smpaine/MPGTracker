@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Mileage, Vehicle } from "@/models";
 
 import { environment } from '@environments/environment';
+import { VehicleStats } from '@/models/vehicleStats.model';
 
 @Injectable({ providedIn: 'root' })
 export class MileageService {
@@ -28,5 +29,11 @@ export class MileageService {
     get(mid: Number): Observable<Mileage> {
         let url = this.mileageUrl + mid;
         return this.http.get<Mileage>(url);
+    }
+
+    getStats(vid: Number): Observable<VehicleStats[]> {
+        let url = this.mileageUrl + "/vehicle/stats/" + vid;
+
+        return this.http.get<VehicleStats[]>(url);
     }
 }

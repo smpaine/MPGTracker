@@ -71,6 +71,14 @@ export class VehicleListComponent implements OnInit {
         }
     }
 
+    toggleVehicleStats(vehicle: Vehicle) {
+        if (vehicle.showingStats) {
+            vehicle.showingStats = false;
+        } else {
+            vehicle.showingStats = true;
+        }
+    }
+
     saveVehicle(vehicle: Vehicle) {
         for (var i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].id == vehicle.id) {

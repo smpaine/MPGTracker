@@ -5,6 +5,7 @@ import { LogoutComponent } from '@/logout';
 import { AuthGuard } from './_guards/auth.guard';
 
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { VehicleStatsComponent } from './vehicle-stats/vehicle-stats.component';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'login',  component: LoginComponent },
   { path: 'mileages', component: VehicleListComponent, canActivate: [AuthGuard] },
   { path: 'mileages/:id', component: VehicleListComponent, canActivate: [AuthGuard] },
+  { path: 'vehicleStats/:id', component: VehicleStatsComponent, canActivate: [AuthGuard] },
   { path: 'addMileage/:vid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'editMileage/:vid/:mid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthGuard] },

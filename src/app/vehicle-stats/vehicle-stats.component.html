@@ -1,0 +1,27 @@
+<h3>Vehicle Yearly Stats</h3>
+<div id="no-more-tables">
+    <table id="statsTable" class="table-bordered table-striped table-condensed cf">
+        <thead class="cf">
+            <tr>
+                <th class="numeric">Year</th>
+                <th class="numeric">Gallons</th>
+                <th class="numeric">Total Cost</th>
+                <th class="numeric">Cost per Gallon</th>
+                <th class="numeric">Cost per Mile</th>
+                <th class="numeric">Miles Driven</th>
+                <th class="numeric">MPG</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let stat of stats">
+                <td data-title="Year" class="numeric">{{stat.year}}</td>
+                <td data-title="Gallons" class="numeric">{{stat.gallons | number}}</td>
+                <td data-title="Total Cost" class="numeric">{{stat.totalCost | currency: '$ '}}</td>
+                <td data-title="Cost per Gallon" class="numeric">{{stat.costPerGallon | currency: '$ '}}</td>
+                <td data-title="Cost per Mile" class="numeric">{{stat.costPerMile | currency: '$ '}}</td>
+                <td data-title="Miles Driven" class="numeric">{{stat.miles | number}}</td>
+                <td data-title="MPG" class="numeric">{{stat.mpg | number}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

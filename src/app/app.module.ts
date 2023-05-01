@@ -24,6 +24,7 @@ import { VehicleMileageComponent } from './vehicle-mileage/vehicle-mileage.compo
 import { MileageService } from './services/mileage.service';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { VehicleStatsComponent } from './vehicle-stats/vehicle-stats.component';
 
 import { OnlyNumber } from './directives/onlynumber.directive';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -79,6 +80,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         VehicleListComponent,
         VehicleFormComponent,
         VehicleMileageComponent,
+        VehicleStatsComponent,
         MileageFormComponent,
         AddVehicleComponent,
         ChangePasswordComponent,

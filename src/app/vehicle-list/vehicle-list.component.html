@@ -4,10 +4,18 @@
                 </select>
                 &nbsp;&nbsp;&nbsp;
                 <button (click)="toggleVehicleEdit(mainApp.selectedVehicle)">Edit Vehicle</button>
+                <button (click)="toggleVehicleStats(mainApp.selectedVehicle)">Stats</button>
+                <!--<button [routerLink]="['/vehicleStats', (mainApp.selectedVehicle != undefined ? mainApp.selectedVehicle.id : '')]">Stats</button>-->
                 <button [routerLink]="['/addMileage', (mainApp.selectedVehicle != undefined ? mainApp.selectedVehicle.id : '')]">Add New MPG</button>
+
                 <div *ngIf="mainApp.selectedVehicle != undefined && mainApp.selectedVehicle.editing">
                     <vehicle-form [vehicle]="mainApp.selectedVehicle" (cancel)="toggleVehicleEdit($event)" (save)="saveVehicle($event)"></vehicle-form>
                 </div>
+
+                <div *ngIf="mainApp.selectedVehicle != undefined && mainApp.selectedVehicle.showingStats">
+                    <vehicle-stats [vid]="mainApp.selectedVehicle.id"></vehicle-stats>
+                </div>
+                
             </div>
     <div *ngIf="mainApp.selectedVehicle">
         <vehicle-mileage [vid]="mainApp.selectedVehicle.id"></vehicle-mileage>
