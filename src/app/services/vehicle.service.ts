@@ -28,5 +28,11 @@ export class VehicleService {
          let url = this.vehiclesUrl;
          
          return this.http.put(url, vehicle);
-     }
+    }
+
+    updateVehiclesSortOrder(vehicles: Vehicle[]): Observable<Vehicle[]> {
+        let url = this.vehiclesUrl + "sortUpdate";
+
+        return this.http.post<Vehicle[]>(url, vehicles);
+    }
 }

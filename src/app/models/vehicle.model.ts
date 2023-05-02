@@ -7,6 +7,7 @@ export class Vehicle{
     model: string;
     year: string;
     purchased: Date;
+    sortkey: number;
 
     editing: boolean = false;
 
@@ -19,5 +20,6 @@ export class Vehicle{
         this.model = obj && obj.model || null;
         this.year = obj && obj.year || formatDate(new Date(), 'yyyy', 'en-us', 'EST');
         this.purchased = obj && obj.purchased || new Date();
+        this.sortkey = obj && obj.sortkey || null;
     }
 }

@@ -11,6 +11,7 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
 
 const appRoutes: Routes = [
   { path: '',       component: LoginComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'mileages', component: VehicleListComponent, canActivate: [AuthGuard] },
   { path: 'mileages/:id', component: VehicleListComponent, canActivate: [AuthGuard] },
   { path: 'vehicleStats/:id', component: VehicleStatsComponent, canActivate: [AuthGuard] },
+  { path: 'vehicleSorting', component: VehicleSortingComponent, canActivate: [AuthGuard] },
   { path: 'addMileage/:vid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'editMileage/:vid/:mid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthGuard] },

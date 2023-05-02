@@ -25,6 +25,7 @@ import { MileageService } from './services/mileage.service';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleStatsComponent } from './vehicle-stats/vehicle-stats.component';
+import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
 
 import { OnlyNumber } from './directives/onlynumber.directive';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -43,6 +44,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { EditUserComponent } from './edit-user/edit-user.component';
 
@@ -71,7 +73,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         NgxMatTimepickerModule,
         NgxMatDatetimePickerModule,
         NgxMatNativeDateModule,
-        AlertModule
+        AlertModule,
+        DragDropModule
     ],
     declarations: [
         LoginComponent,
@@ -79,6 +82,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         OnlyNumber,
         VehicleListComponent,
         VehicleFormComponent,
+        VehicleSortingComponent,
         VehicleMileageComponent,
         VehicleStatsComponent,
         MileageFormComponent,
