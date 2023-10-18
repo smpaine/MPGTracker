@@ -10,6 +10,7 @@ import { User } from '@/_models';
     templateUrl: 'change-password.component.html',
     styles: [`.btn-cancel{
                 margin-left:15px;
+              }
                 `]
 })
 

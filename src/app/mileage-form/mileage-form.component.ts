@@ -14,6 +14,7 @@ import { AlertService } from '@/_alert';
     templateUrl: 'mileage-form.component.html',
     styles: [`.btn-cancel{
                 margin-left:15px;
+              }
                 `]
 })
 

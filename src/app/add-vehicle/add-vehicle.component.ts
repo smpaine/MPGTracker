@@ -13,6 +13,7 @@ import { VehicleService } from '@/services';
     templateUrl: 'add-vehicle.component.html',
     styles: [`.btn-cancel{
                 margin-left:15px;
+              }
                 `]
 })
 

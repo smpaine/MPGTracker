@@ -9,7 +9,8 @@ import { Vehicle } from '@/models';
     templateUrl: 'vehicle-form.component.html',
     styles: [`.btn-cancel{
                 margin-left:15px;
-                `]
+              }
+            `]
 })
 
 export class VehicleFormComponent implements OnInit {
