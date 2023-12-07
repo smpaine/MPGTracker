@@ -15,27 +15,28 @@ export class OnlyNumber {
   @HostListener('keydown', ['$event']) onKeyDown(event: Event) {
     let e = <KeyboardEvent>event;
     if (this.OnlyNumber == "true" || this.OnlyNumber == "currency") {
+      //console.debug('key [' + e.key + '] meta [' + e.metaKey + '] ctrl [' + e.ctrlKey + ']');
+
       // Allow backspace, delete, tab, escape, enter
-      if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
+      if (['Delete', 'Backspace', 'Tab', 'Escape', 'Enter'].indexOf(e.key) !== -1 ||
         // Allow .
-        this.OnlyNumber == "currency" && (e.keyCode == 110 || e.keyCode == 190) ||
-        // Allow: Ctrl+A
-        (e.keyCode == 65 && e.ctrlKey === true) ||
-        // Allow: Ctrl+C
-        (e.keyCode == 67 && e.ctrlKey === true) ||
-        // Allow: Ctrl+V
-        (e.keyCode == 86 && e.ctrlKey === true) ||
-        // Allow: Ctrl+X
-        (e.keyCode == 88 && e.ctrlKey === true) ||
+        this.OnlyNumber == "currency" && e.key == '.' ||
+        // Allow: Ctrl+A/command+A
+        ((e.ctrlKey || e.metaKey) && (e.key == 'a' || e.key == 'A')) ||
+        // Allow: Ctrl+C/command+C
+        ((e.ctrlKey || e.metaKey) && (e.key == 'c' || e.key == 'C')) ||
+        // Allow: Ctrl+V/command+V
+        ((e.ctrlKey || e.metaKey) && (e.key == 'v' || e.key == 'V')) ||
+        // Allow: Ctrl+X/command+X
+        ((e.ctrlKey || e.metaKey) && (e.key == 'x' || e.key == 'X')) ||
         // Allow: home, end, left, right
-        (e.keyCode >= 35 && e.keyCode <= 39) ||
-        // Allow: command + a
-        (e.keyCode == 65 && e.metaKey === true)) {
+        (e.key == 'Home' || e.key == 'End' || e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
         // let it happen, don't do anything
+        //console.debug('allowing keypress');
         return;
       }
 
-      let ch = String.fromCharCode(e.keyCode);
+      let ch = e.key;
       let regEx = new RegExp(this.numberOnlyRegexStr);
       if (regEx.test(ch)) {
         //console.log("OnlyNumber - passed numbers only regex");
