@@ -10,6 +10,7 @@
                 <th class="numeric">Cost per Mile</th>
                 <th class="numeric">Miles Driven</th>
                 <th class="numeric">MPG</th>
+                <th class="numeric">G/100M</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                 <td data-title="Cost per Mile" class="numeric">{{stat.costPerMile | currency: '$ '}}</td>
                 <td data-title="Miles Driven" class="numeric">{{stat.miles | number}}</td>
                 <td data-title="MPG" class="numeric">{{stat.mpg | number}}</td>
+                <td data-title="G100M" class="numeric">{{stat.g100m | number}}</td>
             </tr>
         </tbody>
     </table>
