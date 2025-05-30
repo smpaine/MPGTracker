@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AppComponent } from '@/app.component';
@@ -14,7 +14,10 @@ import { AuthenticationService } from '@/_services';
 })
 
 export class LoginComponent implements OnInit {
-  loginForm: UntypedFormGroup;
+  loginForm: FormGroup<{
+    userName: FormControl<string>;
+    password: FormControl<string>;
+  }>;
   submitted = false;
   loading = false;
   error = '';
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(private mainApp: AppComponent,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private formBuilder: UntypedFormBuilder
+    private formBuilder: FormBuilder,
   ) {
     if (this.authenticationService.currentTokenValue) {
       this.router.navigate(['mileages']);
@@ -31,8 +34,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required]
+      userName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 

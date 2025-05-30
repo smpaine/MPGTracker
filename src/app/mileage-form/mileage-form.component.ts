@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 
 import { Mileage, Vehicle } from '@/models';
@@ -19,7 +19,13 @@ import { AlertService } from '@/_alert';
 })
 
 export class MileageFormComponent implements OnInit {
-    mileageForm: UntypedFormGroup;
+    mileageForm: FormGroup<{
+        vehicleControl: FormControl<Vehicle>;
+        mileageControl: FormControl<number>;
+        gallonsControl: FormControl<number>;
+        totalCostControl: FormControl<number>;
+        mileageDateTime: FormControl<Date>;
+    }>;
 
     vid: Number;
     vehicles: Vehicle[];
@@ -34,7 +40,7 @@ export class MileageFormComponent implements OnInit {
         private router: Router,
         private vehicleService: VehicleService,
         private mileageService: MileageService,
-        private fb: UntypedFormBuilder,
+        private formBuilder: FormBuilder,
         private alertService: AlertService) {
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
@@ -43,12 +49,12 @@ export class MileageFormComponent implements OnInit {
 
     ngOnInit() {
 
-        this.mileageForm = this.fb.group({
-            vehicleControl: [this.selectedVehicle, Validators.required],
-            mileageControl: ['', Validators.required],
-            gallonsControl: ['', Validators.required],
-            totalCostControl: ['', Validators.required],
-            mileageDateTime: [this.mileageDate, Validators.required]
+        this.mileageForm = this.formBuilder.group({
+            vehicleControl: new FormControl(this.selectedVehicle, Validators.required),
+            mileageControl: new FormControl<number | null>(null, Validators.required),
+            gallonsControl: new FormControl<number | null>(null, Validators.required),
+            totalCostControl: new FormControl<number | null>(null, Validators.required),
+            mileageDateTime: new FormControl(this.mileageDate, Validators.required)
         });
 
         if (this.Activatedroute.snapshot.routeConfig.path.indexOf('editMileage') >= 0) {
