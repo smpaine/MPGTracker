@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AppComponent } from '@/app.component';
@@ -14,7 +14,7 @@ import { AuthenticationService } from '@/_services';
 })
 
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   submitted = false;
   loading = false;
   error = '';
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private mainApp: AppComponent,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     if (this.authenticationService.currentTokenValue) {
       this.router.navigate(['mileages']);

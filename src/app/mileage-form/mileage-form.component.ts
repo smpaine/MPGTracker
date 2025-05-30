@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 
 import { Mileage, Vehicle } from '@/models';
@@ -19,7 +19,7 @@ import { AlertService } from '@/_alert';
 })
 
 export class MileageFormComponent implements OnInit {
-    mileageForm: FormGroup;
+    mileageForm: UntypedFormGroup;
 
     vid: Number;
     vehicles: Vehicle[];
@@ -34,7 +34,7 @@ export class MileageFormComponent implements OnInit {
         private router: Router,
         private vehicleService: VehicleService,
         private mileageService: MileageService,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private alertService: AlertService) {
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
