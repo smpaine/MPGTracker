@@ -44,3 +44,4 @@ Thumbs.db
 # Ignore package-lock.json since it makes Github whine about security vulnerabilities in packages used only for testing
 package-lock.json
 
+.angular
