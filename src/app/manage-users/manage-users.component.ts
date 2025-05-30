@@ -9,7 +9,6 @@ import { AuthenticationService } from '@/_services';
 import { AlertService } from '@/_alert';
 
 @Component({
-    moduleId: module.id,
     selector: 'manage-users',
     templateUrl: 'manage-users.component.html',
     styleUrls: ['manage-users.component.css'],

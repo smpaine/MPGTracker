@@ -9,7 +9,6 @@ import { MileageService, VehicleService } from '@/services';
 import { AlertService } from '@/_alert';
 
 @Component({
-    moduleId: module.id,
     selector: 'mileage-form',
     templateUrl: 'mileage-form.component.html',
     styles: [`.btn-cancel{

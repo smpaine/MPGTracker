@@ -5,7 +5,6 @@ import { MileageService } from '@/services';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    moduleId: module.id,
     selector: 'vehicle-stats',
     templateUrl: 'vehicle-stats.component.html',
     styleUrls: ['vehicle-stats.component.css']

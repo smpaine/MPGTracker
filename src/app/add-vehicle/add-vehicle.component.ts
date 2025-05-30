@@ -8,7 +8,6 @@ import { Vehicle } from '@/models';
 import { VehicleService } from '@/services';
 
 @Component({
-    moduleId: module.id,
     selector: 'add-vehicle',
     templateUrl: 'add-vehicle.component.html',
     styles: [`.btn-cancel{

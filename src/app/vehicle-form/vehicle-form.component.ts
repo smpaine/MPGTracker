@@ -4,7 +4,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Vehicle } from '@/models';
 
 @Component({
-    moduleId: module.id,
     selector: 'vehicle-form',
     templateUrl: 'vehicle-form.component.html',
     styles: [`.btn-cancel{

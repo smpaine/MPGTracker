@@ -9,7 +9,6 @@ import { Vehicle } from '@/models';
 import { VehicleService } from '@/services';
 
 @Component({
-    moduleId: module.id,
     selector: 'vehicle-list',
     templateUrl: 'vehicle-list.component.html',
     styleUrls: ['vehicle-list.component.css'],

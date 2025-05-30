@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { User } from '@/_models';
 
 @Component({
-    moduleId: module.id,
     selector: 'change-password',
     templateUrl: 'change-password.component.html',
     styles: [`.btn-cancel{

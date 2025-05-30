@@ -4,7 +4,6 @@ import { Mileage } from '@/models';
 import { MileageService } from '@/services';
 
 @Component({
-    moduleId: module.id,
     selector: 'vehicle-mileage',
     templateUrl: 'vehicle-mileage.component.html',
     styleUrls: ['vehicle-mileage.component.css']
