@@ -14,6 +14,9 @@ import { AlertService } from '@/_alert';
     styles: [`.btn-cancel{
                 margin-left:15px;
               }
+                .button-margin {
+                margin: 8px;
+                }
                 `]
 })
 

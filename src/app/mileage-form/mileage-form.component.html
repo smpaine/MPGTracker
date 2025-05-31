@@ -60,12 +60,12 @@
             <mat-dialog-content>
                 <mat-card-actions fxLayoutGap="20px" fxLayoutAlig="space-around center" fxLayout="row">
                     <span fxFlex="25"></span>
-                    <button fxFlex="25" mat-raised-button class="mat-primary" [disabled]="mileageForm.invalid"
+                    <button fxFlex="25" mat-raised-button class="button-margin mat-primary" [disabled]="mileageForm.invalid"
                         (click)="onSave()">
                         <mat-icon>save</mat-icon>
                         Save
                     </button>
-                    <button fxFlex="25" mat-raised-button class="mat-primary" [routerLink]="['/mileages', vid]">
+                    <button fxFlex="25" mat-raised-button class="button-margin mat-primary" [routerLink]="['/mileages', vid]">
                         <mat-icon>cancel</mat-icon>
                         Cancel
                     </button>
