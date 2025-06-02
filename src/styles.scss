@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-datepicker-content {
+    background: white;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12); // angular's box shadow for datepicker
+
+    // Removes the circles around the dates
+    .mat-calendar-body-cell-content {
+        border: none;
+
+        // When date is hovered
+        &:hover {
+            background: #a3a3a3;
+        }
+
+        // When date is selected
+        &.mat-calendar-body-selected {
+            background: #a3a3a3;
+            color: #fff;
+        }
+    }
+
+    .ngx-mat-timepicker {
+        padding-bottom: 10px;
+        tr,
+        td {
+            background-color: #ffffff01 !important;
+            &:hover {
+                background-color: #ffffff01 !important;
+            }
+        }
+        tr {
+            padding-top: 5px;
+        }
+        .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+        }
+        button {
+            margin-top: 3px;
+        }
+        .mat-mdc-icon-button {
+            border: solid #80808075 1px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding-right: 0px;
+            &:hover {
+                background-color: #a3a3a37b;
+            }
+        }
+    }
+
+    .mat-calendar-body-disabled > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+        color: rgba(0, 0, 0, 0.38);
+    }
+}
