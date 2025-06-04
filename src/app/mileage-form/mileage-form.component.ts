@@ -36,6 +36,7 @@ export class MileageFormComponent implements OnInit {
     mileageDate: Date;
     mileageId: Number;
     isEditing: boolean;
+    saved: boolean;
 
     constructor(
         private Activatedroute: ActivatedRoute,
@@ -47,6 +48,7 @@ export class MileageFormComponent implements OnInit {
         this.selectedVehicle = new Vehicle();
         this.newMileage = new Mileage();
         this.mileageDate = new Date();
+        this.saved=false;
     }
 
     ngOnInit() {
@@ -101,6 +103,7 @@ export class MileageFormComponent implements OnInit {
 
     onSave() {
         if (this.mileageForm.valid) {
+            this.saved = true;
 
             let tempMileage: Mileage = new Mileage();
 

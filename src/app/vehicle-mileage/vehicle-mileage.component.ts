@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 
 import { Mileage } from '@/models';
 import { MileageService } from '@/services';
+import { AlertService } from '@/_alert';
 
 @Component({
     selector: 'vehicle-mileage',
@@ -14,7 +15,7 @@ export class VehicleMileageComponent implements OnInit, OnChanges {
     mileages: Mileage[];
     errorMessage: string;
 
-    constructor(private mileageService: MileageService) { }
+    constructor(private mileageService: MileageService, private alertService: AlertService) { }
 
     ngOnInit() {
         // ngOnChanges is called as soon as we get vehicle list,
@@ -35,5 +36,21 @@ export class VehicleMileageComponent implements OnInit, OnChanges {
         this.mileageService.list(vid)
             .subscribe(data => this.mileages = data,
             error => this.errorMessage = error);
+    }
+
+    deleteMileage(mileage: Mileage) {
+        this.mileageService.delete(mileage.id).subscribe(
+            data => {
+                // Delete success
+                console.debug("Mileage deleted successfully");
+                this.alertService.success("Mileage deleted successfully!", {autoClose: true, keepAfterRouteChange: true});
+                this.getMileages(mileage.vid);
+            },
+            error => {
+                // Error
+                console.error("Delete mileage failed: " + error);
+                this.alertService.error("Failed to delete mileage", {autoClose: true, keepAfterRouteChange: true});
+            }
+        );
     }
 }

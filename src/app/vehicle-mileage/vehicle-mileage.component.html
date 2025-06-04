@@ -13,6 +13,7 @@
                 <th>Timestamp</th>
                 <th class="numeric">Cost per Mile</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +29,14 @@
                 <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
                 <td data-title="Edit">
                     <button [routerLink]="['/editMileage', mileage.vid, mileage.id]">
-                        <mat-icon>edit</mat-icon
-                    ></button>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+                <td data-title="Delete">
+                    <button (click)="deleteMileage(mileage)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

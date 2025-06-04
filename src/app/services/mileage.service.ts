@@ -36,4 +36,9 @@ export class MileageService {
 
         return this.http.get<VehicleStats[]>(url);
     }
+
+    delete(mid: Number): Observable<Mileage> {
+        let url = this.mileageUrl + mid;
+        return this.http.delete<Mileage>(url);
+    }
 }
