@@ -70,11 +70,11 @@ export class VehicleListComponent implements OnInit {
         }
     }
 
-    toggleVehicleStats(vehicle: Vehicle) {
-        if (vehicle.showingStats) {
-            vehicle.showingStats = false;
+    toggleVehicleStats() {
+        if (this.mainApp.showingStats) {
+            this.mainApp.showingStats = false;
         } else {
-            vehicle.showingStats = true;
+            this.mainApp.showingStats = true;
         }
     }
 

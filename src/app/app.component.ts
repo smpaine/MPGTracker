@@ -13,6 +13,8 @@ import { Vehicle } from '@/models';
 export class AppComponent {
   selectedVehicle: Vehicle;
 
+  showingStats: boolean = false;
+
   constructor(private router: Router,
     public authenticationService: AuthenticationService) {
    }

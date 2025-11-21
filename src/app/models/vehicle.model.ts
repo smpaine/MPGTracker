@@ -11,8 +11,6 @@ export class Vehicle{
 
     editing: boolean = false;
 
-    showingStats: boolean = false;
-
     constructor(obj?: any){
         this.id = obj && obj.id || null;
         this.name = obj && obj.name || null;
