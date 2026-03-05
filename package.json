@@ -51,6 +51,7 @@
     "typescript": "~5.4.0"
   },
   "overrides": {
+    "rollup": "npm:@rollup/wasm-node",
     "@angular-material-components/datetime-picker": {
       "@angular/animations": ">=16.0.0",
       "@angular/common": ">=16.0.0",
