@@ -12,6 +12,7 @@ import { AlertService } from '@/_alert';
     selector: 'edit-user',
     templateUrl: 'edit-user.component.html',
     styleUrls: ['edit-user.component.css'],
+    standalone: true
 })
 
 export class EditUserComponent {

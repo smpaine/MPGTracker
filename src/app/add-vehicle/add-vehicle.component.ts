@@ -6,6 +6,7 @@ import { AlertService } from '@/_alert';
 import { Vehicle } from '@/models';
 
 import { VehicleService } from '@/services';
+import { VehicleFormComponent } from '@/vehicle-form/vehicle-form.component';
 
 @Component({
     selector: 'add-vehicle',
@@ -13,7 +14,9 @@ import { VehicleService } from '@/services';
     styles: [`.btn-cancel{
                 margin-left:15px;
               }
-                `]
+                `],
+    standalone: true,
+    imports: [VehicleFormComponent]
 })
 
 export class AddVehicleComponent {

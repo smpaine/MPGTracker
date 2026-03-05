@@ -1,4 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 import { Mileage } from '@/models';
 import { MileageService } from '@/services';
@@ -7,7 +10,9 @@ import { AlertService } from '@/_alert';
 @Component({
     selector: 'vehicle-mileage',
     templateUrl: 'vehicle-mileage.component.html',
-    styleUrls: ['vehicle-mileage.component.css']
+    styleUrls: ['vehicle-mileage.component.css'],
+    standalone: true,
+    imports: [CommonModule, RouterModule, MatIconModule]
 })
 
 export class VehicleMileageComponent implements OnInit, OnChanges {

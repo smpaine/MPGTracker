@@ -10,7 +10,8 @@ import { User } from '@/_models';
     styles: [`.btn-cancel{
                 margin-left:15px;
               }
-                `]
+                `],
+    standalone: true
 })
 
 export class ChangePasswordComponent {

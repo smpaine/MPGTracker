@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule, UrlSegment } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { Mileage, Vehicle } from '@/models';
 
 import { MileageService, VehicleService } from '@/services';
 
 import { AlertService } from '@/_alert';
+import { OnlyNumber } from '@/directives/onlynumber.directive';
 
 @Component({
     selector: 'mileage-form',
@@ -17,7 +27,14 @@ import { AlertService } from '@/_alert';
                 .button-margin {
                 margin: 8px;
                 }
-                `]
+                `],
+    standalone: true,
+    imports: [
+        CommonModule, ReactiveFormsModule, RouterModule,
+        MatCardModule, MatDialogModule, MatFormFieldModule, MatSelectModule,
+        MatInputModule, MatIconModule, MatButtonModule,
+        OnlyNumber
+    ]
 })
 
 export class MileageFormComponent implements OnInit {
@@ -26,7 +43,7 @@ export class MileageFormComponent implements OnInit {
         mileageControl: FormControl<number>;
         gallonsControl: FormControl<number>;
         totalCostControl: FormControl<number>;
-        mileageDateTime: FormControl<Date>;
+        mileageDateTime: FormControl<string>;
     }>;
 
     vid: Number;
@@ -58,7 +75,7 @@ export class MileageFormComponent implements OnInit {
             mileageControl: new FormControl<number | null>(null, Validators.required),
             gallonsControl: new FormControl<number | null>(null, Validators.required),
             totalCostControl: new FormControl<number | null>(null, Validators.required),
-            mileageDateTime: new FormControl(this.mileageDate, Validators.required)
+            mileageDateTime: new FormControl(this.toDatetimeLocal(this.mileageDate), Validators.required)
         });
 
         if (this.Activatedroute.snapshot.routeConfig.path.indexOf('editMileage') >= 0) {
@@ -94,7 +111,7 @@ export class MileageFormComponent implements OnInit {
                 this.mileageForm.get('totalCostControl').setValue(this.newMileage.totalCost);
                 const mileageDate = new Date(this.newMileage.timestamp);
                 console.debug(mileageDate);
-                this.mileageForm.get('mileageDateTime').setValue(mileageDate);
+                this.mileageForm.get('mileageDateTime').setValue(this.toDatetimeLocal(mileageDate));
                 console.debug("mid: " + this.newMileage.id);
             }
             );
@@ -153,6 +170,11 @@ export class MileageFormComponent implements OnInit {
                 );
             }
         }
+    }
+
+    private toDatetimeLocal(date: Date): string {
+        const pad = (n: number) => n.toString().padStart(2, '0');
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
     }
 
     onChange(newSelectedVehicle: Vehicle) {

@@ -1,7 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { Vehicle } from '@/models';
+import { OnlyNumber } from '@/directives/onlynumber.directive';
 
 @Component({
     selector: 'vehicle-form',
@@ -9,7 +11,9 @@ import { Vehicle } from '@/models';
     styles: [`.btn-cancel{
                 margin-left:15px;
               }
-            `]
+            `],
+    standalone: true,
+    imports: [CommonModule, FormsModule, OnlyNumber]
 })
 
 export class VehicleFormComponent implements OnInit {

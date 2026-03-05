@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from '@/app.component';
 
@@ -7,11 +9,16 @@ import { AlertService } from '@/_alert';
 
 import { Vehicle } from '@/models';
 import { VehicleService } from '@/services';
+import { VehicleFormComponent } from '@/vehicle-form/vehicle-form.component';
+import { VehicleStatsComponent } from '@/vehicle-stats/vehicle-stats.component';
+import { VehicleMileageComponent } from '@/vehicle-mileage/vehicle-mileage.component';
 
 @Component({
     selector: 'vehicle-list',
     templateUrl: 'vehicle-list.component.html',
     styleUrls: ['vehicle-list.component.css'],
+    standalone: true,
+    imports: [CommonModule, FormsModule, RouterModule, VehicleFormComponent, VehicleStatsComponent, VehicleMileageComponent]
 })
 
 export class VehicleListComponent implements OnInit {

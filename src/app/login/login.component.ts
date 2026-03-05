@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from '@/app.component';
 import { AuthenticationService } from '@/_services';
@@ -9,7 +10,9 @@ import { AuthenticationService } from '@/_services';
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css']
+  styleUrls: ['login.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule]
 })
 
 export class LoginComponent implements OnInit {

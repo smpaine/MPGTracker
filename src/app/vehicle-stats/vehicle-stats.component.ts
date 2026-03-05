@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { VehicleStats } from '@/models';
 import { MileageService } from '@/services';
@@ -7,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'vehicle-stats',
     templateUrl: 'vehicle-stats.component.html',
-    styleUrls: ['vehicle-stats.component.css']
+    styleUrls: ['vehicle-stats.component.css'],
+    standalone: true,
+    imports: [CommonModule]
 })
 
 export class VehicleStatsComponent implements OnInit, OnChanges {

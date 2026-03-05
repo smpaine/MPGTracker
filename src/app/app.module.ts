@@ -45,7 +45,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
@@ -70,13 +69,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         MatFormFieldModule,
         MatDatepickerModule,
         MatSelectModule,
-        NgxMatTimepickerModule,
-        NgxMatDatetimePickerModule,
-        NgxMatNativeDateModule,
         AlertModule,
-        DragDropModule
-    ],
-    declarations: [
+        DragDropModule,
         LoginComponent,
         LogoutComponent,
         OnlyNumber,
@@ -92,6 +86,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         EditUserComponent,
         AppComponent
     ],
+    declarations: [],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

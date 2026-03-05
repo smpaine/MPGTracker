@@ -1,10 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 import { User } from '@/_models';
 import { UserService } from '@/services';
-import { MatTableDataSource } from '@angular/material/table';
 import { AuthenticationService } from '@/_services';
 import { AlertService } from '@/_alert';
 
@@ -12,6 +15,8 @@ import { AlertService } from '@/_alert';
     selector: 'manage-users',
     templateUrl: 'manage-users.component.html',
     styleUrls: ['manage-users.component.css'],
+    standalone: true,
+    imports: [CommonModule, RouterModule, MatTableModule, MatIconModule]
 })
 
 export class ManageUsersComponent {

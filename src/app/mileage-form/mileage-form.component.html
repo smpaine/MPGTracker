@@ -50,11 +50,8 @@
 
                 <mat-form-field>
                     <mat-label>Mileage Date</mat-label>
-                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
-                        formControlName="mileageDateTime">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [touchUi]="false">
-                    </ngx-mat-datetime-picker>
+                    <input matInput type="datetime-local" formControlName="mileageDateTime">
+                    <mat-error>Mileage Date is required</mat-error>
                 </mat-form-field>
             </mat-dialog-content>
             <mat-dialog-content>
