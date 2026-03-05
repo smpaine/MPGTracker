@@ -10,6 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { Mileage, Vehicle } from '@/models';
 
@@ -33,6 +35,7 @@ import { OnlyNumber } from '@/directives/onlynumber.directive';
         CommonModule, ReactiveFormsModule, RouterModule,
         MatCardModule, MatDialogModule, MatFormFieldModule, MatSelectModule,
         MatInputModule, MatIconModule, MatButtonModule,
+        MatDatepickerModule, MatNativeDateModule,
         OnlyNumber
     ]
 })
@@ -43,7 +46,8 @@ export class MileageFormComponent implements OnInit {
         mileageControl: FormControl<number>;
         gallonsControl: FormControl<number>;
         totalCostControl: FormControl<number>;
-        mileageDateTime: FormControl<string>;
+        mileageDate: FormControl<Date>;
+        mileageTime: FormControl<string>;
     }>;
 
     vid: Number;
@@ -75,7 +79,8 @@ export class MileageFormComponent implements OnInit {
             mileageControl: new FormControl<number | null>(null, Validators.required),
             gallonsControl: new FormControl<number | null>(null, Validators.required),
             totalCostControl: new FormControl<number | null>(null, Validators.required),
-            mileageDateTime: new FormControl(this.toDatetimeLocal(this.mileageDate), Validators.required)
+            mileageDate: new FormControl(this.mileageDate, Validators.required),
+            mileageTime: new FormControl(this.toTimeString(this.mileageDate), Validators.required)
         });
 
         if (this.Activatedroute.snapshot.routeConfig.path.indexOf('editMileage') >= 0) {
@@ -111,7 +116,8 @@ export class MileageFormComponent implements OnInit {
                 this.mileageForm.get('totalCostControl').setValue(this.newMileage.totalCost);
                 const mileageDate = new Date(this.newMileage.timestamp);
                 console.debug(mileageDate);
-                this.mileageForm.get('mileageDateTime').setValue(this.toDatetimeLocal(mileageDate));
+                this.mileageForm.get('mileageDate').setValue(mileageDate);
+                this.mileageForm.get('mileageTime').setValue(this.toTimeString(mileageDate));
                 console.debug("mid: " + this.newMileage.id);
             }
             );
@@ -134,7 +140,9 @@ export class MileageFormComponent implements OnInit {
             tempMileage.gallons = this.mileageForm.get('gallonsControl').value;
             tempMileage.totalCost = this.mileageForm.get('totalCostControl').value;
 
-            const mileageDate = new Date(this.mileageForm.get('mileageDateTime').value);
+            const dateVal: Date = this.mileageForm.get('mileageDate').value;
+            const [hours, minutes] = this.mileageForm.get('mileageTime').value.split(':').map(Number);
+            const mileageDate = new Date(dateVal.getFullYear(), dateVal.getMonth(), dateVal.getDate(), hours, minutes);
             console.debug(mileageDate);
             console.debug(mileageDate.getTime());
             tempMileage.timestamp = mileageDate.getTime();
@@ -172,9 +180,9 @@ export class MileageFormComponent implements OnInit {
         }
     }
 
-    private toDatetimeLocal(date: Date): string {
+    private toTimeString(date: Date): string {
         const pad = (n: number) => n.toString().padStart(2, '0');
-        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
     }
 
     onChange(newSelectedVehicle: Vehicle) {

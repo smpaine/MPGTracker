@@ -50,8 +50,18 @@
 
                 <mat-form-field>
                     <mat-label>Mileage Date</mat-label>
-                    <input matInput type="datetime-local" formControlName="mileageDateTime">
+                    <input matInput [matDatepicker]="datePicker" formControlName="mileageDate" placeholder="MM/DD/YYYY">
+                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
                     <mat-error>Mileage Date is required</mat-error>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Mileage Time</mat-label>
+                    <input matInput type="time" formControlName="mileageTime">
+                    <mat-error>Mileage Time is required</mat-error>
                 </mat-form-field>
             </mat-dialog-content>
             <mat-dialog-content>
