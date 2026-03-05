@@ -1,11 +1,11 @@
 {
 
-    "/mpgtracker/api/*": {
+    "/mpgtracker/api": {
         "target": "https://nameniap.com",
         "secure": false,
         "logLevel": "debug"
     },
-     "/api/*": {
+    "/api": {
         "target": "http://192.168.160.1:8080/mpgtracker/",
         "secure": false,
         "logLevel": "debug"
