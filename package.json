@@ -13,7 +13,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-material-components/datetime-picker": "^16.0.1",
     "@angular/animations": "^19.0.0",
     "@angular/cdk": "^19.0.0",
     "@angular/common": "^19.0.0",
@@ -34,10 +33,10 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.0",
-    "@rollup/wasm-node": "*",
     "@angular/cli": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
     "@angular/language-service": "^19.0.0",
+    "@rollup/wasm-node": "*",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^18.10.0",
     "jasmine-core": "~3.6.0",
@@ -52,15 +51,4 @@
     "tslint": "~6.1.0",
     "typescript": "~5.6.0"
   },
-  "overrides": {
-    "@angular-material-components/datetime-picker": {
-      "@angular/animations": ">=16.0.0",
-      "@angular/common": ">=16.0.0",
-      "@angular/core": ">=16.0.0",
-      "@angular/forms": ">=16.0.0",
-      "@angular/platform-browser": ">=16.0.0",
-      "@angular/cdk": ">=16.0.0",
-      "@angular/material": ">=16.0.0"
-    }
-  }
 }
