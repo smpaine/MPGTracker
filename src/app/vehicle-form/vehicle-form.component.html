@@ -1,118 +1,149 @@
-<form #vehicleForm="ngForm" class="vehicle-form" *ngIf="vehicle.editing" (ngSubmit)="onSave(vehicleForm)">
+@if (vehicle.editing) {
+  <form #vehicleForm="ngForm" class="vehicle-form" (ngSubmit)="onSave(vehicleForm)">
     <div class="thumbnail" >
-        <div class="caption">
-            <div ngModelGroup="vehicle">
-                <div class="form-group">
-                    <label class="control-label" for="vehicleName">Name</label>
-                    <input [ngModel]="vehicle.name"
-                        class="form-control" type="text"
-                        id="vehicleName" name="name"
-                        placeholder="enter name" autofocus
-                        required minlength="3"
-                        autocomplete="off" autocorrect="off"
-                        #nameControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="nameControl.errors.required">
-                         Name is required.
-                    </div>
-                    <div *ngIf="nameControl.errors.minlength">
-                         Name needs to be at least 3 characters long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="vehicleMake">Make</label>
-                    <input [ngModel]="vehicle.make"
-                        class="form-control" type="text"
-                        id="vehicleMake" name="make"
-                        placeholder="enter make"
-                        required minlength="3"
-                        autocomplete="off" autocorrect="off"
-                        #makeControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="makeControl.invalid && (makeControl.dirty || makeControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="makeControl.errors.required">
-                         Make is required.
-                    </div>
-                    <div *ngIf="makeControl.errors.minlength">
-                         Make needs to be at least 3 characters long.
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="vehicleModel">Model</label>
-                    <input [ngModel]="vehicle.model"
-                        class="form-control" type="text"
-                        id="vehicleModel" name="model"
-                        placeholder="enter model"
-                        required minlength="3"
-                        autocomplete="off" autocorrect="off"
-                        #modelControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="modelControl.invalid && (modelControl.dirty || modelControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="modelControl.errors.required">
-                        Model is required.
-                   </div>
-                   <div *ngIf="modelControl.errors.minlength">
-                        Model needs to be at least 3 characters long.
-                   </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="vehicleYear">Year</label>
-                    <input [ngModel]="vehicle.year"
-                        class="form-control" type="number"
-                        id="vehicleYear" name="year"
-                        placeholder="enter year"
-                        OnlyNumber="true"
-                        required minlength="4"
-                        maxlength="4" step="1"
-                        pattern="^[0-9]{4}"
-                        #yearControl="ngModel">
-                </div>
-                <br>
-                <div *ngIf="yearControl.invalid && (yearControl.dirty || yearControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="yearControl.errors.required">
-                        Year is required.
-                   </div>
-                   <div *ngIf="yearControl.errors.minlength || yearControl.errors.maxlength">
-                        Year needs to be 4 digits long.
-                   </div>
-                   <div *ngIf="yearControl.errors.pattern">
-                       Invalid year.
-                   </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label class="control-label" for="vehiclePurchased">Purchase Date</label>
-                    <input [ngModel]="vehicle.purchased | date:'yyyy-MM-dd'"
-                        class="form-control" type="date"
-                        id="vehiclePurchased" name="purchased"
-                        placeholder="enter purchase date"
-                        autocomplete="off" autocorrect="off"
-                        #purchasedControl="ngModel" required>
-                </div>
-                <br>
-                <div *ngIf="purchasedControl.invalid && (purchasedControl.dirty || purchasedControl.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="purchasedControl.errors.required">
-                        Purchase Date is required.
-                   </div>
-                </div>
+      <div class="caption">
+        <div ngModelGroup="vehicle">
+          <div class="form-group">
+            <label class="control-label" for="vehicleName">Name</label>
+            <input [ngModel]="vehicle.name"
+              class="form-control" type="text"
+              id="vehicleName" name="name"
+              placeholder="enter name" autofocus
+              required minlength="3"
+              autocomplete="off" autocorrect="off"
+              #nameControl="ngModel">
             </div>
-
-            <div class="btn-group">
-                <button class="btn btn-info btn-sm" [disabled]="!vehicleForm.form.valid">Save</button>
-                <a class="btn-cancel" href="" (click)="onCancel(vehicle, $event)">cancel</a>
-            </div>
-        </div>
-    </div>
-</form>
+            <br>
+              @if (nameControl.invalid && (nameControl.dirty || nameControl.touched)) {
+                <div
+                  class="alert alert-danger">
+                  @if (nameControl.errors.required) {
+                    <div>
+                      Name is required.
+                    </div>
+                  }
+                  @if (nameControl.errors.minlength) {
+                    <div>
+                      Name needs to be at least 3 characters long.
+                    </div>
+                  }
+                </div>
+              }
+              <br>
+                <div class="form-group">
+                  <label class="control-label" for="vehicleMake">Make</label>
+                  <input [ngModel]="vehicle.make"
+                    class="form-control" type="text"
+                    id="vehicleMake" name="make"
+                    placeholder="enter make"
+                    required minlength="3"
+                    autocomplete="off" autocorrect="off"
+                    #makeControl="ngModel">
+                  </div>
+                  <br>
+                    @if (makeControl.invalid && (makeControl.dirty || makeControl.touched)) {
+                      <div
+                        class="alert alert-danger">
+                        @if (makeControl.errors.required) {
+                          <div>
+                            Make is required.
+                          </div>
+                        }
+                        @if (makeControl.errors.minlength) {
+                          <div>
+                            Make needs to be at least 3 characters long.
+                          </div>
+                        }
+                      </div>
+                    }
+                    <br>
+                      <div class="form-group">
+                        <label class="control-label" for="vehicleModel">Model</label>
+                        <input [ngModel]="vehicle.model"
+                          class="form-control" type="text"
+                          id="vehicleModel" name="model"
+                          placeholder="enter model"
+                          required minlength="3"
+                          autocomplete="off" autocorrect="off"
+                          #modelControl="ngModel">
+                        </div>
+                        <br>
+                          @if (modelControl.invalid && (modelControl.dirty || modelControl.touched)) {
+                            <div
+                              class="alert alert-danger">
+                              @if (modelControl.errors.required) {
+                                <div>
+                                  Model is required.
+                                </div>
+                              }
+                              @if (modelControl.errors.minlength) {
+                                <div>
+                                  Model needs to be at least 3 characters long.
+                                </div>
+                              }
+                            </div>
+                          }
+                          <br>
+                            <div class="form-group">
+                              <label class="control-label" for="vehicleYear">Year</label>
+                              <input [ngModel]="vehicle.year"
+                                class="form-control" type="number"
+                                id="vehicleYear" name="year"
+                                placeholder="enter year"
+                                OnlyNumber="true"
+                                required minlength="4"
+                                maxlength="4" step="1"
+                                pattern="^[0-9]{4}"
+                                #yearControl="ngModel">
+                              </div>
+                              <br>
+                                @if (yearControl.invalid && (yearControl.dirty || yearControl.touched)) {
+                                  <div
+                                    class="alert alert-danger">
+                                    @if (yearControl.errors.required) {
+                                      <div>
+                                        Year is required.
+                                      </div>
+                                    }
+                                    @if (yearControl.errors.minlength || yearControl.errors.maxlength) {
+                                      <div>
+                                        Year needs to be 4 digits long.
+                                      </div>
+                                    }
+                                    @if (yearControl.errors.pattern) {
+                                      <div>
+                                        Invalid year.
+                                      </div>
+                                    }
+                                  </div>
+                                }
+                                <br>
+                                  <div class="form-group">
+                                    <label class="control-label" for="vehiclePurchased">Purchase Date</label>
+                                    <input [ngModel]="vehicle.purchased | date:'yyyy-MM-dd'"
+                                      class="form-control" type="date"
+                                      id="vehiclePurchased" name="purchased"
+                                      placeholder="enter purchase date"
+                                      autocomplete="off" autocorrect="off"
+                                      #purchasedControl="ngModel" required>
+                                    </div>
+                                    <br>
+                                      @if (purchasedControl.invalid && (purchasedControl.dirty || purchasedControl.touched)) {
+                                        <div
+                                          class="alert alert-danger">
+                                          @if (purchasedControl.errors.required) {
+                                            <div>
+                                              Purchase Date is required.
+                                            </div>
+                                          }
+                                        </div>
+                                      }
+                                    </div>
+                                    <div class="btn-group">
+                                      <button class="btn btn-info btn-sm" [disabled]="!vehicleForm.form.valid">Save</button>
+                                      <a class="btn-cancel" href="" (click)="onCancel(vehicle, $event)">cancel</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            }

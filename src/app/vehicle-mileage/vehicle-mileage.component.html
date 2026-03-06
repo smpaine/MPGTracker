@@ -1,43 +1,45 @@
 <h3>Mileage History</h3>
 <div id="no-more-tables">
-    <table id="mpgTable" class="table-bordered table-striped table-condensed cf">
-        <thead class="cf">
-            <tr>
-                <th>Vehicle</th>
-                <th class="numeric">Mileage</th>
-                <th class="numeric">Gallons</th>
-                <th class="numeric">Total Cost</th>
-                <th class="numeric">Price per Gallon</th>
-                <th class="numeric">Miles Driven</th>
-                <th class="numeric">MPG</th>
-                <th>Timestamp</th>
-                <th class="numeric">Cost per Mile</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let mileage of mileages" id="{{mileage.id}}">
-                <td data-title="Vehicle" class="numeric">{{mileage.name}}</td>
-                <td data-title="Mileage" class="numeric">{{mileage.mileage | number}}</td>
-                <td data-title="Gallons" class="numeric">{{mileage.gallons | number}}</td>
-                <td data-title="Total Cost" class="numeric">{{mileage.totalCost | currency: '$ '}}</td>
-                <td data-title="Price per Gallon" class="numeric">{{mileage.costPerGallon | currency: '$ '}}</td>
-                <td data-title="Miles Driven" class="numeric">{{mileage.miles | number}}</td>
-                <td data-title="MPG" class="numeric">{{mileage.mpg | number}}</td>
-                <td data-title="Timestamp">{{mileage.timestamp | date:'short'}}</td>
-                <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
-                <td data-title="Edit">
-                    <button [routerLink]="['/editMileage', mileage.vid, mileage.id]">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </td>
-                <td data-title="Delete">
-                    <button (click)="deleteMileage(mileage)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table id="mpgTable" class="table-bordered table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Vehicle</th>
+        <th class="numeric">Mileage</th>
+        <th class="numeric">Gallons</th>
+        <th class="numeric">Total Cost</th>
+        <th class="numeric">Price per Gallon</th>
+        <th class="numeric">Miles Driven</th>
+        <th class="numeric">MPG</th>
+        <th>Timestamp</th>
+        <th class="numeric">Cost per Mile</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (mileage of mileages; track mileage) {
+        <tr id="{{mileage.id}}">
+          <td data-title="Vehicle" class="numeric">{{mileage.name}}</td>
+          <td data-title="Mileage" class="numeric">{{mileage.mileage | number}}</td>
+          <td data-title="Gallons" class="numeric">{{mileage.gallons | number}}</td>
+          <td data-title="Total Cost" class="numeric">{{mileage.totalCost | currency: '$ '}}</td>
+          <td data-title="Price per Gallon" class="numeric">{{mileage.costPerGallon | currency: '$ '}}</td>
+          <td data-title="Miles Driven" class="numeric">{{mileage.miles | number}}</td>
+          <td data-title="MPG" class="numeric">{{mileage.mpg | number}}</td>
+          <td data-title="Timestamp">{{mileage.timestamp | date:'short'}}</td>
+          <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
+          <td data-title="Edit">
+            <button [routerLink]="['/editMileage', mileage.vid, mileage.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td data-title="Delete">
+            <button (click)="deleteMileage(mileage)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>

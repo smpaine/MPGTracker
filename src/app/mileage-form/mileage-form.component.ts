@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule, UrlSegment } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -32,12 +32,19 @@ import { OnlyNumber } from '@/directives/onlynumber.directive';
                 `],
     standalone: true,
     imports: [
-        CommonModule, ReactiveFormsModule, RouterModule,
-        MatCardModule, MatDialogModule, MatFormFieldModule, MatSelectModule,
-        MatInputModule, MatIconModule, MatButtonModule,
-        MatDatepickerModule, MatNativeDateModule,
-        OnlyNumber
-    ]
+    ReactiveFormsModule,
+    RouterModule,
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    OnlyNumber
+]
 })
 
 export class MileageFormComponent implements OnInit {

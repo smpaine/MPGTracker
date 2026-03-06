@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from '@/app.component';
@@ -18,7 +18,7 @@ import { VehicleMileageComponent } from '@/vehicle-mileage/vehicle-mileage.compo
     templateUrl: 'vehicle-list.component.html',
     styleUrls: ['vehicle-list.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, RouterModule, VehicleFormComponent, VehicleStatsComponent, VehicleMileageComponent]
+    imports: [FormsModule, RouterModule, VehicleFormComponent, VehicleStatsComponent, VehicleMileageComponent]
 })
 
 export class VehicleListComponent implements OnInit {

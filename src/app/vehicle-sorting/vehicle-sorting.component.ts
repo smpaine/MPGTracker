@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+
 
 import { AppComponent } from '@/app.component';
 
@@ -15,7 +15,7 @@ import { VehicleService } from '@/services';
     templateUrl: 'vehicle-sorting.component.html',
     styleUrls: ['vehicle-sorting.component.css'],
     standalone: true,
-    imports: [CommonModule, DragDropModule]
+    imports: [DragDropModule]
 })
 
 export class VehicleSortingComponent implements OnInit {
