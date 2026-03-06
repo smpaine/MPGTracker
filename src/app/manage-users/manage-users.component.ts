@@ -50,5 +50,15 @@ export class ManageUsersComponent {
 
     deleteUser(user: User) {
         console.debug('Delete user called for user: ' + user.id);
+        this.userService.delete(user.id).subscribe(
+            data => {
+                this.users = this.users.filter(u => u.id !== user.id);
+                this.usersDataSource.data = this.users;
+                this.alertService.success('User deleted successfully');
+            },
+            error => {
+                this.alertService.error('Delete user error: ' + error);
+            }
+        );
     }
 }

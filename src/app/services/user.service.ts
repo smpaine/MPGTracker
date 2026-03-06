@@ -36,8 +36,8 @@ export class UserService {
         return this.http.put(url, user);
     }
 
-    delete(user: User) {
-        let url = this.usersUrl + '/' + user.id;
+    delete(id: number) {
+        let url = this.usersUrl + '/' + id;
 
         return this.http.delete(url);
     }
