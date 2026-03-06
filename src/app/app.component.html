@@ -18,7 +18,7 @@
 
       <button mat-menu-item [routerLink]="['/vehicleSorting']">Reorder Vehicle Sorting</button>
 
-      <button mat-menu-item [routerLink]="['/changePassword']">Change Password</button>
+      <button mat-menu-item [routerLink]="['/editUser', authenticationService.currentTokenValue.id]" [queryParams]="{ returnUrl: '/mileages' }">Change Password</button>
 
       @if (authenticationService.currentTokenValue && authenticationService.currentTokenValue.userType==='administrator') {
         <button mat-menu-item

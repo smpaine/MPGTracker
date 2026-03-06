@@ -38,9 +38,10 @@ export class EditUserComponent implements OnInit {
     }>;
     user: User;
     saved: boolean = false;
+    returnUrl: string = '/mileages';
 
     constructor(
-        private router: Router,
+        public router: Router,
         private userService: UserService,
         private activatedroute: ActivatedRoute,
         private alertService: AlertService,
@@ -55,6 +56,11 @@ export class EditUserComponent implements OnInit {
             passwordControl: new FormControl(''),
             confirmPasswordControl: new FormControl('')
         }, { validators: passwordsMatchValidator });
+
+        const returnUrl = this.activatedroute.snapshot.queryParams['returnUrl'];
+        if (returnUrl) {
+            this.returnUrl = returnUrl;
+        }
 
         const id = this.activatedroute.snapshot.params['id'];
         if (id != undefined) {
@@ -81,7 +87,7 @@ export class EditUserComponent implements OnInit {
             this.userService.update(this.user).subscribe(
                 () => {
                     this.alertService.success('User updated successfully', { autoClose: true, keepAfterRouteChange: true });
-                    this.router.navigate(['/manageUsers']);
+                    this.router.navigateByUrl(this.returnUrl);
                 },
                 error => {
                     this.saved = false;

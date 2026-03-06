@@ -31,6 +31,6 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" [disabled]="editUserForm.invalid || saved" (click)="onSave()">Save</button>
-        <button mat-button [routerLink]="['/manageUsers']">Cancel</button>
+        <button mat-button (click)="router.navigateByUrl(returnUrl)">Cancel</button>
     </mat-card-actions>
 </mat-card>
