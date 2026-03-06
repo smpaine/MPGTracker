@@ -8,7 +8,6 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleStatsComponent } from './vehicle-stats/vehicle-stats.component';
 import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
@@ -23,7 +22,6 @@ const appRoutes: Routes = [
   { path: 'addMileage/:vid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'editMileage/:vid/:mid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthGuard] },
-  { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
   { path: 'manageUsers', component: ManageUsersComponent, canActivate: [AuthGuard] },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },

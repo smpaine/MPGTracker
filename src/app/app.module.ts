@@ -28,7 +28,6 @@ import { VehicleStatsComponent } from './vehicle-stats/vehicle-stats.component';
 import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
 
 import { OnlyNumber } from './directives/onlynumber.directive';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UserService } from './services/user.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -81,7 +80,6 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         VehicleStatsComponent,
         MileageFormComponent,
         AddVehicleComponent,
-        ChangePasswordComponent,
         ManageUsersComponent,
         EditUserComponent,
         AppComponent

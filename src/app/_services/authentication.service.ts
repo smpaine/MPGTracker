@@ -57,7 +57,12 @@ export class AuthenticationService {
     logout() {
         // remove token from local storage to log user out
         localStorage.removeItem(this.tokenName);
-        this.currentTokenSubject.next(null);
-        this.router.navigate(['login']);
+        // Defer the subject update and navigation to the next tick to avoid
+        // ExpressionChangedAfterItHasBeenCheckedError when logout is called
+        // during a component's ngOnInit (e.g. LogoutComponent).
+        setTimeout(() => {
+            this.currentTokenSubject.next(null);
+            this.router.navigate(['login']);
+        });
     }
 }
