@@ -45,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
     imports: [
@@ -82,6 +83,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
         AddVehicleComponent,
         ManageUsersComponent,
         EditUserComponent,
+        AddUserComponent,
         AppComponent
     ],
     declarations: [],

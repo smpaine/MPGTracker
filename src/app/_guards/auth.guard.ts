@@ -14,7 +14,8 @@ export class AuthGuard  {
     state: RouterStateSnapshot) {
     const currentToken = this.authenticationService.currentTokenValue;
     if (currentToken) {
-      if (route.url.toString().indexOf('manageUsers') >= 0) {
+      const url = route.url.toString();
+      if (url.indexOf('manageUsers') >= 0 || url.indexOf('addUser') >= 0) {
         if (currentToken.userType === 'administrator') {
           return true;
         } else {

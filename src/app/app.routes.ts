@@ -10,6 +10,7 @@ import { MileageFormComponent } from './mileage-form/mileage-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
 
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'editMileage/:vid/:mid', component: MileageFormComponent, canActivate: [AuthGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthGuard] },
   { path: 'manageUsers', component: ManageUsersComponent, canActivate: [AuthGuard] },
+  { path: 'addUser', component: AddUserComponent, canActivate: [AuthGuard] },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
   { path: '**',     component: LoginComponent },

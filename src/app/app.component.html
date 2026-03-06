@@ -20,8 +20,8 @@
       <button mat-menu-item [routerLink]="['/editUser', authenticationService.currentTokenValue.id]" [queryParams]="{ returnUrl: '/mileages' }">Change Password</button>
 
       @if (authenticationService.currentTokenValue.userType==='administrator') {
-        <button mat-menu-item
-        [routerLink]="['/manageUsers']">Manage Users</button>
+        <button mat-menu-item [routerLink]="['/manageUsers']">Manage Users</button>
+        <button mat-menu-item [routerLink]="['/addUser']">Add User</button>
       }
 
       <button mat-menu-item [routerLink]="['/logout']">Logout</button>
