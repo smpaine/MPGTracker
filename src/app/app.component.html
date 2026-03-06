@@ -1,13 +1,12 @@
 <div class="container">
-  <div class="page-header">
-    @if (authenticationService.currentTokenValue) {
+  <div class="page-header" *ngIf="authenticationService.currentTokenValue">
       <mat-toolbar>
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon class="menu-icon">menu</mat-icon>
         </button>
         MPGTracker
       </mat-toolbar>
-    }
+
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item
@@ -20,14 +19,14 @@
 
       <button mat-menu-item [routerLink]="['/editUser', authenticationService.currentTokenValue.id]" [queryParams]="{ returnUrl: '/mileages' }">Change Password</button>
 
-      @if (authenticationService.currentTokenValue && authenticationService.currentTokenValue.userType==='administrator') {
+      @if (authenticationService.currentTokenValue.userType==='administrator') {
         <button mat-menu-item
         [routerLink]="['/manageUsers']">Manage Users</button>
       }
 
       <button mat-menu-item [routerLink]="['/logout']">Logout</button>
 
-      @if (authenticationService.currentTokenValue && authenticationService.currentTokenValue.lastLoginDt) {
+      @if (authenticationService.currentTokenValue.lastLoginDt) {
         <span mat-menu-item
           class="small">Logged in {{authenticationService.currentTokenValue.lastLoginDt | date
         :'medium':'EST'}}</span>
