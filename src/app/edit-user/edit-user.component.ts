@@ -1,53 +1,93 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 import { User } from '@/_models';
 import { UserService } from '@/services';
-import { MatTableDataSource } from '@angular/material/table';
-import { AuthenticationService } from '@/_services';
 import { AlertService } from '@/_alert';
+
+function passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('passwordControl').value;
+    const confirm = group.get('confirmPasswordControl').value;
+    if (password && confirm && password !== confirm) {
+        return { passwordsMismatch: true };
+    }
+    return null;
+}
 
 @Component({
     selector: 'edit-user',
     templateUrl: 'edit-user.component.html',
     styleUrls: ['edit-user.component.css'],
-    standalone: true
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, RouterModule,
+              MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule]
 })
 
-export class EditUserComponent {
-    currentUserId: number;
+export class EditUserComponent implements OnInit {
+    editUserForm: FormGroup<{
+        userNameControl: FormControl<string>;
+        passwordControl: FormControl<string>;
+        confirmPasswordControl: FormControl<string>;
+    }>;
     user: User;
-    errorMessage: string;
-
-    displayedColumns: string[] = ['userName', 'lastLoginDt', 'editUser', 'deleteUser'];
+    saved: boolean = false;
 
     constructor(
         private router: Router,
         private userService: UserService,
-        private authenticationService: AuthenticationService,
         private activatedroute: ActivatedRoute,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private formBuilder: FormBuilder
     ) {
         this.user = new User();
     }
 
     ngOnInit() {
-        if (this.activatedroute.snapshot.params['id'] != undefined) {
-            this.currentUserId = this.activatedroute.snapshot.params['id'];
-            console.debug('editUser id: ' + this.currentUserId);
-        } else {
-            console.debug('editUser id: <null>');
-        }
+        this.editUserForm = this.formBuilder.group({
+            userNameControl: new FormControl('', Validators.required),
+            passwordControl: new FormControl(''),
+            confirmPasswordControl: new FormControl('')
+        }, { validators: passwordsMatchValidator });
 
-        this.userService.getById(this.currentUserId).subscribe(
-            data => {
-                this.user = data;
-            },
-            error => {
-                this.alertService.error('Manage Users error: ' + error);
-            }
-        );
+        const id = this.activatedroute.snapshot.params['id'];
+        if (id != undefined) {
+            this.userService.getById(id).subscribe(
+                data => {
+                    this.user = data;
+                    this.editUserForm.get('userNameControl').setValue(this.user.userName);
+                },
+                error => {
+                    this.alertService.error('Error loading user: ' + error);
+                }
+            );
+        }
     }
 
+    onSave() {
+        if (this.editUserForm.valid) {
+            this.saved = true;
+            this.user.userName = this.editUserForm.get('userNameControl').value;
+            const newPassword = this.editUserForm.get('passwordControl').value;
+            if (newPassword) {
+                this.user.password = newPassword;
+            }
+            this.userService.update(this.user).subscribe(
+                () => {
+                    this.alertService.success('User updated successfully', { autoClose: true, keepAfterRouteChange: true });
+                    this.router.navigate(['/manageUsers']);
+                },
+                error => {
+                    this.saved = false;
+                    this.alertService.error('Failed to update user: ' + error);
+                }
+            );
+        }
+    }
 }
