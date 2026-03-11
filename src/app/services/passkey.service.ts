@@ -66,7 +66,7 @@ export class PasskeyService {
         id: this.base64UrlToBuffer(options.publicKey.user.id)
       },
       excludeCredentials: options.publicKey.excludeCredentials?.map((c: any) => ({
-        ...c,
+        type: c.type,
         id: this.base64UrlToBuffer(c.id)
       })),
       // Strip extensions — the library adds appidExclude for U2F compatibility
