@@ -12,6 +12,16 @@ Manage Passkeys
             <td mat-cell *matCellDef="let cred">{{cred.createdDt | date:'medium':'EST'}}</td>
         </ng-container>
 
+        <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef>Origin</th>
+            <td mat-cell *matCellDef="let cred">{{cred.origin || '—'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="userAgent">
+            <th mat-header-cell *matHeaderCellDef>Browser / Device</th>
+            <td mat-cell *matCellDef="let cred">{{cred.userAgent || '—'}}</td>
+        </ng-container>
+
         <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef>Delete</th>
             <td mat-cell *matCellDef="let cred">

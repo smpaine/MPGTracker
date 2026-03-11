@@ -39,7 +39,11 @@ export class AppComponent {
       this.alertService.success('Passkey registered successfully.');
     } catch (err) {
       console.error('Passkey registration error:', err);
-      this.alertService.error('Passkey registration failed: ' + (err as Error).message);
+      if ((err as DOMException).name === 'InvalidStateError') {
+        this.alertService.error('A passkey is already registered on this device. Delete it under Manage Passkeys before registering again.');
+      } else {
+        this.alertService.error('Passkey registration failed: ' + (err as Error).message);
+      }
     }
   }
 }

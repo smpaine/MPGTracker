@@ -26,8 +26,9 @@ export class PasskeyService {
     return this.http.delete(`${this.baseUrl}/credentials/${id}`);
   }
 
-  async authenticate(userName: string): Promise<any> {
-    const options = await this.http.get<any>(`${this.baseUrl}/auth/options`, { params: { userName } }).toPromise();
+  async authenticate(userName?: string): Promise<any> {
+    const params = userName ? { userName } : {};
+    const options = await this.http.get<any>(`${this.baseUrl}/auth/options`, { params }).toPromise();
 
     const publicKeyOptions: PublicKeyCredentialRequestOptions = {
       ...options.publicKey,

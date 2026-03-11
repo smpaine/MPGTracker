@@ -23,7 +23,7 @@ export class ManagePasskeysComponent implements OnInit {
     userName: string;
     credentials: any[] = [];
     credentialsDataSource: MatTableDataSource<any>;
-    displayedColumns: string[] = ['createdDt', 'delete'];
+    displayedColumns: string[] = ['createdDt', 'origin', 'userAgent', 'delete'];
 
     constructor(
         private router: Router,

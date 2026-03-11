@@ -69,16 +69,10 @@ export class LoginComponent implements OnInit {
   }
 
   async loginWithPasskey() {
-    this.submitted = true;
-    if (!this.f.userName.value) {
-      this.loginForm.controls.userName.markAsTouched();
-      return;
-    }
-
     this.loading = true;
     this.error = '';
     try {
-      const jwtResponse = await this.passkeyService.authenticate(this.f.userName.value);
+      const jwtResponse = await this.passkeyService.authenticate();
       this.authenticationService.storeToken(jwtResponse);
       this.router.navigate(['mileages']);
     } catch (err) {
