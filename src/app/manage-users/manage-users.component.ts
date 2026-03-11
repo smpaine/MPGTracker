@@ -25,7 +25,7 @@ export class ManageUsersComponent {
 
     usersDataSource: MatTableDataSource<User>;
 
-    displayedColumns: string[] = ['userName', 'lastLoginDt', 'editUser', 'deleteUser'];
+    displayedColumns: string[] = ['userName', 'lastLoginDt', 'editUser', 'managePasskeys', 'deleteUser'];
 
     constructor(
         private router: Router,

@@ -8,8 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthenticationService } from '@/_services';
+import { PasskeyService } from '@/services/passkey.service';
 import { Vehicle } from '@/models';
-import { AlertComponent } from '@/_alert';
+import { AlertComponent, AlertService } from '@/_alert';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,21 @@ export class AppComponent {
 
   showingStats: boolean = false;
 
+  passkeySupported = typeof window !== 'undefined' && !!window.PublicKeyCredential;
+
   constructor(private router: Router,
-    public authenticationService: AuthenticationService) {
-   }
+    public authenticationService: AuthenticationService,
+    private passkeyService: PasskeyService,
+    private alertService: AlertService) {
+  }
+
+  async registerPasskey() {
+    try {
+      await this.passkeyService.register();
+      this.alertService.success('Passkey registered successfully.');
+    } catch (err) {
+      console.error('Passkey registration error:', err);
+      this.alertService.error('Passkey registration failed: ' + (err as Error).message);
+    }
+  }
 }

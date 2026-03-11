@@ -19,6 +19,11 @@
 
       <button mat-menu-item [routerLink]="['/editUser', authenticationService.currentTokenValue.id]" [queryParams]="{ returnUrl: '/mileages' }">Change Password</button>
 
+      @if (passkeySupported) {
+        <button mat-menu-item (click)="registerPasskey()">Register Passkey</button>
+        <button mat-menu-item [routerLink]="['/managePasskeys', authenticationService.currentTokenValue.id]">Manage Passkeys</button>
+      }
+
       @if (authenticationService.currentTokenValue.userType==='administrator') {
         <button mat-menu-item [routerLink]="['/manageUsers']">Manage Users</button>
         <button mat-menu-item [routerLink]="['/addUser']">Add User</button>

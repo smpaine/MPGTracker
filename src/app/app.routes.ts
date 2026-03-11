@@ -1,4 +1,5 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+
 import { LoginComponent } from '@/login';
 import { LogoutComponent } from '@/logout';
 
@@ -12,8 +13,9 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { VehicleSortingComponent } from './vehicle-sorting/vehicle-sorting.component';
+import { ManagePasskeysComponent } from './manage-passkeys/manage-passkeys.component';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: '',       component: LoginComponent },
   { path: 'login',  component: LoginComponent },
   { path: 'mileages', component: VehicleListComponent, canActivate: [AuthGuard] },
@@ -26,8 +28,7 @@ const appRoutes: Routes = [
   { path: 'manageUsers', component: ManageUsersComponent, canActivate: [AuthGuard] },
   { path: 'addUser', component: AddUserComponent, canActivate: [AuthGuard] },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard] },
+  { path: 'managePasskeys/:userId', component: ManagePasskeysComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
   { path: '**',     component: LoginComponent },
 ];
-
-export const routing = RouterModule.forRoot(appRoutes, {});

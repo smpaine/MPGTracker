@@ -54,6 +54,11 @@ export class AuthenticationService {
             }));
     }
 
+    storeToken(response: JwtResponse) {
+        localStorage.setItem(this.tokenName, JSON.stringify(response));
+        this.currentTokenSubject.next(response);
+    }
+
     logout() {
         // remove token from local storage to log user out
         localStorage.removeItem(this.tokenName);

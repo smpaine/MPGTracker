@@ -20,6 +20,15 @@ Manage Users Form
         </td>
     </ng-container>
 
+    <ng-container matColumnDef="managePasskeys">
+        <th mat-header-cell *matHeaderCellDef>Passkeys</th>
+        <td mat-cell *matCellDef="let user">
+            <button [routerLink]="['/managePasskeys', user.id]">
+                <mat-icon>key</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
     <ng-container matColumnDef="deleteUser">
         <th mat-header-cell *matHeaderCellDef>Delete User</th>
         <td mat-cell *matCellDef="let user">

@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-
 import { AppComponent } from '@/app.component';
 import { AuthenticationService } from '@/_services';
+import { PasskeyService } from '@/services/passkey.service';
 
 @Component({
   selector: 'login',
@@ -23,10 +23,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loading = false;
   error = '';
+  passkeySupported = typeof window !== 'undefined' && !!window.PublicKeyCredential;
 
   constructor(private mainApp: AppComponent,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private passkeyService: PasskeyService,
     private formBuilder: FormBuilder,
   ) {
     if (this.authenticationService.currentTokenValue) {
@@ -64,5 +66,25 @@ export class LoginComponent implements OnInit {
           this.error = error;
           this.loading = false;
         });
+  }
+
+  async loginWithPasskey() {
+    this.submitted = true;
+    if (!this.f.userName.value) {
+      this.loginForm.controls.userName.markAsTouched();
+      return;
+    }
+
+    this.loading = true;
+    this.error = '';
+    try {
+      const jwtResponse = await this.passkeyService.authenticate(this.f.userName.value);
+      this.authenticationService.storeToken(jwtResponse);
+      this.router.navigate(['mileages']);
+    } catch (err) {
+      console.error('Passkey authentication error:', err);
+      this.error = 'Passkey authentication failed: ' + (err as Error).message;
+      this.loading = false;
+    }
   }
 }
