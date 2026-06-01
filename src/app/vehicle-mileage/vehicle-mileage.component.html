@@ -29,7 +29,7 @@
           <td data-title="MPG" class="numeric">{{mileage.mpg | number}}</td>
           <td data-title="Timestamp">{{mileage.timestamp | date:'short'}}</td>
           <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
-          <td data-title="Notes">
+          <td data-title="Notes" [class.notes-empty]="!mileage.notes">
             @if (mileage.notes) {
               <button class="note-btn" (click)="openNoteDialog(mileage)"
                 [matTooltip]="mileage.notes" matTooltipShowDelay="300">
