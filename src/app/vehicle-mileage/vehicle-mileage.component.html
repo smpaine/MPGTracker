@@ -12,6 +12,7 @@
         <th class="numeric">MPG</th>
         <th>Timestamp</th>
         <th class="numeric">Cost per Mile</th>
+        <th>Notes</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -28,6 +29,14 @@
           <td data-title="MPG" class="numeric">{{mileage.mpg | number}}</td>
           <td data-title="Timestamp">{{mileage.timestamp | date:'short'}}</td>
           <td data-title="Cost per Mile" class="numeric">{{mileage.costPerMile | currency: '$ '}}</td>
+          <td data-title="Notes">
+            @if (mileage.notes) {
+              <button class="note-btn" (click)="openNoteDialog(mileage)"
+                [matTooltip]="mileage.notes" matTooltipShowDelay="300">
+                <mat-icon>chat_bubble</mat-icon>
+              </button>
+            }
+          </td>
           <td data-title="Edit">
             <button [routerLink]="['/editMileage', mileage.vid, mileage.id]">
               <mat-icon>edit</mat-icon>

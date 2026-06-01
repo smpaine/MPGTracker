@@ -10,6 +10,7 @@ export class Mileage{
     miles: number;
     vid: number;
     costPerMile: number;
+    notes: string;
 
     constructor(obj?: any){
         this.id = obj && obj.id || null;
@@ -23,5 +24,6 @@ export class Mileage{
         this.miles = obj && obj.miles || null;
         this.vid = obj && obj.vid || null;
         this.costPerMile = obj && obj.costPerMile || null;
+        this.notes = obj && obj.notes || null;
     }
 }

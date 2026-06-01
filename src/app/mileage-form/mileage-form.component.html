@@ -73,6 +73,14 @@
                     <input matInput type="time" formControlName="mileageTime">
                     <mat-error>Mileage Time is required</mat-error>
                   </mat-form-field>
+
+                  <br>
+
+                  <mat-form-field style="width: 100%">
+                    <mat-label>Notes</mat-label>
+                    <textarea matInput formControlName="notesControl" rows="3" maxlength="1000"
+                      placeholder="Optional notes about this fill-up"></textarea>
+                  </mat-form-field>
                 </mat-dialog-content>
                 <mat-dialog-content>
                   <mat-card-actions fxLayoutGap="20px" fxLayoutAlig="space-around center" fxLayout="row">

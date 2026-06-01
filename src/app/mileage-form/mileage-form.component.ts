@@ -55,6 +55,7 @@ export class MileageFormComponent implements OnInit {
         totalCostControl: FormControl<number>;
         mileageDate: FormControl<Date>;
         mileageTime: FormControl<string>;
+        notesControl: FormControl<string>;
     }>;
 
     vid: Number;
@@ -87,7 +88,8 @@ export class MileageFormComponent implements OnInit {
             gallonsControl: new FormControl<number | null>(null, Validators.required),
             totalCostControl: new FormControl<number | null>(null, Validators.required),
             mileageDate: new FormControl(this.mileageDate, Validators.required),
-            mileageTime: new FormControl(this.toTimeString(this.mileageDate), Validators.required)
+            mileageTime: new FormControl(this.toTimeString(this.mileageDate), Validators.required),
+            notesControl: new FormControl<string | null>(null)
         });
 
         if (this.Activatedroute.snapshot.routeConfig.path.indexOf('editMileage') >= 0) {
@@ -125,6 +127,7 @@ export class MileageFormComponent implements OnInit {
                 console.debug(mileageDate);
                 this.mileageForm.get('mileageDate').setValue(mileageDate);
                 this.mileageForm.get('mileageTime').setValue(this.toTimeString(mileageDate));
+                this.mileageForm.get('notesControl').setValue(this.newMileage.notes);
                 console.debug("mid: " + this.newMileage.id);
             }
             );
@@ -153,6 +156,7 @@ export class MileageFormComponent implements OnInit {
             console.debug(mileageDate);
             console.debug(mileageDate.getTime());
             tempMileage.timestamp = mileageDate.getTime();
+            tempMileage.notes = this.mileageForm.get('notesControl').value;
 
             if (this.isEditing) {
                 console.debug("mid: " + tempMileage.id);
